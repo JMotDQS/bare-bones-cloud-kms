@@ -1,0 +1,117 @@
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: var(--color-navbar-background);
+	padding: var(--half-rem) var(--full-rem);
+	margin-bottom: var(--half-rem);
+	border-bottom-left-radius: var( --navbar-corner-radius);
+	border-bottom-right-radius: var( --navbar-corner-radius);
+	/*position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	z-index: 10;*/
+}
+
+.g_dialog {
+	padding: var(--half-rem);
+	background: white;
+	border: 1px solid var(--navbar-link-color);
+	border-radius: var(--half-rem);
+	margin-inline: auto;
+	margin-block-start: calc(var(--full-half-rem) * 3);
+}
+.g_dialog::backdrop {
+	background-color: rgba(0, 0, 0, .5);
+	backdrop-filter: blur(calc(var(--quarter-rem) / 4));
+}
+
+.dialog-header {
+	display: grid;
+	border-radius: var(--half-rem);
+	margin-block-end: var(--half-rem);
+	color: white;
+	justify-content: center;
+}
+
+.dialog-grid {
+	display: grid;
+}
+.dialog-grid > p {
+    font-style: italic;
+    margin-block-end: var(--half-rem);
+	text-align: center;
+}
+
+.dialog-grid-gap {
+	gap: var(--half-rem);
+}
+
+.dialog-form-element input {
+	display: block;
+	padding: var(--quarter-rem);
+	margin-inline: auto;
+	border-radius: var(--quarter-rem);
+	width: 100%;
+}
+.dialog-form-element select {
+	display: block;
+	padding: var(--quarter-rem);
+	margin-inline: auto;
+	border-radius: var(--quarter-rem);
+	width: 100%;
+}
+
+.dialog-form-button {
+	width: 100%;
+	padding: var(--quarter-rem);
+	margin-block-start: var(--half-rem);
+	border-radius: var(--half-rem);
+	cursor: pointer;
+}
+.dialog-form-button:not(.button-disabled):hover {
+	background-color: var(--color-navbar-background);
+	color: #ffffff;
+}
+
+.dialog-error {
+	display: none;
+	font-size: var(--half_rem);
+}
+.dialog-error-show {
+	display: block;
+}
+
+/*******************
+Dialog buttons
+*******************/
+.dialog-edit, .dialog-save, .dialog-close, .dialog-create {
+	color: var(--color-lego-yellow-secondary);
+	font-size: var(--full-quarter-rem);
+	font-weight: bold;
+}
+.dialog-edit {
+	justify-self: flex-start;
+}
+.dialog-save {
+	justify-self: center;
+}
+.dialog-close {
+	justify-self: flex-end;
+}
+.dialog-print {
+	font-size: var(--full-quarter-rem);
+	cursor: pointer;
+}
+
+.dialog-edit:hover,
+.dialog-edit:focus,
+.dialog-save:hover,
+.dialog-save:focus,
+.dialog-close:hover,
+.dialog-close:focus,
+.dialog-create:hover,
+.dialog-create:focus {
+	color:var(--color-lego-red);
+	cursor: pointer;
+}

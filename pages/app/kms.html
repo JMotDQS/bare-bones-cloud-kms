@@ -1,0 +1,25 @@
+<style>
+	.grid-container-kms {
+		grid-template-columns: minmax(200px, 1fr) minmax(200px, 1fr);
+	}
+
+	@media (width < 600px) {
+		.grid-container-kms {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<div id="kms" class="grid-container grid-container-kms">
+	<!--<h2>Home</h2>
+	<a href="../../">Back</a>-->
+			
+		<!--{sections.map(section => (
+			<div class={`card ${'card-' + section.section.replaceAll(' ','').toLowerCase()}`} key={section.id} onClick={() => onClickNavigate('/' + section.section.replaceAll(' ','').toLowerCase())}>
+				<h1>{section.section}</h1>
+				<p class="card-body">{section.body}</p>
+				<p class="card-icon"><FontAwesomeIcon icon={section.icon} /></p>
+			</div>
+		))}-->
+
+</div>

@@ -1,0 +1,104 @@
+nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: var(--color-navbar-background);
+	padding: var(--half-rem) var(--full-rem);
+	margin-bottom: var(--half-rem);
+	border-bottom-left-radius: var( --navbar-corner-radius);
+	border-bottom-right-radius: var( --navbar-corner-radius);
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	z-index: 10;
+}
+
+.nav-logo {
+	margin: 0;
+	height: calc(var(--navbar-height) * .75);
+	/*cursor: pointer;*/
+}
+
+.nav-links li {
+	display: inline-block;
+}
+
+.navbar-item {
+	margin: 0;
+	font-weight: 600;
+	font-size: calc(var(--full-rem) * .875);
+	color: var(--navbar-link-color);
+	background-color: transparent;
+	border: none;
+}
+.navbar-link {
+	padding-inline: var(--half-rem);
+	text-decoration: none;
+	cursor: pointer;
+}
+li.active .navbar-link {
+	color: var(--navbar-link-active-color);
+	cursor: default;
+}
+.navbar-link:hover {
+	color: var(--navbar-link-hover-color);
+}
+.nav-item-divider {
+	color: var(--navbar-link-hover-color);
+	font-size: var(--full-rem);
+}
+
+.nav-button {
+	border-radius: var(--full-rem);
+	padding-inline: var(--full-rem);
+	padding-block: var(--quarter-rem);
+	margin-inline-start: calc(var(--full-rem) * 4);
+
+	background-color: var(--color-nav-button);
+	border: 1px solid var(--color-nav-button-hover);
+}
+.nav-links li:last-child .navbar-link.nav-button:hover {
+	color: var(--color-navbar-background);
+	background-color: var(--color-nav-button-hover);
+}
+
+.navbar-search {
+	margin-inline-end: calc(var(--full-half-rem) * 4);
+}
+
+nav input[type=text] {
+	padding: 6px;
+	font-size: var(--three-quarter-rem);
+	border: none;
+	border-top-left-radius: var(--half-rem);
+	border-bottom-left-radius: var(--half-rem);
+}
+
+.nav-search-button {
+	float: right;
+	padding: 6px 10px;
+	background: #ddd;
+	font-size: var(--three-quarter-rem);
+	border: none;
+	border-top-right-radius: var(--half-rem);
+	border-bottom-right-radius: var(--half-rem);
+	cursor: pointer;
+}
+
+.nav-item-hide {
+	display: none !important;
+}
+#navbar-user {
+	font-size: calc(var(--full-rem) * .875);
+	padding-inline-start: var(--full-rem);
+}
+
+#search-clear-button {
+	font-weight: 500;
+	margin-inline-start: var(--quarter-rem);
+	margin-inline-end: var(--full-rem);
+	border-radius: var(--quarter-rem);
+	padding-inline: var(--half-rem);
+	padding-block: calc(var(--quarter-rem) / 2);
+	cursor: pointer;
+}
