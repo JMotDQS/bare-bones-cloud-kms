@@ -107,47 +107,6 @@ function pageCheck(param_page, param_user_id) {
 	clearTimer(g_TIMER);
 
 	switch(param_page) {
-		/*
-		case "kms":
-			setIndexContent();
-			break;
-
-		case "checkin":
-			setTemplate();
-			break;
-
-		case "checkout":
-			setTemplate();
-			break;
-
-		case "labels":
-			setTemplate();
-			break;
-
-		case "search":
-			setTemplate();
-			break;
-
-		case "reports":
-			setTemplate();
-			break;
-
-		case "dashboard":
-			setTemplate();
-			break;
-		
-		case "addUser":
-			buildCompanyDropdown('dialog_user_company');
-			openDialogUser(g_NO_SEARCH_RESULTS);
-			break;
-
-		case "itemAssociation":
-			openDialogUser();
-			setKeyEvents(param_page, 'dialog_user_location_id');
-			$('#dialog_user_asso_button').on('click', recordAssociation);
-			break;
-		*/
-
 		case "login":
 			LOGIN_DIALOG.showModal();
 			document.getElementById('dialog-login-form-button').addEventListener('click', () => {
@@ -181,72 +140,5 @@ function pageCheck(param_page, param_user_id) {
 			CHOOSE_LOT_DIALOG.showModal();	
 			closeDialogLogin();
 			break;
-
-		case "addAdmin":
-			setKeyEvents(param_page, 'add-admin_email', .5);
-			toggleDisabled('#dialog-add-admin-form-button', true);
-			document.getElementById('dialog-add-admin-form-button').classList.add('button-disabled');
-			document.getElementById('dialog-add-admin-form-button').addEventListener('click', () => {
-				validateEmail(param_user_id);
-			});
-			document.getElementById('dialog-add-admin-grid').addEventListener('keydown', (event) => {
-				if(event.key === 'Enter') {
-					validateEmail(param_user_id);
-				}
-			});
-			ADD_ADMIN_DIALOG.showModal();
-			break;
-
-		case "bulkAddUser":
-			buildCompanyDropdown('dialog_bulk_add_user_company');
-			document.getElementById('dialog-bulk-add-user-button').addEventListener('click', () => {
-				sendBulkAddUserData();
-			});
-
-			setdialogBulkAddUserEventListenerAssociations();
-			BULK_ADD_USER_DIALOG.showModal();
-			break;
 	}
 }
-/*
-function setTemplate() {
-	document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].section;
-	var tempClassArray = g_SECTIONS[g_CHOSEN_SECTION].icon.split(" ");
-	tempClassArray.forEach((myClass) => {
-		document.getElementById('icon').classList.add(myClass);
-	});
-	var temp_page = g_SECTIONS[g_CHOSEN_SECTION].section.replaceAll(' ','').toLowerCase();
-	document.getElementById('card-template-container').classList.add('card-' + temp_page);
-
-	var temp_html = '';
-	switch(temp_page) {
-		case 'checkin':
-			temp_html += `
-				<div>
-					<div class="card inset-container">
-						<label for="vin">VIN:</label>
-						<input id="vin" name="vin" type="text" />
-						<p id="vin-feedback"></p>
-					</div>
-
-					<div class="card inset-container disable-input">
-						<label for="slot">Slot:</label>
-						<input id="slot" name="slot" type="text" />
-					</div>
-				</div>
-
-				<div>
-					<div class="card inset-container">
-						<h3>Available Slots by Case</h3>
-					</div>
-				</div>`;
-			document.getElementById('card-template-body').innerHTML = temp_html;
-
-			setFocus('vin');
-			toggleDisabled('slot', true);
-			setKeyEvents(temp_page, 'vin');
-			setKeyEvents(temp_page, 'slot');
-			break;
-	}
-}
-*/

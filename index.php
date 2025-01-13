@@ -41,11 +41,8 @@
 			<div id="card-template-container" class="invisible grid-container disable-hover"></div>
 		</div>
 
-		<dialog id="dialog_user" class="g_dialog dialog_user"></dialog>
 		<dialog id="dialog_login" class="g_dialog dialog_login"></dialog>
 		<dialog id="dialog_lot_choice" class="g_dialog dialog_lot_choice"></dialog>
-		<dialog id="dialog_add_admin" class="g_dialog dialog_add_admin"></dialog>
-		<dialog id="dialog_bulk_add_user" class="g_dialog dialog_bulk_add_user"></dialog>
 
 	<!-- JQuery CDN -->
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

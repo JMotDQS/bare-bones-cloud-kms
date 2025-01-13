@@ -1,10 +1,8 @@
 /***** Global Use Variables */
 const g_ROOT_PATH = 'http://localhost/cloud-kms/';
-const USER_DIALOG = document.querySelector('.dialog_user');
 const LOGIN_DIALOG = document.querySelector('.dialog_login');
 const CHOOSE_LOT_DIALOG = document.querySelector('.dialog_lot_choice');
 const ADD_ADMIN_DIALOG = document.querySelector('.dialog_add_admin');
-const BULK_ADD_USER_DIALOG = document.querySelector('.dialog_bulk_add_user');
 const PREVENT_LOGIN_CLOSE = true;
 const DEFAULT_PASSWORD = 'P@ssw0rd';
 
