@@ -1,5 +1,5 @@
 function updatePasswordCheck() {
-	updatePasswordCheckPromise('updatePasswordCheck', dataCleanUp($('#update_password').val()), g_CURRENT_LOGIN_USER_ID).then(function(resolve) {
+	updatePasswordCheckPromise('updatePasswordCheck', dataCleanUp($('#update_password').val()), g_CURRENT_USER_ID).then(function(resolve) {
 		if(parseInt(resolve) === 0) {
 			getLots();
 			//closeDialogLogin();

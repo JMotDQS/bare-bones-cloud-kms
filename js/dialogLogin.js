@@ -8,13 +8,12 @@ function userLoginCheck(e) {
 			feedBackColoring(document.getElementById('dialog-login-error'), 'red');
 			document.getElementById('dialog-login-error').classList.remove('invisible');
 		} else {
-			console.log("parseInt(resolve[0]['is_active']):", parseInt(resolve[0]['is_active']));
 			if(parseInt(resolve[0]['is_active']) === 1) {
 				document.getElementById('dialog-login-error').textContent = '';
 				document.getElementById('dialog-login-error').classList.add('invisible');
 				feedBackColoring(document.getElementById('dialog-login-error'));
 				g_CURRENT_USER = resolve[0];
-				g_CURRENT_LOGIN_USER_ID = g_CURRENT_USER['pk_id'];
+				g_CURRENT_USER_ID = g_CURRENT_USER['pk_id'];
 
 				if(parseInt(resolve[0]['change_password']) === 1) {
 					loadDialog('passwordUpdate', g_DIALOG, 'dialog_login');
@@ -47,6 +46,5 @@ function userLoginCheck(e) {
 }
 
 function closeDialogLogin() {
-	console.log("closeDialogLogin() called");
 	LOGIN_DIALOG.close();
 }

@@ -263,6 +263,9 @@ label {
 .invisible {
 	visibility: hidden;
 }
+.hide-element {
+	display: none;
+}
 
 @media (width < 600px) {
 	.grid-container {

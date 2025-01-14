@@ -1,10 +1,8 @@
 /***** Global Use Variables */
-const g_ROOT_PATH = 'http://localhost/cloud-kms/';
+const g_ROOT_PATH = 'http://localhost/bare-bones-cloud-kms/';
 const LOGIN_DIALOG = document.querySelector('.dialog_login');
 const CHOOSE_LOT_DIALOG = document.querySelector('.dialog_lot_choice');
-const ADD_ADMIN_DIALOG = document.querySelector('.dialog_add_admin');
 const PREVENT_LOGIN_CLOSE = true;
-const DEFAULT_PASSWORD = 'P@ssw0rd';
 
 function disableEscapeKeyDialogBehavior(event) {
 	if(event.key === 'Escape' && PREVENT_LOGIN_CLOSE) {
@@ -12,12 +10,12 @@ function disableEscapeKeyDialogBehavior(event) {
 	}
 }
 LOGIN_DIALOG.addEventListener('keydown', disableEscapeKeyDialogBehavior);
-ADD_ADMIN_DIALOG.addEventListener('keydown', disableEscapeKeyDialogBehavior);
+CHOOSE_LOT_DIALOG.addEventListener('keydown', disableEscapeKeyDialogBehavior);
 const CLICK_EVENT = new CustomEvent('click');
 
 var g_TIMER;
 var g_KEY_RESET_TIMER;
-var g_CURRENT_LOGIN_USER_ID = '0';
+var g_CURRENT_USER_ID = '0';
 var g_CURRENT_USER = [];
 var g_USER_SEARCH = [];
 var g_NO_SEARCH_RESULTS = '';
@@ -38,7 +36,7 @@ const g_RESET_TIMEOUT_VAL = 2000;
 const g_APP = 'app';
 const g_NAV = 'nav';
 const g_DIALOG = 'dialog';
-const g_VER = '2.2.3';
+const g_VER = '3.0-Alpha';
 const g_VIN_LENGTH = 17;
 
 const g_CONNECTION_ERROR_COPY = 'An error occured connecting to the data'
@@ -55,7 +53,7 @@ const g_REPLACE_ENTITIES = ["&Oslash;", "&deg;",
 						"&agrave;", "&aacute;", "&Agrave;", "&Aacute;",
 						"&egrave;", "&eacute;", "&Egrave;", "&Eacute;"];
 
-const sections = [
+/*const sections = [
 	{
 		id: 1,
 		section: "Labels",
@@ -92,4 +90,4 @@ const sections = [
 		body: "Dashboard Stuff",
 		icon: "fas fa-tachometer-alt"
 	}
-];
+];*/

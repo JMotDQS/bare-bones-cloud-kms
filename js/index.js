@@ -13,7 +13,7 @@ function refreshApp() {
 
 	document.getElementById('card-template-container').textContent = '';
 
-	if (g_CURRENT_LOGIN_USER_ID == '0') {
+	if (g_CURRENT_USER_ID == '0') {
 		loadDialog('login', g_DIALOG, 'dialog_login');
 	} else {
 		loadTemplate('kms');
@@ -21,10 +21,12 @@ function refreshApp() {
 }
 
 function getLots() {
-	getLotsPromise(g_CURRENT_LOGIN_USER_ID, g_CURRENT_USER['is_admin']).then((resolve) => {
+	getLotsPromise(g_CURRENT_USER_ID, g_CURRENT_USER['is_admin']).then((resolve) => {
 		g_LOTS = [];
 		g_LOTS = resolve;
-		console.log("getLots():g_LOTS:", g_LOTS);
+		g_CURRENT_LOT = [];
+		g_CURRENT_LOT = resolve;
+
 		chooseLot();
 		/*if (g_LOTS.length > 1) {
 			document.getElementById('navbar-link-lots').classList.remove('nav-item-hide');
@@ -291,34 +293,37 @@ const logOut = () => {
 }
 
 const chooseLot = () => {
-	console.log("chooseLot() called");
-	console.log("chooseLot():g_LOTS.length:", g_LOTS.length);
 
-	document.getElementById('navbar-user').innerHTML = g_CURRENT_USER['first_name'];
+	document.getElementById('navbar-user').innerHTML = g_CURRENT_USER['first_name'] + "&nbsp;:&nbsp;" + g_CURRENT_LOT[0]['lot_name'];
+	document.getElementById('navbar-user').classList.remove('nav-item-hide');
 	document.getElementById('navbar-link-lots').classList.add('nav-item-hide');
 	document.getElementById('navbar-link-lots-divider').classList.add('nav-item-hide');
-	document.getElementById('navbar-user').classList.remove('nav-item-hide');
-	if (g_LOTS.length < 1) {
+
+	closeDialogLogin();
+	getSections();
+	loadTemplate('kms');
+	/*if (g_LOTS.length < 1) {
+		console.log("chooseLot():g_LOTS.length < 1 reached:", g_LOTS.length);
 		closeDialogLogin();
 		getSections();
 		loadTemplate('kms');
 	}
 	if (g_LOTS.length == 1) {
-		console.log("chooseLot():if reached");
+		console.log("chooseLot():g_LOTS.length == 1 reached:", g_LOTS.length);
 		document.getElementById('navbar-user').innerHTML += "&nbsp;:&nbsp;" + g_LOTS[0]['lot_name'];
 		//document.getElementById('navbar-user').classList.remove('nav-item-hide');
 
-		/*document.getElementById('navbar-link-lots').classList.add('nav-item-hide');
-		document.getElementById('navbar-link-lots-divider').classList.add('nav-item-hide');*/
+		//document.getElementById('navbar-link-lots').classList.add('nav-item-hide');
+		//document.getElementById('navbar-link-lots-divider').classList.add('nav-item-hide');
 
 		closeDialogLogin();
 		getSections();
 		loadTemplate('kms');
 	}
 	if (g_LOTS.length > 1) {
-		console.log("chooseLot():else reached");
+		console.log("chooseLot():g_LOTS.length > 1 reached:", g_LOTS.length);
 		loadDialog('lotChoice', g_DIALOG, 'dialog_lot_choice');
-	}
+	}*/
 }
 
 function consoleReporting(param) {
