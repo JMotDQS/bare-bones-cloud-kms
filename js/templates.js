@@ -45,46 +45,7 @@ const loadTemplate = (param_template) => {
 	}
 }
 
-const removeClass = (param_class) => {
-	document.getElementById('card-template-container').classList.remove(param_class);
-}
-
-const setClasses = (param_page_class) => {
-	document.getElementById("card-template-container").classList = [];
-	document.getElementById("card-template-container").classList.add('grid-container');
-	if (param_page_class != undefined) {
-		document.getElementById("card-template-container").classList.add('disable-hover', 'card', 'card-' + param_page_class);
-	}
-}
-
-
-
-/*
-function loadPage(param_template, param_element = 'app') {
-	var temp_dir = "";
-	temp_dir = `pages/${param_element}/${param_template}.html?nc=${(Math.random() * 1000000)}`
-	//temp_dir = `pages/${param_element}/sectionTemplate.html?nc=${(Math.random() * 1000000)}`
-
-	$('#' + param_element).load(temp_dir,
-		function(responseTxt, statusTxt, xhr) {
-			switch(statusTxt) {
-				case "success":
-					if(param_template == 'kms') {
-						pageCheck(param_template);
-					} else {
-						pageCheck(g_SECTIONS[g_CHOSEN_SECTION].section.replaceAll(' ','').toLowerCase());
-					}
-					//pageCheck(g_CURRENT_PAGE);
-					break;
-
-				case "error":
-					break;
-			}
-	});
-}
-*/
-
-function loadDialog(param_template, param_template_dir, param_load_ele, param_user_id = 0) {
+const loadDialog = (param_template, param_template_dir, param_load_ele, param_user_id = 0) => {
 	var temp_dir = "pages/" + param_template_dir + "/";
 	if (param_template != '') {
 		temp_dir += param_template + ".html?nc=" + (Math.random() * 1000000);
@@ -103,7 +64,7 @@ function loadDialog(param_template, param_template_dir, param_load_ele, param_us
 	}
 }
 
-function pageCheck(param_page, param_user_id) {
+const pageCheck = (param_page, param_user_id) => {
 	clearTimer(g_TIMER);
 
 	switch(param_page) {

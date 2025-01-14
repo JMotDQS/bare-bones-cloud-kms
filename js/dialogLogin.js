@@ -18,18 +18,7 @@ function userLoginCheck(e) {
 				if(parseInt(resolve[0]['change_password']) === 1) {
 					loadDialog('passwordUpdate', g_DIALOG, 'dialog_login');
 				} else {
-					//getCompaniesPromise().then(function(resolve) {
-						//loadPage('nav', g_NAV);
-						
-						//getSections();
-						getLots();
-						//closeDialogLogin();
-
-					//}).catch(function(reject) {
-						//console.log("reject:", reject);
-					//}).finally(function() {
-						//console.log("Moving On.");
-					//});
+					getLots();
 				}
 			} else {
 				document.getElementById('dialog-login-error').textContent = 'You are NOT an Admin and/or Active';

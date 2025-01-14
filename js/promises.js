@@ -1,7 +1,7 @@
 /********************************************************
 	Application Promises Start
 ********************************************************/
-function getSectionsPromise() {
+const getSectionsPromise = () => {
 	return new Promise(function(resolve, reject) {
 		$.ajax({
 			url: "includes/get_sections.php",
@@ -23,7 +23,7 @@ function getSectionsPromise() {
 	});
 }
 
-function getLotsPromise(param_userid, param_admin = 0) {
+const getLotsPromise = (param_userid, param_admin = 0) => {
 	return new Promise(function(resolve, reject) {
 		$.ajax({
 			url: "includes/getLots.php",
@@ -55,7 +55,7 @@ function getLotsPromise(param_userid, param_admin = 0) {
 /********************************************************
 	User Login Promises Start
 ********************************************************/
-function userLoginCheckPromise(param_file, param_email, param_pw) {
+const userLoginCheckPromise = (param_file, param_email, param_pw) => {
 	return new Promise(function(resolve, reject) {
 		$.ajax({
 			url: "includes/" + param_file + ".php",
@@ -87,7 +87,7 @@ function userLoginCheckPromise(param_file, param_email, param_pw) {
 /********************************************************
 	User Update Password Promises Start
 ********************************************************/
-function updatePasswordCheckPromise(param_file, param_pw, param_user_id) {
+const updatePasswordCheckPromise = (param_file, param_pw, param_user_id) => {
 	return new Promise(function(resolve, reject) {
 		$.ajax({
 			url: "includes/" + param_file + ".php",

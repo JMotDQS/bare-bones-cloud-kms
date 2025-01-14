@@ -54,12 +54,14 @@
 		<script src="js/variables.js"></script>
 		<script src="js/promises.js"></script>
 		<script src="js/templates.js"></script>
-		<!--<script src="js/kms.js"></script>-->
 		<script src="js/kmsTemplate.js"></script>
 		<script src="js/checkinTemplate.js"></script>
-		<script src="js/index.js"></script>
 		<script src="js/dialogLogin.js"></script>
 		<script src="js/dialogUpdatePassword.js"></script>
+		<script src="js/helper.js"></script>
+		<script src="js/keyevents.js"></script>
+		<script src="js/slider.js"></script>
+		<script src="js/index.js"></script>
 		<!--<script src="js/urlRouter.js"></script>
 		<script src="js/custom.js"></script>
 		<script src="js/users.js"></script>

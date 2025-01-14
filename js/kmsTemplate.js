@@ -1,4 +1,4 @@
-function kmsTemplate() {
+const kmsTemplate = () => {
 	var temp_html = '';
 	if(g_CONNECTION) {
 		g_SECTIONS.forEach((section, index) => {
@@ -19,6 +19,6 @@ function kmsTemplate() {
 	return temp_html;
 }
 
-function sectionClick(data) {
+const sectionClick = (data) => {
 	g_CHOSEN_SECTION = parseInt(data.index);
 }

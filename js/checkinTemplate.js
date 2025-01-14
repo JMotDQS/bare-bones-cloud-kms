@@ -1,4 +1,4 @@
-function checkinTemplate() {
+const checkinTemplate = () => {
 	var temp_html = '';
 	temp_html += `<style>
 					.card {
