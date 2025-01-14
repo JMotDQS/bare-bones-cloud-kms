@@ -115,3 +115,31 @@ const updatePasswordCheckPromise = (param_file, param_pw, param_user_id) => {
 /********************************************************
 	User Update Password Promises End
 ********************************************************/
+
+const getSlotAvailabilityPromise = (param_lot, param_slot) => {
+	return new Promise(function(resolve, reject) {
+		$.ajax({
+			url: "includes/getSlotAvailability.php",
+			type: 'POST',
+			cache: false,
+			dataType: 'json',
+			data: {
+				'lot_id': param_lot,
+				'key_slot': param_slot
+			},
+
+			success: function (data) {
+				console.log("data:", data);
+				console.log("data.length:", data.length);
+				resolve(data);
+			},
+
+			error: function(xhr, desc, err) {
+				reject(false);
+				consoleReporting(xhr)
+				consoleReporting("Details: " + desc + "\nError:" + err);
+				consoleReporting("updatePasswordCheckPromise():Something broke");
+			}
+		});
+	});
+}

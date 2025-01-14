@@ -19,7 +19,8 @@ const reverseEntities = (param_string) => {
 }
 
 const feedBackColoring = (param_ele, param_color = 'default') => {
-	clearClassList(param_ele.id).classList.add('feedback-' + param_color);
+	console.log("feedBackColoring():param_ele:", param_ele);
+	clearClassList(param_ele).classList.add('feedback-' + param_color);
 }
 
 const removeClass = (param_class) => {
@@ -35,6 +36,7 @@ const setClasses = (param_page_class) => {
 }
 
 const clearClassList = (param_ele, param_copy) => {
+	console.log("clearClassList():param_ele:", param_ele);
 	document.getElementById(param_ele).classList = '';
 	return document.getElementById(param_ele);
 }

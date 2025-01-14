@@ -18,8 +18,10 @@ const loadTemplate = (param_template) => {
 			setClasses(temp_page);
 			setFocus('vin');
 			toggleDisabled('slot', true);
+			toggleDisabled('checkin-button', true);
 			setKeyEvents(temp_page, 'vin');
 			setKeyEvents(temp_page, 'slot');
+			document.getElementById('checkin-button').classList.add('button-disabled');
 			makeVisible('card-template-container');
 			break;
 

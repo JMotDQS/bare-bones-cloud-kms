@@ -267,6 +267,18 @@ label {
 	display: none;
 }
 
+.app-button {
+	/*width: 100%;*/
+	padding: var(--quarter-rem);
+	margin-block-start: var(--half-rem);
+	border-radius: var(--half-rem);
+	cursor: pointer;
+}
+.app-button:not(.button-disabled):hover {
+	background-color: var(--color-navbar-background);
+	color: #ffffff;
+}
+
 @media (width < 600px) {
 	.grid-container {
 		grid-template-columns: 1fr;

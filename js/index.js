@@ -47,6 +47,22 @@ const getSections = () => {
 	});
 }
 
+function getSlotAvailability(param_lot, param_slot) {
+	getSlotAvailabilityPromise(param_lot, param_slot).then((resolve) => {
+		console.log("getSlotAvailability():resolve.length:", resolve.length);
+		if (resolve.length > 0) {
+			console.log("length > 0");
+			return false;
+		}
+		console.log("length = 0");
+		return true;
+	}).catch(function(reject) {
+		consoleReporting(reject);
+	}).finally(function() {
+		consoleReporting("Moving On.");
+	});
+}
+
 const setElementCopy = (param_ele, param_copy = '') => {
 	document.getElementById(param_ele).textContent = param_copy;
 }

@@ -9,7 +9,7 @@ const checkinTemplate = () => {
 				<div class="card-template-header">
 					<i id="icon" class="card-icon"></i><h2 id="title"></h2>
 				</div>
-				<div>
+				<div id="checkin-l-group">
 					<div id="container-vin" class="card inset-container">
 						<label for="vin">VIN:</label>
 						<input id="vin" name="vin" type="text" />
@@ -21,9 +21,10 @@ const checkinTemplate = () => {
 						<input id="slot" name="slot" type="text" />
 						<p id="slot-feedback"></p>
 					</div>
+					<button id="checkin-button" class="app-button invisible" onclick="checkInVin()">Check In</button>
 				</div>
 
-				<div>
+				<div id="checkin-r-group">
 					<div class="card inset-container">
 						<h3>Available Slots by Case</h3>
 					</div>
