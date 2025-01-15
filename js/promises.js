@@ -23,17 +23,13 @@ const getSectionsPromise = () => {
 	});
 }
 
-const getLotsPromise = (param_userid, param_admin = 0) => {
+const getLotsPromise = () => {
 	return new Promise(function(resolve, reject) {
 		$.ajax({
 			url: "includes/getLots.php",
 			type: 'POST',
 			cache: false,
 			dataType: 'json',
-			data: {
-				'param_admin': param_admin,
-				'param_userid': param_userid
-			},
 
 			success: function (data) {
 				resolve(data);

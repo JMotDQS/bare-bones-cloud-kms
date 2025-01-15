@@ -14,16 +14,15 @@ const refreshApp = () => {
 	document.getElementById('card-template-container').textContent = '';
 
 	if (g_CURRENT_USER_ID == '0') {
-		loadDialog('login', g_DIALOG, 'dialog_login');
+		//loadDialog('login', g_DIALOG, 'dialog_login');
+		loadTemplate('login', g_DIALOG);
 	} else {
 		loadTemplate('kms');
 	}
 }
 
 const getLots = () => {
-	getLotsPromise(g_CURRENT_USER_ID, g_CURRENT_USER['is_admin']).then((resolve) => {
-		g_LOTS = [];
-		g_LOTS = resolve;
+	getLotsPromise().then((resolve) => {
 		g_CURRENT_LOT = [];
 		g_CURRENT_LOT = resolve;
 

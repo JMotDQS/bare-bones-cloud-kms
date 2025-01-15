@@ -1,11 +1,43 @@
-const loadTemplate = (param_template) => {
+const loadTemplate = (param_template, param_type = '') => {
 	var temp_page = param_template;
-	if (param_template.page != undefined) {
-		temp_page = param_template.page;
-		g_CHOSEN_SECTION = parseInt(param_template.index);
+	if (param_type == '') {
+		if (param_template.page != undefined) {
+			temp_page = param_template.page;
+			g_CHOSEN_SECTION = parseInt(param_template.index);
+		}
 	}
-
+	
 	switch(temp_page) {
+		case "login":
+			document.getElementById("dialog_login").innerHTML = dialogLoginTemplate();
+			LOGIN_DIALOG.showModal();
+			document.getElementById('dialog-login-form-button').addEventListener('click', () => {
+				userLoginCheck();
+			});
+			document.getElementById('dialog-login-grid').addEventListener('keydown', (event) => {
+				if(event.key === 'Enter') {
+					userLoginCheck();
+				}
+			});
+			break;
+
+		case "passwordUpdate":
+			document.getElementById("dialog_login").innerHTML = dialogPasswordUpdateTemplate();	
+			setKeyEvents(temp_page, 'update_password', .5);
+			setKeyEvents(temp_page, 'update_password_conf', .5);
+			toggleDisabled('dialog-password-update-form-button', true);
+			document.getElementById('dialog-password-update-form-button').classList.add('button-disabled');
+			document.getElementById('update_password').focus();
+			document.getElementById('dialog-password-update-form-button').addEventListener('click', () => {
+				updatePasswordCheck();
+			});
+			document.getElementById('dialog-password-grid').addEventListener('keydown', (event) => {
+				if(event.key === 'Enter' && !checkIfDisabled('dialog-password-update-form-button')) {
+					updatePasswordCheck();
+				}
+			});
+			break;
+		
 		case 'kms':
 			document.getElementById("card-template-container").innerHTML = kmsTemplate();
 			removeClass('disable-hover');
@@ -47,7 +79,7 @@ const loadTemplate = (param_template) => {
 	}
 }
 
-const loadDialog = (param_template, param_template_dir, param_load_ele, param_user_id = 0) => {
+/*const loadDialog = (param_template, param_template_dir, param_load_ele, param_user_id = 0) => {
 	var temp_dir = "pages/" + param_template_dir + "/";
 	if (param_template != '') {
 		temp_dir += param_template + ".html?nc=" + (Math.random() * 1000000);
@@ -64,7 +96,7 @@ const loadDialog = (param_template, param_template_dir, param_load_ele, param_us
 				}
 		});
 	}
-}
+}*/
 
 const pageCheck = (param_page, param_user_id) => {
 	clearTimer(g_TIMER);

@@ -56,8 +56,8 @@
 		<script src="js/templates.js"></script>
 		<script src="js/kmsTemplate.js"></script>
 		<script src="js/checkinTemplate.js"></script>
-		<script src="js/dialogLogin.js"></script>
-		<script src="js/dialogUpdatePassword.js"></script>
+		<script src="js/dialogLoginTemplate.js"></script>
+		<script src="js/dialogPasswordUpdateTemplate.js"></script>
 		<script src="js/helper.js"></script>
 		<script src="js/keyevents.js"></script>
 		<script src="js/slider.js"></script>

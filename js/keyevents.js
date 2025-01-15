@@ -153,7 +153,7 @@ const keyUpEvent = (e) => {
 				var pwc = document.getElementById('update_password_conf').value;
 
 				if(pw === pwc && pw != '' && pwc != '') {
-					feedBackColoring(document.getElementById('dialog-password-error'), 'green');
+					feedBackColoring(document.getElementById('dialog-password-error').id, 'green');
 					document.getElementById('dialog-password-error').textContent = 'Passwords match!';
 					document.getElementById('dialog-password-error').classList.remove('invisible');
 					toggleDisabled('dialog-password-update-form-button', false);
@@ -164,7 +164,7 @@ const keyUpEvent = (e) => {
 					toggleDisabled('dialog-password-update-form-button', true);
 					document.getElementById('dialog-password-update-form-button').classList.add('button-disabled');
 				} else {
-					feedBackColoring(document.getElementById('dialog-password-error'), 'red');
+					feedBackColoring(document.getElementById('dialog-password-error').id, 'red');
 					document.getElementById('dialog-password-error').textContent = 'Passwords MUST match!';
 					document.getElementById('dialog-password-error').classList.remove('invisible');
 					toggleDisabled('dialog-password-update-form-button', true);

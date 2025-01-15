@@ -1,4 +1,23 @@
-function userLoginCheck(e) {
+const dialogLoginTemplate = () => {
+	var temp_html = '';
+	temp_html += `<header class="dialog-header">
+					<div id="title">
+						<h2>Login</h2>
+				</header>
+				<div class="dialog-grid dialog-grid-gap" id="dialog-login-grid">
+					<div class="dialog-form-element">
+						<input type="email" id="login_email" name="login_email" placeholder="Email">
+					</div>
+					<div class="dialog-form-element">
+						<input type="password" id="login_password" name="login_password" placeholder="Password">
+					</div>
+					<p class="dialog-error invisible" id="dialog-login-error"></p>
+					<button id="dialog-login-form-button" class="dialog-form-button">Login</button>
+				</div>`;
+	return temp_html;
+}
+
+const userLoginCheck = (e) => {
 	var email_address = dataCleanUp($('#login_email').val());
 	var pass = dataCleanUp($('#login_password').val());
 
@@ -16,12 +35,12 @@ function userLoginCheck(e) {
 				g_CURRENT_USER_ID = g_CURRENT_USER['pk_id'];
 
 				if(parseInt(resolve[0]['change_password']) === 1) {
-					loadDialog('passwordUpdate', g_DIALOG, 'dialog_login');
+					loadTemplate('passwordUpdate', g_DIALOG);
 				} else {
 					getLots();
 				}
 			} else {
-				document.getElementById('dialog-login-error').textContent = 'You are NOT an Admin and/or Active';
+				document.getElementById('dialog-login-error').innerHTML = LOGIN_NONACTIVE_USER_ERROR;
 				feedBackColoring(document.getElementById('dialog-login-error').id, 'red');
 				document.getElementById('dialog-login-error').classList.add('dialog-error-show');
 			}
@@ -34,6 +53,6 @@ function userLoginCheck(e) {
 	});
 }
 
-function closeDialogLogin() {
+const closeDialogLogin = () => {
 	LOGIN_DIALOG.close();
 }

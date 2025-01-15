@@ -1,6 +1,7 @@
 /***** Global Use Variables */
 const g_ROOT_PATH = 'http://localhost/bare-bones-cloud-kms/';
 const LOGIN_DIALOG = document.querySelector('.dialog_login');
+const LOGIN_NONACTIVE_USER_ERROR = '<p>You are NOT an Active user.</p><p>Please contact Supervisor.</p>'
 const CHOOSE_LOT_DIALOG = document.querySelector('.dialog_lot_choice');
 const PREVENT_LOGIN_CLOSE = true;
 
@@ -20,7 +21,6 @@ var g_CURRENT_USER = [];
 var g_USER_SEARCH = [];
 var g_NO_SEARCH_RESULTS = '';
 var g_SECTIONS = [];
-var g_LOTS = [];
 var g_CONNECTION;
 var g_CHOSEN_SECTION = -1;
 var g_COMPANIES = [];
