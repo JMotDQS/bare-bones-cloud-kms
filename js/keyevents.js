@@ -1,5 +1,5 @@
 const setKeyEvents = (param_page, param_element, param_multiplier = 1) => {
-	$('#' + param_element).on('keypress', {page: param_page, inputEl: param_element, timerMultiplier: param_multiplier}, keyPressEvent);
+	$('#' + param_element).on('keydown', {page: param_page, inputEl: param_element, timerMultiplier: param_multiplier}, keyDownEvent);
 	$('#' + param_element).on('keyup', {page: param_page, inputEl: param_element, timerMultiplier: param_multiplier}, keyUpEvent);
 }
 
@@ -7,7 +7,7 @@ const clearTimer = (param_timer) => {
 	window.clearTimeout(param_timer); // prevent errant multiple timeouts from being generated
 }
 
-const keyPressEvent = (e) => {
+const keyDownEvent = (e) => {
 	e.preventDefault;
 	clearTimer(g_TIMER); // prevent errant multiple timeouts from being generated
 
@@ -63,11 +63,7 @@ const keyUpEvent = (e) => {
 				case 'slot':
 					g_TIMER = window.setTimeout(() => {
 						if (hasInput) {
-							console.log("Timeout reached");
-							
-
 							getSlotAvailabilityPromise(g_CURRENT_LOT[0].pk_id, document.getElementById(e.data.inputEl).value).then((resolve) => {
-								console.log("getSlotAvailability():resolve.length:", resolve.length);
 								if (resolve.length > 0) {
 									console.log("length > 0");
 									feedBackColoring(myEle.id + '-feedback', 'red');
@@ -85,13 +81,6 @@ const keyUpEvent = (e) => {
 									document.getElementById('checkin-button').classList.remove('button-disabled');
 									makeVisible('checkin-button');
 									setFocus('checkin-button');
-									document.getElementById('checkin-button').addEventListener('keydown', (event) => {
-										if(event.key === 'Enter' && !checkIfDisabled('checkin-button')) {
-											console.log("Enter Key pressed");
-										} else {
-											console.log("wrong key");
-										}
-									});
 								}
 							}).catch(function(reject) {
 								consoleReporting(reject);

@@ -19,7 +19,6 @@ const reverseEntities = (param_string) => {
 }
 
 const feedBackColoring = (param_ele, param_color = 'default') => {
-	console.log("feedBackColoring():param_ele:", param_ele);
 	clearClassList(param_ele).classList.add('feedback-' + param_color);
 }
 
@@ -36,7 +35,6 @@ const setClasses = (param_page_class) => {
 }
 
 const clearClassList = (param_ele, param_copy) => {
-	console.log("clearClassList():param_ele:", param_ele);
 	document.getElementById(param_ele).classList = '';
 	return document.getElementById(param_ele);
 }
@@ -75,6 +73,12 @@ const cleanVIN = (param_vin_scan) => {
 		g_CURRENT_VIN = '';
 		return false;
 	}
+}
+
+const closeDialog = () => {
+	APP_DIALOG.close();
+	APP_DIALOG.textContent = '';
+	//LOGIN_DIALOG.close();
 }
 
 const logOut = () => {

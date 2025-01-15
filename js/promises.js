@@ -112,6 +112,9 @@ const updatePasswordCheckPromise = (param_file, param_pw, param_user_id) => {
 	User Update Password Promises End
 ********************************************************/
 
+/********************************************************
+	Check In Promises Start
+********************************************************/
 const getSlotAvailabilityPromise = (param_lot, param_slot) => {
 	return new Promise(function(resolve, reject) {
 		$.ajax({
@@ -134,8 +137,41 @@ const getSlotAvailabilityPromise = (param_lot, param_slot) => {
 				reject(false);
 				consoleReporting(xhr)
 				consoleReporting("Details: " + desc + "\nError:" + err);
-				consoleReporting("updatePasswordCheckPromise():Something broke");
+				consoleReporting("getSlotAvailabilityPromise():Something broke");
 			}
 		});
 	});
 }
+
+const checkInVinPromise = (param_slot) => {
+	console.log("checkInVinPromise() called");
+	return new Promise(function(resolve, reject) {
+		$.ajax({
+			url: "includes/checkInVin.php",
+			type: 'POST',
+			cache: false,
+			dataType: 'json',
+			data: {
+				'lot_id': g_CURRENT_LOT[0].pk_id,
+				'vin': g_CURRENT_VIN,
+				'key_slot': param_slot,
+				'user_id': g_CURRENT_USER_ID
+			},
+
+			success: function (data) {
+				console.log("data:", data);
+				resolve(data);
+			},
+
+			error: function(xhr, desc, err) {
+				reject(false);
+				consoleReporting(xhr)
+				consoleReporting("Details: " + desc + "\nError:" + err);
+				consoleReporting("checkInVinPromise():Something broke");
+			}
+		});
+	});
+}
+/********************************************************
+	Check In Promises End
+********************************************************/

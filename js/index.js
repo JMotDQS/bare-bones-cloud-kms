@@ -48,7 +48,6 @@ const getSections = () => {
 
 function getSlotAvailability(param_lot, param_slot) {
 	getSlotAvailabilityPromise(param_lot, param_slot).then((resolve) => {
-		console.log("getSlotAvailability():resolve.length:", resolve.length);
 		if (resolve.length > 0) {
 			console.log("length > 0");
 			return false;
@@ -77,7 +76,7 @@ const chooseLot = () => {
 	document.getElementById('navbar-link-lots').classList.add('nav-item-hide');
 	document.getElementById('navbar-link-lots-divider').classList.add('nav-item-hide');
 
-	closeDialogLogin();
+	closeDialog();
 	getSections();
 	loadTemplate('kms');
 }

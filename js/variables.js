@@ -1,8 +1,9 @@
 /***** Global Use Variables */
 const g_ROOT_PATH = 'http://localhost/bare-bones-cloud-kms/';
-const LOGIN_DIALOG = document.querySelector('.dialog_login');
+const APP_DIALOG = document.getElementById('g_dialog');
+//const LOGIN_DIALOG = document.querySelector('.dialog_login');
 const LOGIN_NONACTIVE_USER_ERROR = '<p>You are NOT an Active user.</p><p>Please contact Supervisor.</p>'
-const CHOOSE_LOT_DIALOG = document.querySelector('.dialog_lot_choice');
+//const CHOOSE_LOT_DIALOG = document.querySelector('.dialog_lot_choice');
 const PREVENT_LOGIN_CLOSE = true;
 
 function disableEscapeKeyDialogBehavior(event) {
@@ -10,8 +11,9 @@ function disableEscapeKeyDialogBehavior(event) {
 		event.preventDefault();
 	}
 }
-LOGIN_DIALOG.addEventListener('keydown', disableEscapeKeyDialogBehavior);
-CHOOSE_LOT_DIALOG.addEventListener('keydown', disableEscapeKeyDialogBehavior);
+APP_DIALOG.addEventListener('keydown', disableEscapeKeyDialogBehavior);
+//LOGIN_DIALOG.addEventListener('keydown', disableEscapeKeyDialogBehavior);
+//CHOOSE_LOT_DIALOG.addEventListener('keydown', disableEscapeKeyDialogBehavior);
 const CLICK_EVENT = new CustomEvent('click');
 
 var g_TIMER;

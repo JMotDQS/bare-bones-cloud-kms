@@ -41,7 +41,8 @@
 			<div id="card-template-container" class="invisible grid-container disable-hover"></div>
 		</div>
 
-		<dialog id="dialog_login" class="g_dialog dialog_login"></dialog>
+		<dialog id="g_dialog" class="g_dialog"></dialog>
+		<!--<dialog id="dialog_login" class="g_dialog dialog_login"></dialog>-->
 		<dialog id="dialog_lot_choice" class="g_dialog dialog_lot_choice"></dialog>
 
 	<!-- JQuery CDN -->

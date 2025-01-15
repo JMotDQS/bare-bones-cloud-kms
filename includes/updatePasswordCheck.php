@@ -14,9 +14,7 @@
 		$sql = "UPDATE g_employees
 				SET pass = '".$_POST['newPW']."', change_password = 0
 				OUTPUT INSERTED.change_password
-				WHERE pk_id = '".$_POST['userId']."'";
-		//echo json_encode($sql);
-		//die();		
+				WHERE pk_id = '".$_POST['userId']."'";		
 		$res = sqlsrv_query($conn, $sql);
 		
 		if ($res) {

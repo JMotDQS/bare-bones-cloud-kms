@@ -9,20 +9,22 @@ const loadTemplate = (param_template, param_type = '') => {
 	
 	switch(temp_page) {
 		case "login":
-			document.getElementById("dialog_login").innerHTML = dialogLoginTemplate();
-			LOGIN_DIALOG.showModal();
+			document.getElementById("g_dialog").innerHTML = dialogLoginTemplate();
+			APP_DIALOG.showModal();
+			//LOGIN_DIALOG.showModal();
 			document.getElementById('dialog-login-form-button').addEventListener('click', () => {
 				userLoginCheck();
 			});
-			document.getElementById('dialog-login-grid').addEventListener('keydown', (event) => {
+			document.getElementById('dialog-login-grid').addEventListener('keyup', (event) => {
 				if(event.key === 'Enter') {
+					console.log("login:Enter Key pressed");
 					userLoginCheck();
 				}
 			});
 			break;
 
 		case "passwordUpdate":
-			document.getElementById("dialog_login").innerHTML = dialogPasswordUpdateTemplate();	
+			document.getElementById("g_dialog").innerHTML = dialogPasswordUpdateTemplate();	
 			setKeyEvents(temp_page, 'update_password', .5);
 			setKeyEvents(temp_page, 'update_password_conf', .5);
 			toggleDisabled('dialog-password-update-form-button', true);
@@ -31,7 +33,7 @@ const loadTemplate = (param_template, param_type = '') => {
 			document.getElementById('dialog-password-update-form-button').addEventListener('click', () => {
 				updatePasswordCheck();
 			});
-			document.getElementById('dialog-password-grid').addEventListener('keydown', (event) => {
+			document.getElementById('dialog-password-grid').addEventListener('keyup', (event) => {
 				if(event.key === 'Enter' && !checkIfDisabled('dialog-password-update-form-button')) {
 					updatePasswordCheck();
 				}
@@ -55,6 +57,18 @@ const loadTemplate = (param_template, param_type = '') => {
 			setKeyEvents(temp_page, 'slot');
 			document.getElementById('checkin-button').classList.add('button-disabled');
 			makeVisible('card-template-container');
+
+			document.getElementById('checkin-button').addEventListener('click', () => {
+				checkInVin();
+			});
+			document.getElementById('checkin-button-container').addEventListener('keyup', (event) => {
+				if(event.key === 'Enter' && !checkIfDisabled('checkin-button')) {
+					console.log("Enter Key pressed");
+					checkInVin();
+				} else {
+					console.log("wrong key");
+				}
+			});
 			break;
 
 		case 'checkout':
@@ -98,7 +112,7 @@ const loadTemplate = (param_template, param_type = '') => {
 	}
 }*/
 
-const pageCheck = (param_page, param_user_id) => {
+/*const pageCheck = (param_page, param_user_id) => {
 	clearTimer(g_TIMER);
 
 	switch(param_page) {
@@ -131,9 +145,9 @@ const pageCheck = (param_page, param_user_id) => {
 			break;
 		
 		case "lotChoice":
-			/**** build dropdown with lots and add event listener to it onchange to automatically move on and set needed variables. ****/	
+			// build dropdown with lots and add event listener to it onchange to automatically move on and set needed variables.	
 			CHOOSE_LOT_DIALOG.showModal();	
 			closeDialogLogin();
 			break;
 	}
-}
+}*/
