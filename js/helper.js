@@ -1,5 +1,4 @@
 const userTimeout = async () => {
-	console.log("I'm here");
 	if ((await IdleDetector.requestPermission()) !== 'granted') {
 		console.log("Permission denied");
 		return;

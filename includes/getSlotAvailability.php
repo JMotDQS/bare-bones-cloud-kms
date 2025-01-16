@@ -11,8 +11,8 @@
 	$conn = sqlsrv_connect($serverName, $connectionInfo);
 
 	if ($conn) {
-		$sql = "SELECT pk_id
-				FROM g_key_tracking_historical AS kth
+		$sql = "SELECT kth.pk_id
+				FROM key_tracking_historical AS kth
 				WHERE kth.fk_g_lots_pk_id = '".$_POST['lot_id']."'
 					AND kth.fk_key_slots_pk_id IN(
 						SELECT pk_id
@@ -22,9 +22,9 @@
 					AND kth.fk_key_actions_pk_id IN(
 						SELECT pk_id
 						FROM key_actions
-						WHERE key_action = 'Check In'
+						WHERE key_action = 'In'
 					)
-				ORDER BY kht.created_date DESC";
+				ORDER BY kth.created_date DESC";
 		//echo json_encode($sql);
 		//die();
 		$res = sqlsrv_query($conn, $sql);

@@ -18,7 +18,6 @@ const dialogLoginTemplate = () => {
 }
 
 const userLoginCheck = (e) => {
-	console.log("userLoginCheck() called");
 	var email_address = dataCleanUp($('#login_email').val());
 	var pass = dataCleanUp($('#login_password').val());
 

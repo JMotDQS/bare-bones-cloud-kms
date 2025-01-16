@@ -18,7 +18,6 @@ const loadTemplate = (param_template, param_type = '') => {
 			});
 			document.getElementById('dialog-login-grid').addEventListener('keydown', (event) => {
 				if(event.key === 'Enter') {
-					console.log("login:Enter Key pressed");
 					userLoginCheck();
 					userTimeout();
 				}
@@ -50,7 +49,6 @@ const loadTemplate = (param_template, param_type = '') => {
 			break;
 		
 		case 'checkin':
-			console.log("checkin template loaded");
 			document.getElementById("card-template-container").innerHTML = checkinTemplate();
 			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].section;
 			setKeyEvents(temp_page, 'vin', .5);
