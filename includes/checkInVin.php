@@ -37,6 +37,7 @@
 			}
 		}
 		$reg_vin_pk_id = $temp_array[0]['pk_id'];
+		$temp_array = [];
 
 		$sql = "INSERT INTO key_tracking_historical
 							(created_date, fk_vin_registration_pk_id, fk_g_lots_pk_id,
@@ -54,9 +55,48 @@
 					), '".$_POST['user_id']."')";
 		$res = sqlsrv_query($conn, $sql);
 
-		while ($row = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
-			array_push($temp_array, $row);
+		$sql = "SELECT pk_id
+				FROM key_tracking
+				WHERE fk_vin_registration_pk_id = '".$reg_vin_pk_id."'";
+		$res = sqlsrv_query($conn, $sql);
+
+		if (sqlsrv_has_rows($res)) {
+			while ($row = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
+				array_push($temp_array, $row);
+			}
+
+			$sql = "UPDATE key_tracking
+					SET updated_date = GETDATE(),
+						fk_g_lots_pk_id = '".$_POST['lot_id']."',
+						fk_key_actions_pk_id = (
+							SELECT pk_id
+							FROM key_actions
+							WHERE key_action = 'In'
+						),
+						fk_key_slots_pk_id = (
+							SELECT pk_id
+							FROM key_slots
+							WHERE key_slot = '".$_POST['key_slot']."'
+						),
+						fk_g_employees_pk_id = '".$_POST['user_id']."'
+					WHERE pk_id = '".$temp_array[0]['pk_id']."'";
+		} else {
+			$sql = "INSERT INTO key_tracking
+							(created_date, fk_vin_registration_pk_id, fk_g_lots_pk_id,
+							fk_key_actions_pk_id, fk_key_slots_pk_id, fk_g_employees_pk_id)
+					VALUES(GETDATE(), '".$reg_vin_pk_id."', '".$_POST['lot_id']."',
+						(
+							SELECT pk_id
+							FROM key_actions
+							WHERE key_action = 'In'
+						),
+						(
+							SELECT pk_id
+							FROM key_slots
+							WHERE key_slot = '".$_POST['key_slot']."'
+						), '".$_POST['user_id']."')";
 		}
+		$res = sqlsrv_query($conn, $sql);
 	}
 
 	$close_success = sqlsrv_close($conn);
