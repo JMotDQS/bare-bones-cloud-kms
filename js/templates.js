@@ -16,7 +16,7 @@ const loadTemplate = (param_template, param_type = '') => {
 				userLoginCheck();
 				userTimeout();
 			});
-			document.getElementById('dialog-login-grid').addEventListener('keyup', (event) => {
+			document.getElementById('dialog-login-grid').addEventListener('keydown', (event) => {
 				if(event.key === 'Enter') {
 					console.log("login:Enter Key pressed");
 					userLoginCheck();
@@ -36,7 +36,7 @@ const loadTemplate = (param_template, param_type = '') => {
 			document.getElementById('dialog-password-update-form-button').addEventListener('click', () => {
 				updatePasswordCheck();
 			});
-			document.getElementById('dialog-password-grid').addEventListener('keyup', (event) => {
+			document.getElementById('dialog-password-grid').addEventListener('keydown', (event) => {
 				if(event.key === 'Enter' && !checkIfDisabled('dialog-password-update-form-button')) {
 					updatePasswordCheck();
 				}
@@ -50,29 +50,34 @@ const loadTemplate = (param_template, param_type = '') => {
 			break;
 		
 		case 'checkin':
+			console.log("checkin template loaded");
 			document.getElementById("card-template-container").innerHTML = checkinTemplate();
 			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].section;
+			setKeyEvents(temp_page, 'vin', .5);
+			setKeyEvents(temp_page, 'slot', .5);
 			setClasses(temp_page);
+			toggleDisabled('slot', false);
 			setFocus('vin');
 			toggleDisabled('slot', true);
 			toggleDisabled('checkin-button', true);
-			setKeyEvents(temp_page, 'vin');
-			setKeyEvents(temp_page, 'slot');
 			document.getElementById('checkin-button').classList.add('button-disabled');
-			makeVisible('card-template-container');
+			//makeVisible('card-template-container');
 
 			document.getElementById('checkin-button').addEventListener('click', () => {
-				console.log("CHeck In Button clicked");
+				console.log("Check In Button clicked");
 				checkInVin();
 			});
-			document.getElementById('checkin-button-container').addEventListener('keyup', (event) => {
-				if(event.key === 'Enter' && !checkIfDisabled('checkin-button')) {
+			//document.getElementById('checkin-button').addEventListener('keypress', (event) => {
+			//document.getElementById('checkin-l-group').addEventListener('keypress', (event) => {
+				//console.log("event.key:", event.key);
+				/*if(event.key === 'Enter' && !checkIfDisabled('checkin-button')) {
 					console.log("Enter Key pressed");
-					checkInVin();
+					document.getElementById('checkin-button').click();
+					//checkInVin();
 				} else {
 					console.log("wrong key");
-				}
-			});
+				}*/
+			//});
 			break;
 
 		case 'checkout':

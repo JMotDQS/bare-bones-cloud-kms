@@ -63,30 +63,41 @@ const keyUpEvent = (e) => {
 				case 'slot':
 					g_TIMER = window.setTimeout(() => {
 						if (hasInput) {
-							getSlotAvailabilityPromise(g_CURRENT_LOT[0].pk_id, document.getElementById(e.data.inputEl).value).then((resolve) => {
-								if (resolve.length > 0) {
-									console.log("length > 0");
-									feedBackColoring(myEle.id + '-feedback', 'red');
-									setElementCopy(myEle.id + '-feedback', 'Slot is NOT available');
-									feedBackColoring(myEle.id, 'red');
-									setElementCopy(myEle.id, '');
-									setFocus('slot');
-								} else {
-									console.log("length = 0");
-									feedBackColoring(myEle.id + '-feedback', 'green');
-									setElementCopy(myEle.id + '-feedback', 'Slot is Available.');
-									feedBackColoring(myEle.id, 'green');
-									toggleDisabled('slot', true);
-									toggleDisabled('checkin-button', false);
-									document.getElementById('checkin-button').classList.remove('button-disabled');
-									makeVisible('checkin-button');
-									setFocus('checkin-button');
-								}
-							}).catch(function(reject) {
-								consoleReporting(reject);
-							}).finally(function() {
-								consoleReporting("Moving On.");
-							});
+							if (document.getElementById(e.data.inputEl).value.length > 3) {
+								getSlotAvailabilityPromise(g_CURRENT_LOT[0].pk_id, document.getElementById(e.data.inputEl).value).then((resolve) => {
+									if (resolve.length > 0) {
+										console.log("length > 0");
+										feedBackColoring(myEle.id + '-feedback', 'red');
+										setElementCopy(myEle.id + '-feedback', 'Slot is NOT available');
+										feedBackColoring(myEle.id, 'red');
+										setElementCopy(myEle.id, '');
+										setFocus('slot');
+									} else {
+										console.log("length = 0");
+										feedBackColoring(myEle.id + '-feedback', 'green');
+										setElementCopy(myEle.id + '-feedback', 'Slot is Available.');
+										feedBackColoring(myEle.id, 'green');
+										toggleDisabled('slot', true);
+										toggleDisabled('checkin-button', false);
+										document.getElementById('checkin-button').classList.remove('button-disabled');
+										makeVisible('checkin-button');
+										setFocus('checkin-button');
+
+										//document.getElementById('checkin-l-group').focus();
+										//document.getElementById('checkin-l-group').addEventListener('keydown', (event) => {
+										/*document.getElementById('checkin-button').addEventListener('keydown', (event) => {
+											event.preventDefault();
+											event.cancelBubbble = true;
+											console.log("event:", event);
+											console.log("event.key:", event.key);
+										});*/
+									}
+								}).catch(function(reject) {
+									consoleReporting(reject);
+								}).finally(function() {
+									consoleReporting("Moving On.");
+								});
+							}
 
 
 

@@ -5,6 +5,10 @@ const checkinTemplate = () => {
 						text-align: start;
 						cursor: default;
 					}
+
+					#checkin-button:focus {
+						border: red 4px solid;
+					}
 				</style>
 				<div class="card-template-header">
 					<i id="icon" class="card-icon"></i><h2 id="title"></h2>
@@ -21,9 +25,7 @@ const checkinTemplate = () => {
 						<input id="slot" name="slot" type="text" />
 						<p id="slot-feedback"></p>
 					</div>
-					<div id="checkin-button-container">
-						<button id="checkin-button" class="app-button invisible">Check In</button>
-					</div>
+					<button id="checkin-button" class="app-button invisible">Check In</button>
 				</div>
 
 				<div id="checkin-r-group">
@@ -35,15 +37,25 @@ const checkinTemplate = () => {
 }
 
 const checkInVin = () => {
-	console.log("checkInVin() called");
-	checkInVinPromise(document.getElementById('slot').value).then((resolve) => {
-		/*g_SECTIONS = [];
-		g_SECTIONS = resolve['sections'];
-		g_CONNECTION = resolve['conn'];*/
+	g_FUNC_CALL_CNT += 1;
+
+	if (g_FUNC_CALL_CNT == 1) {
+		g_FUNC_CALL_CNT = 0;
+		checkInVinPromise(document.getElementById('slot').value).then((resolve) => {
+			//
+			console.log("resolve:", resolve);
+		}).catch(function(reject) {
+			consoleReporting(reject);
+		}).finally(function() {
+			consoleReporting("Moving On.");
+		});
+	}
+	/*checkInVinPromise(document.getElementById('slot').value).then((resolve) => {
+		//
 		console.log("resolve:", resolve);
 	}).catch(function(reject) {
 		consoleReporting(reject);
 	}).finally(function() {
 		consoleReporting("Moving On.");
-	});
-}
+	});*/
+};

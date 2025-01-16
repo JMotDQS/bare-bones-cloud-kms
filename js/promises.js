@@ -128,8 +128,6 @@ const getSlotAvailabilityPromise = (param_lot, param_slot) => {
 			},
 
 			success: function (data) {
-				console.log("data:", data);
-				console.log("data.length:", data.length);
 				resolve(data);
 			},
 
@@ -144,7 +142,6 @@ const getSlotAvailabilityPromise = (param_lot, param_slot) => {
 }
 
 const checkInVinPromise = (param_slot) => {
-	console.log("checkInVinPromise() called");
 	return new Promise(function(resolve, reject) {
 		$.ajax({
 			url: "includes/checkInVin.php",
@@ -159,7 +156,6 @@ const checkInVinPromise = (param_slot) => {
 			},
 
 			success: function (data) {
-				console.log("data:", data);
 				resolve(data);
 			},
 
