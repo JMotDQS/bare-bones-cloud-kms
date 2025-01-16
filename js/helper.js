@@ -1,3 +1,29 @@
+const userTimeout = async () => {
+	console.log("I'm here");
+	if ((await IdleDetector.requestPermission()) !== 'granted') {
+		console.log("Permission denied");
+		return;
+	} else {
+		console.log("Permission granted");
+		const idleDetector = new IdleDetector();
+		idleDetector.addEventListener('change', () => {
+			const userState = idleDetector.userState;
+			if (userState === 'idle') {
+				console.log('User is inactive');
+				logOut();
+			} else {
+				console.log('User is active');
+			}
+		});
+		
+		idleDetector.start(
+			{
+				threshold: g_IDLE_TIMEOUT_VAL
+			}
+		);
+	}
+}
+
 const dataCleanUp = (param_string) => {
 	var temp_string = param_string.trim().replace(/&/g, "&amp;");
 	var temp_len = g_SEARCH_ENTITIES.length;

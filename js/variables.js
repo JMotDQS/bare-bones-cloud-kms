@@ -35,6 +35,7 @@ var g_CURRENT_LOT = [];
 const g_MAILBOX_LENGTH = 8;
 const g_TIMEOUT_VAL = 500;
 const g_RESET_TIMEOUT_VAL = 2000;
+const g_IDLE_TIMEOUT_VAL = 60000;// in milliseconds
 const g_APP = 'app';
 const g_NAV = 'nav';
 const g_DIALOG = 'dialog';

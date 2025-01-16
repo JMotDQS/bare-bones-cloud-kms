@@ -11,14 +11,16 @@ const loadTemplate = (param_template, param_type = '') => {
 		case "login":
 			document.getElementById("g_dialog").innerHTML = dialogLoginTemplate();
 			APP_DIALOG.showModal();
-			//LOGIN_DIALOG.showModal();
+
 			document.getElementById('dialog-login-form-button').addEventListener('click', () => {
 				userLoginCheck();
+				userTimeout();
 			});
 			document.getElementById('dialog-login-grid').addEventListener('keyup', (event) => {
 				if(event.key === 'Enter') {
 					console.log("login:Enter Key pressed");
 					userLoginCheck();
+					userTimeout();
 				}
 			});
 			break;
@@ -30,6 +32,7 @@ const loadTemplate = (param_template, param_type = '') => {
 			toggleDisabled('dialog-password-update-form-button', true);
 			document.getElementById('dialog-password-update-form-button').classList.add('button-disabled');
 			document.getElementById('update_password').focus();
+
 			document.getElementById('dialog-password-update-form-button').addEventListener('click', () => {
 				updatePasswordCheck();
 			});
@@ -59,6 +62,7 @@ const loadTemplate = (param_template, param_type = '') => {
 			makeVisible('card-template-container');
 
 			document.getElementById('checkin-button').addEventListener('click', () => {
+				console.log("CHeck In Button clicked");
 				checkInVin();
 			});
 			document.getElementById('checkin-button-container').addEventListener('keyup', (event) => {
