@@ -21,7 +21,7 @@ const getSectionsPromise = () => {
 			}
 		});
 	});
-}
+};
 
 const getLotsPromise = () => {
 	return new Promise(function(resolve, reject) {
@@ -43,7 +43,7 @@ const getLotsPromise = () => {
 			}
 		});
 	});
-}
+};
 /********************************************************
 	Application Promises End
 ********************************************************/
@@ -75,7 +75,7 @@ const userLoginCheckPromise = (param_file, param_email, param_pw) => {
 			}
 		});
 	});
-}
+};
 /********************************************************
 	User Login Promises End
 ********************************************************/
@@ -107,7 +107,7 @@ const updatePasswordCheckPromise = (param_file, param_pw, param_user_id) => {
 			}
 		});
 	});
-}
+};
 /********************************************************
 	User Update Password Promises End
 ********************************************************/
@@ -139,7 +139,7 @@ const getSlotAvailabilityPromise = (param_lot, param_slot) => {
 			}
 		});
 	});
-}
+};
 
 const checkInVinPromise = (param_slot) => {
 	return new Promise(function(resolve, reject) {
@@ -167,7 +167,7 @@ const checkInVinPromise = (param_slot) => {
 			}
 		});
 	});
-}
+};
 /********************************************************
 	Check In Promises End
 ********************************************************/

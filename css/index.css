@@ -243,9 +243,6 @@ label {
 .disable-input {
 	opacity: 50%;
 }
-/*.disable-input > input {
-	pointer-events: none;
-}*/
 
 .feedback-red {
 	color: #ff0000;

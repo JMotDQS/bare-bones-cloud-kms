@@ -25,8 +25,6 @@
 						WHERE key_action = 'In'
 					)
 				ORDER BY kth.created_date DESC";
-		//echo json_encode($sql);
-		//die();
 		$res = sqlsrv_query($conn, $sql);
 
 		if ($res) {

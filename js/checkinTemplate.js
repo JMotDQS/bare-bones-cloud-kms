@@ -50,12 +50,4 @@ const checkInVin = () => {
 			consoleReporting("Moving On.");
 		});
 	}
-	/*checkInVinPromise(document.getElementById('slot').value).then((resolve) => {
-		//
-		console.log("resolve:", resolve);
-	}).catch(function(reject) {
-		consoleReporting(reject);
-	}).finally(function() {
-		consoleReporting("Moving On.");
-	});*/
 };

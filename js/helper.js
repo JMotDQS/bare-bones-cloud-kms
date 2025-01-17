@@ -21,7 +21,7 @@ const userTimeout = async () => {
 			}
 		);
 	}
-}
+};
 
 const dataCleanUp = (param_string) => {
 	var temp_string = param_string.trim().replace(/&/g, "&amp;");
@@ -30,7 +30,7 @@ const dataCleanUp = (param_string) => {
 		temp_string = temp_string.replace(new RegExp(g_SEARCH_ENTITIES[i], 'g'), g_REPLACE_ENTITIES[i]);
 	}
 	return temp_string;
-}
+};
 const reverseEntities = (param_string) => {
 	var temp_string;
 	if(typeof param_string == "string") {
@@ -41,15 +41,15 @@ const reverseEntities = (param_string) => {
 		}
 		return temp_string;
 	}
-}
+};
 
 const feedBackColoring = (param_ele, param_color = 'default') => {
 	clearClassList(param_ele).classList.add('feedback-' + param_color);
-}
+};
 
 const removeClass = (param_class) => {
 	document.getElementById('card-template-container').classList.remove(param_class);
-}
+};
 
 const setClasses = (param_page_class) => {
 	document.getElementById("card-template-container").classList = [];
@@ -57,34 +57,34 @@ const setClasses = (param_page_class) => {
 	if (param_page_class != undefined) {
 		document.getElementById("card-template-container").classList.add('disable-hover', 'card', 'card-' + param_page_class);
 	}
-}
+};
 
 const clearClassList = (param_ele, param_copy) => {
 	document.getElementById(param_ele).classList = '';
 	return document.getElementById(param_ele);
-}
+};
 
 const toggleDisabled = (param_ele, param_disabled = false) => {
 	document.getElementById(param_ele).removeAttribute('disabled');
 	if (param_disabled) {
 		document.getElementById(param_ele).setAttribute('disabled', param_disabled);
 	}
-}
+};
 const toggleDisplay = (param_ele, param_class, param_flag) => {
 	if (param_flag) {
 		$(param_ele).addClass(param_class);
 	} else {
 		$(param_ele).removeClass(param_class);
 	}
-}
+};
 
 const makeVisible = (param_ele) => {
 	document.getElementById(param_ele).classList.remove('invisible');
-}
+};
 
 const checkIfDisabled = (param_element) => {
 	return document.getElementById(param_element).disabled;
-}
+};
 
 const cleanVIN = (param_vin_scan) => {
 	g_CURRENT_VIN = param_vin_scan;
@@ -98,13 +98,13 @@ const cleanVIN = (param_vin_scan) => {
 		g_CURRENT_VIN = '';
 		return false;
 	}
-}
+};
 
 const closeDialog = () => {
 	APP_DIALOG.close();
 	APP_DIALOG.textContent = '';
-}
+};
 
 const logOut = () => {
 	document.location.href = g_ROOT_PATH;
-}
+};

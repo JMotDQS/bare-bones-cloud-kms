@@ -23,7 +23,6 @@ const refreshApp = () => {
 	document.getElementById('card-template-container').textContent = '';
 
 	if (g_CURRENT_USER_ID == '0') {
-		//loadDialog('login', g_DIALOG, 'dialog_login');
 		loadTemplate('login', g_DIALOG);
 	} else {
 		loadTemplate('kms');

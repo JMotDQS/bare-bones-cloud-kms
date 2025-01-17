@@ -1,11 +1,11 @@
 const setKeyEvents = (param_page, param_element, param_multiplier = 1) => {
 	$('#' + param_element).on('keydown', {page: param_page, inputEl: param_element, timerMultiplier: param_multiplier}, keyDownEvent);
 	$('#' + param_element).on('keyup', {page: param_page, inputEl: param_element, timerMultiplier: param_multiplier}, keyUpEvent);
-}
+};
 
 const clearTimer = (param_timer) => {
 	window.clearTimeout(param_timer); // prevent errant multiple timeouts from being generated
-}
+};
 
 const keyDownEvent = (e) => {
 	e.preventDefault;
@@ -25,7 +25,7 @@ const keyDownEvent = (e) => {
 			}
 			break;
 	}
-}
+};
 const keyUpEvent = (e) => {
 	e.preventDefault;
 	clearTimer(g_TIMER); // prevent errant multiple timeouts from being generated
@@ -82,15 +82,6 @@ const keyUpEvent = (e) => {
 										document.getElementById('checkin-button').classList.remove('button-disabled');
 										makeVisible('checkin-button');
 										setFocus('checkin-button');
-
-										//document.getElementById('checkin-l-group').focus();
-										//document.getElementById('checkin-l-group').addEventListener('keydown', (event) => {
-										/*document.getElementById('checkin-button').addEventListener('keydown', (event) => {
-											event.preventDefault();
-											event.cancelBubbble = true;
-											console.log("event:", event);
-											console.log("event.key:", event.key);
-										});*/
 									}
 								}).catch(function(reject) {
 									consoleReporting(reject);
@@ -98,49 +89,6 @@ const keyUpEvent = (e) => {
 									consoleReporting("Moving On.");
 								});
 							}
-
-
-
-							//const ret_value = getSlotAvailability(g_CURRENT_LOT[0].pk_id, document.getElementById(e.data.inputEl).value);
-							//console.log("ret_value:", ret_value);
-
-							/*console.log("keyUpEvent():getSlotAvailability(g_CURRENT_LOT[0].pk_id, document.getElementById(e.data.inputEl).value):", getSlotAvailability(g_CURRENT_LOT[0].pk_id, document.getElementById(e.data.inputEl).value));
-							if (getSlotAvailability(g_CURRENT_LOT[0].pk_id, document.getElementById(e.data.inputEl).value)) {
-								feedBackColoring(myEle.id + '-feedback', 'green');
-								setElementCopy(myEle.id + '-feedback', 'Slot is Validated.');
-								feedBackColoring(myEle.id, 'green');
-								toggleDisabled('slot', true);
-								toggleDisabled('checkin-button', false);
-								makeVisible('checkin-button');*/
-
-								/*setElementCopy(myEle.id, myEle.value);
-								toggleDisabled('vin', true);
-								toggleDisabled('slot', false);
-								document.getElementById('container-slot').classList.remove('disable-input');
-								setFocus('slot');*/
-							/*} else {
-								console.log("Slot unavailable");
-							}*/
-
-							/*if (cleanVIN(document.getElementById(e.data.inputEl).value)) {
-								feedBackColoring(myEle.id + '-feedback', 'green');
-								setElementCopy(myEle.id + '-feedback', 'Slot is Validated.');
-								feedBackColoring(myEle.id, 'green');
-								setElementCopy(myEle.id, myEle.value);
-								toggleDisabled('vin', true);
-								toggleDisabled('slot', false);
-								document.getElementById('container-slot').classList.remove('disable-input');
-								setFocus('slot');
-							} else {
-								feedBackColoring(myEle.id + '-feedback', 'red');
-								setElementCopy(myEle.id + '-feedback', 'Invalid VIN');
-								feedBackColoring(myEle.id, 'red');
-								setElementCopy(myEle.id, myEle.value);
-							}
-						} else {
-							clearClassList(myEle.id);
-							clearClassList(myEle.id + '-feedback');
-							setElementCopy(myEle.id + '-feedback');*/
 						}
 					}, (g_TIMEOUT_VAL * parseInt(e.data.timerMultiplier)));
 					break;
@@ -173,4 +121,4 @@ const keyUpEvent = (e) => {
 			}, (g_TIMEOUT_VAL * parseInt(e.data.timerMultiplier)));
 			break;
 	}
-}
+};

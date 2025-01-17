@@ -12,11 +12,6 @@
 		<link rel="stylesheet" href="css/index.css">
 		<link rel="stylesheet" href="css/navbar.css">
 		<link rel="stylesheet" href="css/dialog.css">
-		<!--<link rel="stylesheet" href="css/custom.css">
-		<link rel="stylesheet" href="css/dialogUser.css">
-		<link rel="stylesheet" href="css/dialogLogin.css">
-		<link rel="stylesheet" href="css/dialogUpdatePassword.css">
-		<link rel="stylesheet" href="css/dialogBulkAddUser.css">-->
 
 	</head>
 
@@ -42,8 +37,6 @@
 		</div>
 
 		<dialog id="g_dialog" class="g_dialog"></dialog>
-		<!--<dialog id="dialog_login" class="g_dialog dialog_login"></dialog>-->
-		<dialog id="dialog_lot_choice" class="g_dialog dialog_lot_choice"></dialog>
 
 	<!-- JQuery CDN -->
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -55,23 +48,13 @@
 		<script src="js/variables.js"></script>
 		<script src="js/promises.js"></script>
 		<script src="js/templates.js"></script>
-		<script src="js/kmsTemplate.js"></script>
-		<script src="js/checkinTemplate.js"></script>
 		<script src="js/dialogLoginTemplate.js"></script>
 		<script src="js/dialogPasswordUpdateTemplate.js"></script>
+		<script src="js/kmsTemplate.js"></script>
+		<script src="js/checkinTemplate.js"></script>
 		<script src="js/helper.js"></script>
 		<script src="js/keyevents.js"></script>
 		<script src="js/slider.js"></script>
 		<script src="js/index.js"></script>
-		<!--<script src="js/urlRouter.js"></script>
-		<script src="js/custom.js"></script>
-		<script src="js/users.js"></script>
-		<script src="js/itemAssociation.js"></script>
-		<script src="js/reports.js"></script>
-		<script src="js/dialogUser.js"></script>
-		<script src="js/dialogLogin.js"></script>
-		<script src="js/dialogAddAdmin.js"></script>
-		<script src="js/dialogUpdatePassword.js"></script>
-		<script src="js/dialogBulkAddUser.js"></script>-->
 	</body>
 </html>
