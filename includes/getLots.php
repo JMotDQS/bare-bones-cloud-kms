@@ -19,8 +19,6 @@
 					INNER JOIN manufacturers AS man ON man.pk_id = gl.fk_manufacturers_pk_id
 				WHERE gl.pk_id = '".$lot_pk_id_config."'
 				ORDER BY gl.lot_name ASC";
-		//echo json_encode($sql);
-		//die();
 		$res = sqlsrv_query($conn, $sql);
 
 		if ($res) {

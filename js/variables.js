@@ -1,9 +1,8 @@
 /***** Global Use Variables */
 const g_ROOT_PATH = 'http://localhost/bare-bones-cloud-kms/';
 const APP_DIALOG = document.getElementById('g_dialog');
-//const LOGIN_DIALOG = document.querySelector('.dialog_login');
+const LOGIN_CREDENTIALS_MISMATCH = 'Email/Password do not match for user.'
 const LOGIN_NONACTIVE_USER_ERROR = '<p>You are NOT an Active user.</p><p>Please contact Supervisor.</p>'
-//const CHOOSE_LOT_DIALOG = document.querySelector('.dialog_lot_choice');
 const PREVENT_LOGIN_CLOSE = true;
 
 function disableEscapeKeyDialogBehavior(event) {

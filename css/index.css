@@ -285,12 +285,6 @@ label {
 	}
 }
 
-/*@media (width > 899px) {
-	.main-container {
-		width: 900px;
-	}
-}*/
-
 @media (width > 999px) {
 	.main-container {
 		width: 1000px;

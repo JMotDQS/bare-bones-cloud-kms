@@ -25,7 +25,7 @@
 			<div class="nav-logo-container">
 				<img src="images/DQS_logo.svg" id="logo-header" class="nav-logo" data-page='kms' alt="" />
 			</div>
-			<ul class="nav-links">
+			<ul id="nav_links" class="nav-links hide-element">
 				<a class="navbar-item navbar-link" data-page="kms" onclick="loadTemplate(this.dataset.page)">KMS</a>
 				<li class="navbar-item nav-item-divider">|</li>
 				<a class="navbar-item navbar-link" data-page="docs" onclick="loadTemplate(this.dataset.page)">Docs</a>

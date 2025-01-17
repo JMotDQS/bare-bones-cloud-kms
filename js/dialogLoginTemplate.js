@@ -23,7 +23,7 @@ const userLoginCheck = (e) => {
 
 	userLoginCheckPromise('userLoginCheck', email_address, pass).then(function(resolve) {
 		if(resolve.length == 0) {
-			document.getElementById('dialog-login-error').textContent = 'email/password do not match for user';
+			document.getElementById('dialog-login-error').textContent = LOGIN_CREDENTIALS_MISMATCH;
 			feedBackColoring(document.getElementById('dialog-login-error').id, 'red');
 			document.getElementById('dialog-login-error').classList.remove('invisible');
 		} else {
@@ -43,6 +43,12 @@ const userLoginCheck = (e) => {
 				document.getElementById('dialog-login-error').innerHTML = LOGIN_NONACTIVE_USER_ERROR;
 				feedBackColoring(document.getElementById('dialog-login-error').id, 'red');
 				document.getElementById('dialog-login-error').classList.add('dialog-error-show');
+				toggleDisabled('login_email', true);
+				toggleDisabled('login_password', true);
+				document.getElementById('dialog-login-form-button').textContent = 'Return Home';
+				document.getElementById('dialog-login-form-button').addEventListener('click', () => {
+					logOut();
+				});
 			}
 		}
 

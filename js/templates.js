@@ -46,6 +46,7 @@ const loadTemplate = (param_template, param_type = '') => {
 			document.getElementById("card-template-container").innerHTML = kmsTemplate();
 			removeClass('disable-hover');
 			setClasses();
+			document.getElementById('nav_links').classList.remove('hide-element')
 			break;
 		
 		case 'checkin':

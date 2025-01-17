@@ -103,7 +103,6 @@ const cleanVIN = (param_vin_scan) => {
 const closeDialog = () => {
 	APP_DIALOG.close();
 	APP_DIALOG.textContent = '';
-	//LOGIN_DIALOG.close();
 }
 
 const logOut = () => {
