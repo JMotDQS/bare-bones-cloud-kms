@@ -100,6 +100,13 @@ const cleanVIN = (param_vin_scan) => {
 	}
 };
 
+const startTimer = (param_multiplier = 1) => {
+	clearTimer(g_TIMER);
+	g_TIMER = window.setTimeout(() => {
+
+	}, (g_TIMEOUT_VAL * parseInt(param_multiplier)));
+}
+
 const closeDialog = () => {
 	APP_DIALOG.close();
 	APP_DIALOG.textContent = '';
