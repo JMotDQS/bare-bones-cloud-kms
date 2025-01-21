@@ -149,7 +149,7 @@ const checkInVinPromise = (param_slot) => {
 			cache: false,
 			dataType: 'json',
 			data: {
-				'lot_id': g_CURRENT_LOT[0].pk_id,
+				'lot_id': g_CURRENT_LOT.pk_id,
 				'vin': g_CURRENT_VIN,
 				'key_slot': param_slot,
 				'user_id': g_CURRENT_USER_ID
@@ -175,7 +175,7 @@ const checkInVinPromise = (param_slot) => {
 /********************************************************
 	Search VINs Promises Start
 ********************************************************/
-const searchVINsPromise = () => {
+const searchVINsPromise = (param_vin) => {
 	return new Promise(function(resolve, reject) {
 		$.ajax({
 			url: "includes/searchVINs.php",
@@ -183,8 +183,8 @@ const searchVINsPromise = () => {
 			cache: false,
 			dataType: 'json',
 			data: {
-				'newPW': param_pw,
-				'userId': param_user_id
+				'search_vin': param_vin,
+				'lot_pk_id': g_CURRENT_LOT.pk_id
 			},
 
 			success: function (data) {

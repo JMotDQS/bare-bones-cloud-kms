@@ -264,6 +264,10 @@ label {
 	display: none;
 }
 
+.button-group {
+	display: inline-flex;
+	justify-content: space-between;
+}
 .app-button {
 	min-width: calc(var(--full-rem) * 5);
 	padding: var(--quarter-rem);

@@ -11,7 +11,7 @@
 	$conn = sqlsrv_connect($serverName, $connectionInfo);
 
 	if ($conn) {
-		/*$sql = "SELECT *
+		$sql = "SELECT *
 				FROM vin_registration
 				WHERE fk_g_lots_pk_id = '".$_POST['lot_pk_id']."'
 					AND vin LIKE '%".$_POST['search_vin']."%'";
@@ -20,12 +20,13 @@
 
 		if (sqlsrv_has_rows($res)) {
 			// record(s) found
+			while ($row = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
+				array_push($return_array['vins'], $row);
+			}
 		} else {
 			// No record found
-			while ($row = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
-				array_push($return_array, $row);
-			}
-		}*/
+			$return_array['reg_error'] = 'VIN never registered/checked in';
+		}
 	}
 
 	$close_success = sqlsrv_close($conn);

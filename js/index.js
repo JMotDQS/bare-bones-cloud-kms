@@ -32,7 +32,7 @@ const refreshApp = () => {
 const getLots = () => {
 	getLotsPromise().then((resolve) => {
 		g_CURRENT_LOT = [];
-		g_CURRENT_LOT = resolve;
+		g_CURRENT_LOT = resolve[0];
 
 		chooseLot();
 	}).catch(function(reject) {
@@ -69,9 +69,12 @@ const getSlotAvailability = (param_lot, param_slot) => {
 	});
 }
 
-const searchVINs = () => {
-	searchVINsPromise().then((resolve) => {
-		
+const searchVINs = (param_vin) => {
+	searchVINsPromise(param_vin).then((resolve) => {
+		if(resolve.reg_error != undefined) {
+			document.getElementById('vin-feedback').innerHTML = `${resolve.reg_error} at ${g_CURRENT_LOT.lot_name}`;
+			feedBackColoring(document.getElementById('vin-feedback').id, 'red');
+		}
 	}).catch(function(reject) {
 		consoleReporting(reject);
 	}).finally(function() {
@@ -89,7 +92,7 @@ const setFocus = (param_ele) => {
 
 const chooseLot = () => {
 
-	document.getElementById('navbar-user').innerHTML = g_CURRENT_USER['first_name'] + "&nbsp;:&nbsp;" + g_CURRENT_LOT[0]['lot_name'];
+	document.getElementById('navbar-user').innerHTML = g_CURRENT_USER['first_name'] + "&nbsp;:&nbsp;" + g_CURRENT_LOT.lot_name;
 	document.getElementById('navbar-user').classList.remove('nav-item-hide');
 	document.getElementById('navbar-link-lots').classList.add('nav-item-hide');
 	document.getElementById('navbar-link-lots-divider').classList.add('nav-item-hide');

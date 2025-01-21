@@ -32,6 +32,8 @@ var g_CURRENT_VIN = '';
 var g_CURRENT_LOT = [];
 var g_FUNC_CALL_CNT = 0;
 
+var test_vin_search = [];
+
 const g_MAILBOX_LENGTH = 8;
 const g_TIMEOUT_VAL = 500;
 const g_RESET_TIMEOUT_VAL = 2000;

@@ -54,12 +54,9 @@ const loadTemplate = (param_template, param_type = '') => {
 			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].section;
 			iconClassArray = g_SECTIONS[g_CHOSEN_SECTION].icon.split(" ");
 			document.getElementById('icon').classList.add(...iconClassArray);
-			console.log("I'm here");
 			setKeyEvents(temp_page, 'vin', .5);
 			setKeyEvents(temp_page, 'slot', .5);
-			console.log("Before setCLasses");
 			setClasses(temp_page);
-			console.log("After setCLasses");
 			toggleDisabled('slot', false);
 			setFocus('vin');
 			toggleDisabled('slot', true);
@@ -77,7 +74,29 @@ const loadTemplate = (param_template, param_type = '') => {
 			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].section;
 			iconClassArray = g_SECTIONS[g_CHOSEN_SECTION].icon.split(" ");
 			document.getElementById('icon').classList.add(...iconClassArray);
+			setKeyEvents(temp_page, 'vin', 0);
 			setClasses(temp_page);
+			setFocus('vin');
+			toggleDisabled('search-button', true);
+			document.getElementById('search-button').classList.add('button-disabled');
+
+			document.getElementById('vin').addEventListener('keydown', (event) => {
+				if(document.getElementById('vin').value.length > 0 && event.key === "Enter") {
+					toggleDisabled('vin', true);
+					toggleDisabled('search-button', true);
+					searchVINs(document.getElementById('vin').value);
+				}
+			});
+			document.getElementById('clear-button').addEventListener('click', () => {
+				toggleDisabled('vin', false);
+				document.getElementById('vin').value = '';
+				toggleDisabled('search-button', true);
+				setFocus('vin');
+				document.getElementById('search-button').classList.add('button-disabled');
+
+				document.getElementById('vin-feedback').innerHTML = '';
+				feedBackColoring(document.getElementById('vin-feedback').id);
+			});
 			break;
 		
 		case 'labels':

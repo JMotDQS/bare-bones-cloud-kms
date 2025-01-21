@@ -32,6 +32,32 @@ const keyUpEvent = (e) => {
 	const hasInput = document.getElementById(e.data.inputEl).value != '';
 	const myEle = document.getElementById(e.data.inputEl);
 	switch(e.data.page) {
+		case 'passwordUpdate':
+			g_TIMER = window.setTimeout(() => {
+				var pw = document.getElementById('update_password').value;
+				var pwc = document.getElementById('update_password_conf').value;
+
+				if(pw === pwc && pw != '' && pwc != '') {
+					feedBackColoring(document.getElementById('dialog-password-error').id, 'green');
+					document.getElementById('dialog-password-error').textContent = 'Passwords match!';
+					document.getElementById('dialog-password-error').classList.remove('invisible');
+					toggleDisabled('dialog-password-update-form-button', false);
+					document.getElementById('dialog-password-update-form-button').classList.remove('button-disabled');
+				} else if(pw == '' && pwc == '') {
+					document.getElementById('dialog-password-error').textContent = '&nbsp;';
+					document.getElementById('dialog-password-error').classList.add('invisible');
+					toggleDisabled('dialog-password-update-form-button', true);
+					document.getElementById('dialog-password-update-form-button').classList.add('button-disabled');
+				} else {
+					feedBackColoring(document.getElementById('dialog-password-error').id, 'red');
+					document.getElementById('dialog-password-error').textContent = 'Passwords MUST match!';
+					document.getElementById('dialog-password-error').classList.remove('invisible');
+					toggleDisabled('dialog-password-update-form-button', true);
+					document.getElementById('dialog-password-update-form-button').classList.add('button-disabled');
+				}
+			}, (g_TIMEOUT_VAL * parseInt(e.data.timerMultiplier)));
+			break;
+
 		case 'checkin':
 			switch(e.data.inputEl) {
 				case 'vin':
@@ -64,7 +90,7 @@ const keyUpEvent = (e) => {
 					g_TIMER = window.setTimeout(() => {
 						if (hasInput) {
 							if (document.getElementById(e.data.inputEl).value.length > 3) {
-								getSlotAvailabilityPromise(g_CURRENT_LOT[0].pk_id, document.getElementById(e.data.inputEl).value).then((resolve) => {
+								getSlotAvailabilityPromise(g_CURRENT_LOT.pk_id, document.getElementById(e.data.inputEl).value).then((resolve) => {
 									if (resolve.length > 0) {
 										console.log("length > 0");
 										feedBackColoring(myEle.id + '-feedback', 'red');
@@ -95,30 +121,21 @@ const keyUpEvent = (e) => {
 			}
 			break;
 
-		case 'passwordUpdate':
-			g_TIMER = window.setTimeout(() => {
-				var pw = document.getElementById('update_password').value;
-				var pwc = document.getElementById('update_password_conf').value;
+		case 'checkout':
+			switch(e.data.inputEl) {
+				case 'vin':
+					if(document.getElementById('vin').value.length > 0) {
+						toggleDisabled('search-button', false);
+						document.getElementById('search-button').classList.remove('button-disabled');
+					} else {
+						toggleDisabled('search-button', true);
+						document.getElementById('search-button').classList.add('button-disabled');
+					}
+					break;
 
-				if(pw === pwc && pw != '' && pwc != '') {
-					feedBackColoring(document.getElementById('dialog-password-error').id, 'green');
-					document.getElementById('dialog-password-error').textContent = 'Passwords match!';
-					document.getElementById('dialog-password-error').classList.remove('invisible');
-					toggleDisabled('dialog-password-update-form-button', false);
-					document.getElementById('dialog-password-update-form-button').classList.remove('button-disabled');
-				} else if(pw == '' && pwc == '') {
-					document.getElementById('dialog-password-error').textContent = '&nbsp;';
-					document.getElementById('dialog-password-error').classList.add('invisible');
-					toggleDisabled('dialog-password-update-form-button', true);
-					document.getElementById('dialog-password-update-form-button').classList.add('button-disabled');
-				} else {
-					feedBackColoring(document.getElementById('dialog-password-error').id, 'red');
-					document.getElementById('dialog-password-error').textContent = 'Passwords MUST match!';
-					document.getElementById('dialog-password-error').classList.remove('invisible');
-					toggleDisabled('dialog-password-update-form-button', true);
-					document.getElementById('dialog-password-update-form-button').classList.add('button-disabled');
-				}
-			}, (g_TIMEOUT_VAL * parseInt(e.data.timerMultiplier)));
+				case 'slot':
+					break;
+			}
 			break;
 	}
 };
