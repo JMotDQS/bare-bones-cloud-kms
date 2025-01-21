@@ -5,10 +5,6 @@ const checkinTemplate = () => {
 						text-align: start;
 						cursor: default;
 					}
-
-					#checkin-button:focus {
-						border: red 4px solid;
-					}
 				</style>
 				<div class="card-template-header">
 					<i id="icon" class="card-icon"></i><h2 id="title"></h2>

@@ -265,7 +265,7 @@ label {
 }
 
 .app-button {
-	/*width: 100%;*/
+	min-width: calc(var(--full-rem) * 5);
 	padding: var(--quarter-rem);
 	margin-block-start: var(--half-rem);
 	border-radius: var(--half-rem);

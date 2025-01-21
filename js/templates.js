@@ -52,9 +52,14 @@ const loadTemplate = (param_template, param_type = '') => {
 		case 'checkin':
 			document.getElementById("card-template-container").innerHTML = checkinTemplate();
 			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].section;
+			iconClassArray = g_SECTIONS[g_CHOSEN_SECTION].icon.split(" ");
+			document.getElementById('icon').classList.add(...iconClassArray);
+			console.log("I'm here");
 			setKeyEvents(temp_page, 'vin', .5);
 			setKeyEvents(temp_page, 'slot', .5);
+			console.log("Before setCLasses");
 			setClasses(temp_page);
+			console.log("After setCLasses");
 			toggleDisabled('slot', false);
 			setFocus('vin');
 			toggleDisabled('slot', true);
@@ -69,6 +74,10 @@ const loadTemplate = (param_template, param_type = '') => {
 
 		case 'checkout':
 			document.getElementById("card-template-container").innerHTML = checkoutTemplate(param_template);
+			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].section;
+			iconClassArray = g_SECTIONS[g_CHOSEN_SECTION].icon.split(" ");
+			document.getElementById('icon').classList.add(...iconClassArray);
+			setClasses(temp_page);
 			break;
 		
 		case 'labels':

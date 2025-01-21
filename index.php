@@ -52,6 +52,7 @@
 		<script src="js/dialogPasswordUpdateTemplate.js"></script>
 		<script src="js/kmsTemplate.js"></script>
 		<script src="js/checkinTemplate.js"></script>
+		<script src="js/checkoutTemplate.js"></script>
 		<script src="js/helper.js"></script>
 		<script src="js/keyevents.js"></script>
 		<script src="js/slider.js"></script>

@@ -12,13 +12,16 @@
 
 	if ($conn) {
 		/*$sql = "SELECT *
-				FROM g_employees
-				WHERE email_address = '".$_POST['email_address']."'
-					AND pass = '".$_POST['pass']."'";
+				FROM vin_registration
+				WHERE fk_g_lots_pk_id = '".$_POST['lot_pk_id']."'
+					AND vin LIKE '%".$_POST['search_vin']."%'";
 
 		$res = sqlsrv_query($conn, $sql);
-		
-		if ($res) {
+
+		if (sqlsrv_has_rows($res)) {
+			// record(s) found
+		} else {
+			// No record found
 			while ($row = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
 				array_push($return_array, $row);
 			}

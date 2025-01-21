@@ -52,6 +52,7 @@ const removeClass = (param_class) => {
 };
 
 const setClasses = (param_page_class) => {
+	console.log("setCLasses() called");
 	document.getElementById("card-template-container").classList = [];
 	document.getElementById("card-template-container").classList.add('grid-container');
 	if (param_page_class != undefined) {
