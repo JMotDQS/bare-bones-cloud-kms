@@ -43,35 +43,30 @@ const checkinTemplate = () => {
 
 const checkInVin = () => {
 	console.log("checkInVin() called");
-	g_FUNC_CALL_CNT += 1;
+	checkInVinPromise(document.getElementById('slot').value).then((resolve) => {
+		console.log("resolve:", resolve);
+		document.getElementById('checkin-feedback').textContent = `VIN ${document.getElementById('vin').value} checked in.`;
+		feedBackColoring(document.getElementById('checkin-feedback').id, 'green');
+		clearTimer(g_TIMER);
+		g_TIMER = window.setTimeout(() => {
+			document.getElementById('checkin-feedback').textContent = '';
+			feedBackColoring(document.getElementById('checkin-feedback').id);
+			document.getElementById('vin').value = '';
+			toggleDisabled('vin', false);
+			setFocus('vin');
+			document.getElementById('vin-feedback').textContent = '';
+			feedBackColoring(document.getElementById('vin-feedback').id);
 
-	if (g_FUNC_CALL_CNT == 1) {
-		g_FUNC_CALL_CNT = 0;
-		checkInVinPromise(document.getElementById('slot').value).then((resolve) => {
-			console.log("resolve:", resolve);
-			document.getElementById('checkin-feedback').textContent = `VIN ${document.getElementById('vin').value} checked in.`;
-			feedBackColoring(document.getElementById('checkin-feedback').id, 'green');
-			clearTimer(g_TIMER);
-			g_TIMER = window.setTimeout(() => {
-				document.getElementById('checkin-feedback').textContent = '';
-				feedBackColoring(document.getElementById('checkin-feedback').id);
-				document.getElementById('vin').value = '';
-				toggleDisabled('vin', false);
-				setFocus('vin');
-				document.getElementById('vin-feedback').textContent = '';
-				feedBackColoring(document.getElementById('vin-feedback').id);
+			document.getElementById('slot').value = '';
+			toggleDisabled('slot', true);
+			document.getElementById('slot-feedback').textContent = '';
+			feedBackColoring(document.getElementById('slot-feedback').id);
 
-				document.getElementById('slot').value = '';
-				toggleDisabled('slot', true);
-				document.getElementById('slot-feedback').textContent = '';
-				feedBackColoring(document.getElementById('slot-feedback').id);
-
-				document.getElementById('checkin-button').classList.add('button-disabled');
-			}, (g_TIMEOUT_VAL) * 2);
-		}).catch(function(reject) {
-			consoleReporting(reject);
-		}).finally(function() {
-			consoleReporting("Moving On.");
-		});
-	}
+			document.getElementById('checkin-button').classList.add('button-disabled');
+		}, (g_TIMEOUT_VAL) * 2);
+	}).catch(function(reject) {
+		consoleReporting(reject);
+	}).finally(function() {
+		consoleReporting("Moving On.");
+	});
 };
