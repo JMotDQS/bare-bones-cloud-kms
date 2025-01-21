@@ -69,6 +69,16 @@ const getSlotAvailability = (param_lot, param_slot) => {
 	});
 }
 
+const searchVINs = () => {
+	searchVINsPromise().then((resolve) => {
+		
+	}).catch(function(reject) {
+		consoleReporting(reject);
+	}).finally(function() {
+		consoleReporting("Moving On.");
+	});
+}
+
 const setElementCopy = (param_ele, param_copy = '') => {
 	document.getElementById(param_ele).textContent = param_copy;
 }

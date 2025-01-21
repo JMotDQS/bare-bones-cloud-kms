@@ -171,3 +171,35 @@ const checkInVinPromise = (param_slot) => {
 /********************************************************
 	Check In Promises End
 ********************************************************/
+
+/********************************************************
+	Search VINs Promises Start
+********************************************************/
+const searchVINsPromise = () => {
+	return new Promise(function(resolve, reject) {
+		$.ajax({
+			url: "includes/searchVINs.php",
+			type: 'POST',
+			cache: false,
+			dataType: 'json',
+			data: {
+				'newPW': param_pw,
+				'userId': param_user_id
+			},
+
+			success: function (data) {
+				resolve(data);
+			},
+
+			error: function(xhr, desc, err) {
+				reject(false);
+				consoleReporting(xhr)
+				consoleReporting("Details: " + desc + "\nError:" + err);
+				consoleReporting("searchVINsPromise():Something broke");
+			}
+		});
+	});
+};
+/********************************************************
+	Search VINs Promises End
+********************************************************/
