@@ -54,7 +54,7 @@ const getSections = () => {
 	});
 }
 
-function getSlotAvailability(param_lot, param_slot) {
+const getSlotAvailability = (param_lot, param_slot) => {
 	getSlotAvailabilityPromise(param_lot, param_slot).then((resolve) => {
 		if (resolve.length > 0) {
 			console.log("length > 0");
