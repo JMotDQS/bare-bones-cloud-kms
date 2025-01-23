@@ -34,6 +34,7 @@ const getLots = () => {
 		g_CURRENT_LOT = [];
 		g_CURRENT_LOT = resolve[0];
 
+		//getLotSlots();
 		chooseLot();
 	}).catch(function(reject) {
 		consoleReporting(reject);
@@ -47,6 +48,21 @@ const getSections = () => {
 		g_SECTIONS = [];
 		g_SECTIONS = resolve['sections'];
 		g_CONNECTION = resolve['conn'];
+	}).catch(function(reject) {
+		consoleReporting(reject);
+	}).finally(function() {
+		consoleReporting("Moving On.");
+	});
+}
+
+const getLotSlots = () => {
+	getLotSlotsPromise().then((resolve) => {
+		if (resolve.length > 0) {
+			console.log("length > 0");
+			return false;
+		}
+		console.log("length = 0");
+		return true;
 	}).catch(function(reject) {
 		consoleReporting(reject);
 	}).finally(function() {

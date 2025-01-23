@@ -29,7 +29,7 @@ const checkinTemplate = () => {
 					</div>
 					<div id="button-feedback-group" class="button-feedback-group">
 						<button id="checkin-button" class="app-button invisible">Check In</button>
-						<p id="checkin-feedback">Test feedback</p>
+						<p id="checkin-feedback"></p>
 					</div>
 				</div>
 

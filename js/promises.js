@@ -44,6 +44,31 @@ const getLotsPromise = () => {
 		});
 	});
 };
+
+const getLotSlotsPromise = () => {
+	return new Promise(function(resolve, reject) {
+		$.ajax({
+			url: "includes/getLotSlots.php",
+			type: 'POST',
+			cache: false,
+			dataType: 'json',
+			data: {
+				'lot_id': g_CURRENT_LOT.pk_id
+			},
+
+			success: function (data) {
+				resolve(data);
+			},
+
+			error: function(xhr, desc, err) {
+				reject(false);
+				consoleReporting(xhr)
+				consoleReporting("Details: " + desc + "\nError:" + err);
+				consoleReporting("getSlotAvailabilityPromise():Something broke");
+			}
+		});
+	});
+};
 /********************************************************
 	Application Promises End
 ********************************************************/
