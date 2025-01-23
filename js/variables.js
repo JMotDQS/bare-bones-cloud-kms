@@ -32,7 +32,10 @@ var g_CURRENT_VIN = '';
 var g_CURRENT_LOT = [];
 var g_FUNC_CALL_CNT = 0;
 
-var test_vin_search = [];
+var g_lot_slots = [];
+/*
+g_lot_slots.push( {slot: '001A', full: 0} )
+*/
 
 const g_MAILBOX_LENGTH = 8;
 const g_TIMEOUT_VAL = 500;
