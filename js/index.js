@@ -56,10 +56,10 @@ const getSections = () => {
 const getLotSlots = () => {
 	getLotSlotsPromise().then((resolve) => {
 		resolve.forEach((lot, index) => {
-			/*
+			/******
 				state: 1 = open/empty/available/true
 				state: 0 = closed/occupied/unavailable/false
-			*/
+			******/
 			lot_slots_state.push(
 				{
 					index: index,
