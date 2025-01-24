@@ -23,10 +23,10 @@ const getSectionsPromise = () => {
 	});
 };
 
-const getLotsPromise = () => {
+const getLotPromise = () => {
 	return new Promise(function(resolve, reject) {
 		$.ajax({
-			url: "includes/getLots.php",
+			url: "includes/getLot.php",
 			type: 'POST',
 			cache: false,
 			dataType: 'json',
@@ -39,7 +39,7 @@ const getLotsPromise = () => {
 				reject(false);
 				consoleReporting(xhr)
 				consoleReporting("Details: " + desc + "\nError:" + err);
-				consoleReporting("getLotsPromise():Something broke");
+				consoleReporting("getLotPromise():Something broke");
 			}
 		});
 	});

@@ -37,7 +37,7 @@ const userLoginCheck = (e) => {
 				if(parseInt(resolve[0]['change_password']) === 1) {
 					loadTemplate('passwordUpdate', g_DIALOG);
 				} else {
-					getLots();
+					getLot();
 				}
 			} else {
 				document.getElementById('dialog-login-error').innerHTML = LOGIN_NONACTIVE_USER_ERROR;

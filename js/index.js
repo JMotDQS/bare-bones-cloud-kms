@@ -29,12 +29,11 @@ const refreshApp = () => {
 	}
 }
 
-const getLots = () => {
-	getLotsPromise().then((resolve) => {
+const getLot = () => {
+	getLotPromise().then((resolve) => {
 		g_CURRENT_LOT = [];
 		g_CURRENT_LOT = resolve[0];
-
-		chooseLot();
+		setLot();
 	}).catch(function(reject) {
 		consoleReporting(reject);
 	}).finally(function() {
@@ -114,7 +113,7 @@ const setFocus = (param_ele) => {
 	document.getElementById(param_ele).focus();
 }
 
-const chooseLot = () => {
+const setLot = () => {
 
 	document.getElementById('navbar-user').innerHTML = g_CURRENT_USER['first_name'] + "&nbsp;:&nbsp;" + g_CURRENT_LOT.lot_name;
 	document.getElementById('navbar-user').classList.remove('nav-item-hide');
