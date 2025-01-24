@@ -57,12 +57,16 @@ const getSections = () => {
 const getLotSlots = () => {
 	getLotSlotsPromise().then((resolve) => {
 		resolve.forEach((lot, index) => {
-			g_lot_slots.push(
+			/*
+				state: 1 = open/empty/available/true
+				state: 0 = closed/occupied/unavailable/false
+			*/
+			lot_slots_state.push(
 				{
 					index: index,
 					slot: lot.key_slot,
 					pk_id: lot.pk_id,
-					full: 0
+					state: 1
 				}
 			);
 		});
@@ -74,7 +78,7 @@ const getLotSlots = () => {
 	});
 }
 
-const getSlotAvailability = (param_lot, param_slot) => {
+/*const getSlotAvailability = (param_lot, param_slot) => {
 	getSlotAvailabilityPromise(param_lot, param_slot).then((resolve) => {
 		if (resolve.length > 0) {
 			console.log("length > 0");
@@ -87,7 +91,7 @@ const getSlotAvailability = (param_lot, param_slot) => {
 	}).finally(function() {
 		consoleReporting("Moving On.");
 	});
-}
+}*/
 
 const searchVINs = (param_vin) => {
 	searchVINsPromise(param_vin).then((resolve) => {

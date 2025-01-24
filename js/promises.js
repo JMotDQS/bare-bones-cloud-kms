@@ -64,7 +64,7 @@ const getLotSlotsPromise = () => {
 				reject(false);
 				consoleReporting(xhr)
 				consoleReporting("Details: " + desc + "\nError:" + err);
-				consoleReporting("getSlotAvailabilityPromise():Something broke");
+				consoleReporting("getLotSlotsPromise():Something broke");
 			}
 		});
 	});
@@ -140,7 +140,7 @@ const updatePasswordCheckPromise = (param_file, param_pw, param_user_id) => {
 /********************************************************
 	Check In Promises Start
 ********************************************************/
-const getSlotAvailabilityPromise = (param_lot, param_slot) => {
+/*const getSlotAvailabilityPromise = (param_lot, param_slot) => {
 	return new Promise(function(resolve, reject) {
 		$.ajax({
 			url: "includes/getSlotAvailability.php",
@@ -164,7 +164,7 @@ const getSlotAvailabilityPromise = (param_lot, param_slot) => {
 			}
 		});
 	});
-};
+};*/
 
 const checkInVinPromise = (param_slot) => {
 	return new Promise(function(resolve, reject) {

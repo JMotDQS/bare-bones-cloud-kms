@@ -47,10 +47,7 @@ var g_CURRENT_VIN = '';
 var g_CURRENT_LOT = [];
 var g_FUNC_CALL_CNT = 0;
 
-var g_lot_slots = [];
-/*
-g_lot_slots.push( {slot: '001A', full: 0} )
-*/
+var lot_slots_state = [];
 
 function disableEscapeKeyDialogBehavior(event) {
 	if(event.key === 'Escape' && PREVENT_LOGIN_CLOSE) {

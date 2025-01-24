@@ -90,7 +90,7 @@ const keyUpEvent = (e) => {
 					g_TIMER = window.setTimeout(() => {
 						if (hasInput) {
 							if (document.getElementById(e.data.inputEl).value.length > 3) {
-								getSlotAvailabilityPromise(g_CURRENT_LOT.pk_id, document.getElementById(e.data.inputEl).value).then((resolve) => {
+								/*getSlotAvailabilityPromise(g_CURRENT_LOT.pk_id, document.getElementById(e.data.inputEl).value).then((resolve) => {
 									if (resolve.length > 0) {
 										console.log("length > 0");
 										feedBackColoring(myEle.id + '-feedback', 'red');
@@ -113,7 +113,7 @@ const keyUpEvent = (e) => {
 									consoleReporting(reject);
 								}).finally(function() {
 									consoleReporting("Moving On.");
-								});
+								});*/
 							}
 						}
 					}, (g_TIMEOUT_VAL * parseInt(e.data.timerMultiplier)));
