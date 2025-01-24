@@ -41,6 +41,19 @@ const getLot = () => {
 	});
 }
 
+const setLot = () => {
+
+	document.getElementById('navbar-user').innerHTML = g_CURRENT_USER['first_name'] + "&nbsp;:&nbsp;" + g_CURRENT_LOT.lot_name;
+	document.getElementById('navbar-user').classList.remove('nav-item-hide');
+	document.getElementById('navbar-link-lots').classList.add('nav-item-hide');
+	document.getElementById('navbar-link-lots-divider').classList.add('nav-item-hide');
+
+	closeDialog();
+	getLotSlots();
+	getSections();
+	loadTemplate('kms');
+}
+
 const getSections = () => {
 	getSectionsPromise().then((resolve) => {
 		g_SECTIONS = [];
@@ -111,19 +124,6 @@ const setElementCopy = (param_ele, param_copy = '') => {
 
 const setFocus = (param_ele) => {
 	document.getElementById(param_ele).focus();
-}
-
-const setLot = () => {
-
-	document.getElementById('navbar-user').innerHTML = g_CURRENT_USER['first_name'] + "&nbsp;:&nbsp;" + g_CURRENT_LOT.lot_name;
-	document.getElementById('navbar-user').classList.remove('nav-item-hide');
-	document.getElementById('navbar-link-lots').classList.add('nav-item-hide');
-	document.getElementById('navbar-link-lots-divider').classList.add('nav-item-hide');
-
-	closeDialog();
-	getLotSlots();
-	getSections();
-	loadTemplate('kms');
 }
 
 const consoleReporting = (param) => {
