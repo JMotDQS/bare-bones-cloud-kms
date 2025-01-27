@@ -9,7 +9,7 @@ $(document).ready(function() {
 	}
 
 	refreshApp();
-	getSections();
+	//getSections();
 });
 
 const refreshApp = () => {
@@ -21,6 +21,7 @@ const refreshApp = () => {
 	g_PRINT_USER_OBJ = {};
 
 	document.getElementById('card-template-container').textContent = '';
+	getSections();
 
 	if (g_CURRENT_USER_ID == '0') {
 		loadTemplate('login', g_DIALOG);
@@ -50,8 +51,7 @@ const setLot = () => {
 
 	closeDialog();
 	getLotSlots();
-	initialLotSlotsState();
-	getSections();
+	//getSections();
 	loadTemplate('kms');
 }
 
@@ -83,6 +83,7 @@ const getLotSlots = () => {
 				}
 			);
 		});
+		initialLotSlotsState();
 
 	}).catch(function(reject) {
 		consoleReporting(reject);

@@ -119,9 +119,7 @@ const logOut = () => {
 const initialLotSlotsState = () => {
 	// do stuff
 	initialLotSlotsStatePromise().then(function(resolve) {
-		if(resolve.length == 0) {
-			// all slots are open for the lot
-		} else {
+		if(resolve.length > 0) {
 			// lot has slots that are not open
 			resolve.forEach((slot_closed, index) => {
 				setLotSlotsState(lot_slots_state.filter(slot => slot.slot === slot_closed.key_slot)[0].slot, 0);

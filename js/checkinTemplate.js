@@ -11,6 +11,31 @@ const checkinTemplate = () => {
 						justify-content: space-between;
 						align-items: center;
 					}
+
+					.flex-container-slots {
+						display: flex;
+						flex-wrap: wrap;
+					}
+					.flex-item-gap {
+						margin-inline: var(--half-rem);
+						margin-block-end: var(--full-rem);
+						text-align: center;
+					}
+
+					p {
+						font-size: var(--three-quarter-rem);
+					}
+					.case-slot-count {
+						padding: 0;
+						font-weight: 700;
+					}
+
+					.under-5-slots {
+						color: #ff8f8f;
+					}
+					.over-4-slots {
+						color: #009938;
+					}
 				</style>
 				<div class="card-template-header">
 					<i id="icon" class="card-icon"></i><h2 id="title"></h2>
@@ -36,6 +61,7 @@ const checkinTemplate = () => {
 				<div id="checkin-r-group">
 					<div class="card inset-container">
 						<h3>Available Slots by Case</h3>
+						<div id="avail-slots" class="flex-container-slots"></div>
 					</div>
 				</div>`;
 	return temp_html;
@@ -47,6 +73,7 @@ const checkInVin = () => {
 		console.log("resolve:", resolve);
 		document.getElementById('checkin-feedback').textContent = `VIN ${document.getElementById('vin').value} checked in.`;
 		feedBackColoring(document.getElementById('checkin-feedback').id, 'green');
+		displayOpenSlots();
 		clearTimer(g_TIMER);
 		g_TIMER = window.setTimeout(() => {
 			document.getElementById('checkin-feedback').textContent = '';
@@ -70,3 +97,55 @@ const checkInVin = () => {
 		consoleReporting("Moving On.");
 	});
 };
+
+const displayOpenSlots = () => {
+	var countArray = [];
+	var current_case = '';
+	slots_open_by_case = [];
+	var open_count = 0;
+	var slot_count = 0;
+	
+
+	lot_slots_state.forEach((slot, index) => {
+		if(slot.slot.slice(0, 3) != current_case) {
+			open_count = 0;
+			slot_count = 0;
+			current_case = slot.slot.slice(0, 3);
+			slots_open_by_case.push(
+				{
+					case: current_case,
+					count: 0
+				}
+			);
+		}
+		slot_count++;
+
+		if(slot.state == 1) {
+			open_count++;
+		}
+
+		if(slot_count == 10) {
+			countArray.push(open_count);
+		}
+	});
+
+	for(i = 0; i < slots_open_by_case.length; i++) {
+		slots_open_by_case[i].count = countArray[i];
+	}
+
+	var temp_html = ``;
+	document.getElementById('avail-slots').innerHTML = temp_html;
+	slots_open_by_case.forEach((slot, index) => {
+		temp_html += `<div class="flex-item-gap">`;
+			temp_html += `${slot.case}`;
+			temp_html += `<p class="case-slot-count `;
+			if (parseInt(slot.count) > 4) {
+				temp_html += `over-4-slots">`;
+			} else {
+				temp_html += `under-5-slots">`;
+			}
+			temp_html += `(${slot.count})</p>`;
+		temp_html += `</div>`;
+	});
+	document.getElementById('avail-slots').innerHTML = temp_html;
+}

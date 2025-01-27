@@ -30,6 +30,8 @@ const g_REPLACE_ENTITIES = ["&Oslash;", "&deg;",
 						"&agrave;", "&aacute;", "&Agrave;", "&Aacute;",
 						"&egrave;", "&eacute;", "&Egrave;", "&Eacute;"];
 
+const g_CASE_LETTERS = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+
 var g_TIMER;
 var g_KEY_RESET_TIMER;
 var g_CURRENT_USER_ID = '0';
@@ -48,6 +50,7 @@ var g_CURRENT_LOT = [];
 var g_FUNC_CALL_CNT = 0;
 
 var lot_slots_state = [];
+var slots_open_by_case = [];
 
 function disableEscapeKeyDialogBehavior(event) {
 	if(event.key === 'Escape' && PREVENT_LOGIN_CLOSE) {

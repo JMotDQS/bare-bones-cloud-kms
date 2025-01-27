@@ -61,6 +61,7 @@ const loadTemplate = (param_template, param_type = '') => {
 			setFocus('vin');
 			toggleDisabled('slot', true);
 			toggleDisabled('checkin-button', true);
+			displayOpenSlots();
 			document.getElementById('checkin-button').classList.add('button-disabled');
 
 			document.getElementById('checkin-button').addEventListener('click', () => {
