@@ -156,32 +156,6 @@ const updatePasswordCheckPromise = (param_file, param_pw, param_user_id) => {
 /********************************************************
 	Check In Promises Start
 ********************************************************/
-/*const getSlotAvailabilityPromise = (param_lot, param_slot) => {
-	return new Promise(function(resolve, reject) {
-		$.ajax({
-			url: "includes/getSlotAvailability.php",
-			type: 'POST',
-			cache: false,
-			dataType: 'json',
-			data: {
-				'lot_id': param_lot,
-				'key_slot': param_slot
-			},
-
-			success: function (data) {
-				resolve(data);
-			},
-
-			error: function(xhr, desc, err) {
-				reject(false);
-				consoleReporting(xhr)
-				consoleReporting("Details: " + desc + "\nError:" + err);
-				consoleReporting("getSlotAvailabilityPromise():Something broke");
-			}
-		});
-	});
-};*/
-
 const checkInVinPromise = (param_slot) => {
 	return new Promise(function(resolve, reject) {
 		$.ajax({
@@ -197,6 +171,7 @@ const checkInVinPromise = (param_slot) => {
 			},
 
 			success: function (data) {
+				setLotSlotsState(param_slot, 0);
 				resolve(data);
 			},
 

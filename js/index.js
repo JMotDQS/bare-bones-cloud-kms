@@ -91,21 +91,6 @@ const getLotSlots = () => {
 	});
 }
 
-/*const getSlotAvailability = (param_lot, param_slot) => {
-	getSlotAvailabilityPromise(param_lot, param_slot).then((resolve) => {
-		if (resolve.length > 0) {
-			console.log("length > 0");
-			return false;
-		}
-		console.log("length = 0");
-		return true;
-	}).catch(function(reject) {
-		consoleReporting(reject);
-	}).finally(function() {
-		consoleReporting("Moving On.");
-	});
-}*/
-
 const searchVINs = (param_vin) => {
 	searchVINsPromise(param_vin).then((resolve) => {
 		if(resolve.reg_error != undefined) {

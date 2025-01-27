@@ -90,30 +90,24 @@ const keyUpEvent = (e) => {
 					g_TIMER = window.setTimeout(() => {
 						if (hasInput) {
 							if (document.getElementById(e.data.inputEl).value.length > 3) {
-								/*getSlotAvailabilityPromise(g_CURRENT_LOT.pk_id, document.getElementById(e.data.inputEl).value).then((resolve) => {
-									if (resolve.length > 0) {
-										console.log("length > 0");
-										feedBackColoring(myEle.id + '-feedback', 'red');
-										setElementCopy(myEle.id + '-feedback', 'Slot is NOT available');
-										feedBackColoring(myEle.id, 'red');
-										setElementCopy(myEle.id, '');
-										setFocus('slot');
-									} else {
-										console.log("length = 0");
-										feedBackColoring(myEle.id + '-feedback', 'green');
-										setElementCopy(myEle.id + '-feedback', 'Slot is Available.');
-										feedBackColoring(myEle.id, 'green');
-										toggleDisabled('slot', true);
-										toggleDisabled('checkin-button', false);
-										document.getElementById('checkin-button').classList.remove('button-disabled');
-										makeVisible('checkin-button');
-										setFocus('checkin-button');
-									}
-								}).catch(function(reject) {
-									consoleReporting(reject);
-								}).finally(function() {
-									consoleReporting("Moving On.");
-								});*/
+								if( parseInt(lot_slots_state.filter(slot => slot.slot === document.getElementById(e.data.inputEl).value.toUpperCase())[0].state) == 1 ) {
+									// Slot is open
+									feedBackColoring(myEle.id + '-feedback', 'green');
+									setElementCopy(myEle.id + '-feedback', 'Slot is Available.');
+									feedBackColoring(myEle.id, 'green');
+									toggleDisabled('slot', true);
+									toggleDisabled('checkin-button', false);
+									document.getElementById('checkin-button').classList.remove('button-disabled');
+									makeVisible('checkin-button');
+									//setFocus('checkin-button');
+								} else {
+									// Slot is closed
+									feedBackColoring(myEle.id + '-feedback', 'red');
+									setElementCopy(myEle.id + '-feedback', 'Slot is NOT available');
+									feedBackColoring(myEle.id, 'red');
+									setElementCopy(myEle.id, '');
+									setFocus('slot');
+								}
 							}
 						}
 					}, (g_TIMEOUT_VAL * parseInt(e.data.timerMultiplier)));
