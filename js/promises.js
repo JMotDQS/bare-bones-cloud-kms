@@ -244,3 +244,34 @@ const searchVINsPromise = (param_vin) => {
 /********************************************************
 	Search VINs Promises End
 ********************************************************/
+
+/********************************************************
+	Slot State Promises Start
+********************************************************/
+const initialLotSlotsStatePromise = () => {
+	return new Promise(function(resolve, reject) {
+		$.ajax({
+			url: "includes/selectLotSlots.php",
+			type: 'POST',
+			cache: false,
+			dataType: 'json',
+			data: {
+				'lot_pk_id': g_CURRENT_LOT.pk_id
+			},
+
+			success: function (data) {
+				resolve(data);
+			},
+
+			error: function(xhr, desc, err) {
+				reject(false);
+				consoleReporting(xhr)
+				consoleReporting("Details: " + desc + "\nError:" + err);
+				consoleReporting("initialLotSlotsStatePromise():Something broke");
+			}
+		});
+	});
+};
+/********************************************************
+	Slot State Promises End
+********************************************************/

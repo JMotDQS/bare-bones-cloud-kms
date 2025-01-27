@@ -50,6 +50,7 @@ const setLot = () => {
 
 	closeDialog();
 	getLotSlots();
+	initialLotSlotsState();
 	getSections();
 	loadTemplate('kms');
 }

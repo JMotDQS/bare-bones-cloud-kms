@@ -115,3 +115,26 @@ const closeDialog = () => {
 const logOut = () => {
 	document.location.href = g_ROOT_PATH;
 };
+
+const initialLotSlotsState = () => {
+	// do stuff
+	initialLotSlotsStatePromise().then(function(resolve) {
+		if(resolve.length == 0) {
+			// all slots are open for the lot
+		} else {
+			// lot has slots that are not open
+			resolve.forEach((slot_closed, index) => {
+				setLotSlotsState(lot_slots_state.filter(slot => slot.slot === slot_closed.key_slot)[0].slot, 0);
+			});
+		}
+
+	}).catch(function(reject) {
+		console.log("reject:", reject);
+	}).finally(function() {
+		console.log("Moving On.");
+	});
+};
+
+const setLotSlotsState = (param_slot, param_state) => {
+	lot_slots_state[lot_slots_state.filter(slot => slot.slot === `${param_slot.toUpperCase()}`)[0].index].state = parseInt(param_state);
+}
