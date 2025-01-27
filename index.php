@@ -47,12 +47,12 @@
 	<!-- Custom JavaScript -->
 		<script src="js/variables.js"></script>
 		<script src="js/promises.js"></script>
-		<script src="js/templates.js"></script>
-		<script src="js/dialogLoginTemplate.js"></script>
-		<script src="js/dialogPasswordUpdateTemplate.js"></script>
-		<script src="js/kmsTemplate.js"></script>
-		<script src="js/checkinTemplate.js"></script>
-		<script src="js/checkoutTemplate.js"></script>
+		<script src="templates/templates.js"></script>
+		<script src="templates/dialogLoginTemplate.js"></script>
+		<script src="templates/dialogPasswordUpdateTemplate.js"></script>
+		<script src="templates/kmsTemplate.js"></script>
+		<script src="templates/checkinTemplate.js"></script>
+		<script src="templates/checkoutTemplate.js"></script>
 		<script src="js/helper.js"></script>
 		<script src="js/keyevents.js"></script>
 		<script src="js/slider.js"></script>
