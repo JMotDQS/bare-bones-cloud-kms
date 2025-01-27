@@ -93,6 +93,8 @@ const getLotSlots = () => {
 }
 
 const searchVINs = (param_vin) => {
+	toggleDisabled('vin', true);
+	toggleDisabled('search-button', true);
 	searchVINsPromise(param_vin).then((resolve) => {
 		if(resolve.reg_error != undefined) {
 			document.getElementById('vin-feedback').innerHTML = `${resolve.reg_error} at ${g_CURRENT_LOT.lot_name}`;

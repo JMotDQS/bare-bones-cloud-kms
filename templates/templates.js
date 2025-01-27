@@ -74,7 +74,7 @@ const loadTemplate = (param_template, param_type = '') => {
 			break;
 
 		case 'checkout':
-			document.getElementById("card-template-container").innerHTML = checkoutTemplate(param_template);
+			document.getElementById("card-template-container").innerHTML = checkoutTemplate();
 			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].section;
 			iconClassArray = g_SECTIONS[g_CHOSEN_SECTION].icon.split(" ");
 			document.getElementById('icon').classList.add(...iconClassArray);
@@ -86,8 +86,6 @@ const loadTemplate = (param_template, param_type = '') => {
 
 			document.getElementById('vin').addEventListener('keydown', (event) => {
 				if(document.getElementById('vin').value.length > 0 && event.key === "Enter") {
-					toggleDisabled('vin', true);
-					toggleDisabled('search-button', true);
 					searchVINs(document.getElementById('vin').value);
 				}
 			});
