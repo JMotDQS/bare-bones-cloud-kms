@@ -45,22 +45,6 @@ const getLotPromise = () => {
 	});
 };
 
-/************
-	fetch("includes/getLotSlots.php", {
-		method: "POST",
-		body: JSON.stringify(
-			{
-				'lot_id': g_CURRENT_LOT.pk_id
-			}
-		),
-		headers: {
-			"Content-Type": "application/json; charset=UTF-8"
-		}
-	})
-	.then((response) => response.json())
-	.then((data) => console.log(data));
-************/
-
 const getLotSlotsPromise = () => {
 	return new Promise(function(resolve, reject) {
 		$.ajax({
