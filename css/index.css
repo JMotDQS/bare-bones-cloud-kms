@@ -17,14 +17,18 @@
 	--full-half-rem: 1.5rem;
 	
 /* Colors */
+	--alpha-background: 0.10;
+	--alpha-hover: 0.35;
 	--color-page-background: #f7f7f7;
 	--color-dark: #000137;
 	--color-medium-dark: #02055a;
 	--color-medium-light: #021988;
 	--color-light: #253da1;
-	--color-extra-light: hsla(228, 63%, 70%, 1);
+	--color-extra-light: hsla(228, 63%, 70%, var(--alpha-background));
+	--color-extra-light-hover: hsla(228, 63%, 70%, var(--alpha-hover));
 
 	--color-inactive-user: #e30e02;
+	--color-grayout: hsla(0, 0%, 90%, var(--alpha-hover));
 
 /* Navbar Colors */
 	--color-navbar-background: #074692;
@@ -40,8 +44,6 @@
 	--navbar-border-size: 2px;
 
 /* Section Colors */
-	--alpha-background: 0.10;
-	--alpha-hover: 0.35;
 	--color-content-hover: #ffffff;
 
 	--color-checkin-background: hsla(280 82% 43% / var(--alpha-background));

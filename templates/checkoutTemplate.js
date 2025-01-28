@@ -25,11 +25,15 @@ const checkoutTemplate = () => {
 						margin-block-end: var(--quarter-rem);
 					}
 					.result-card-cur-lot {
-						background-color: #ff9900;
+						background-color: var(--color-checkout-background);
 						cursor: pointer;
 					}
+					.result-card-cur-lot:hover {
+						background-color: var(--color-checkout-hover);
+					}
+
 					.result-card-other-lot {
-						background-color:rgba(228, 228, 228, 0.8);
+						background-color:var(--color-grayout);
 					}
 
 					.result-lot-name {
@@ -63,6 +67,7 @@ const checkoutTemplate = () => {
 						<button id="checkin-button" class="app-button invisible">Check In</button>
 					</div>
 				</div>`;
+
 	return temp_html;
 }
 
