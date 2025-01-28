@@ -64,7 +64,9 @@ const checkoutTemplate = () => {
 				<div id="checkin-r-group">
 					<div class="card inset-container">
 						<h3>Confirm Check Out</h3>
-						<button id="checkin-button" class="app-button invisible">Check In</button>
+						<div id="checkout-result-container" class="hide-element">
+							<button id="checkout-button" class="app-button invisible">Check Out</button>
+						</div>
 					</div>
 				</div>`;
 
