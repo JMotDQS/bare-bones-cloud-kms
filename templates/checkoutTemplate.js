@@ -79,33 +79,41 @@ const setCheckoutSearchResults = () => {
 		feedBackColoring(document.getElementById('vin-feedback').id, 'red');
 	} else {
 		var temp_html = '';
-		cur_lot_vin_search_results.forEach((vin, index) => {
-			temp_html += `<div class="result-card result-card-cur-lot" id="cur-${index}">`;
-				temp_html += `<h4 class="result-lot-name">${vin.lot_name}</h4>`;
-				temp_html += `<p>VIN: ${vin.vin}</p>`;
-				temp_html += `<p>Slot: ${vin.key_slot}</p>`;
-				temp_html += `<p>Action: ${vin.key_action}</p>`;
-				temp_html += `<p>Created: ${vin.created_date.date}</p>`;
-				if(vin.updated_date != null) {
-					temp_html += `<p>Updated: ${vin.updated_date.date}</p>`;
-				}
-			temp_html += `</div>`;
-		});
+		if(cur_lot_vin_search_results.length < 1) {
+			temp_html += `${g_CURRENT_LOT.lot_name} has no matching results.`;
+		} else {
+			cur_lot_vin_search_results.forEach((vin, index) => {
+				temp_html += `<div class="result-card result-card-cur-lot" id="cur-${index}">`;
+					temp_html += `<h4 class="result-lot-name">${vin.lot_name}</h4>`;
+					temp_html += `<p>VIN: ${vin.vin}</p>`;
+					temp_html += `<p>Slot: ${vin.key_slot}</p>`;
+					temp_html += `<p>Action: ${vin.key_action}</p>`;
+					temp_html += `<p>Created: ${vin.created_date.date}</p>`;
+					if(vin.updated_date != null) {
+						temp_html += `<p>Updated: ${vin.updated_date.date}</p>`;
+					}
+				temp_html += `</div>`;
+			});
+		}
 
 		temp_html += `<hr />`;
 
-		rem_lots_vin_search_results.forEach((vin, index) => {
-			temp_html += `<div class="result-card result-card-other-lot" id="oth-${index}">`;
-				temp_html += `<h4 class="result-lot-name">${vin.lot_name}</h4>`;
-				temp_html += `<p>VIN: ${vin.vin}</p>`;
-				temp_html += `<p>Slot: ${vin.key_slot}</p>`;
-				temp_html += `<p>Action: ${vin.key_action}</p>`;
-				temp_html += `<p>Created: ${vin.created_date.date}</p>`;
-				if(vin.updated_date != null) {
-					temp_html += `<p>Updated: ${vin.updated_date.date}</p>`;
-				}
-			temp_html += `</div>`;
-		});
+		if(rem_lots_vin_search_results < 1) {
+			temp_html += `No other lots have matching results.`;
+		} else {
+			rem_lots_vin_search_results.forEach((vin, index) => {
+				temp_html += `<div class="result-card result-card-other-lot" id="oth-${index}">`;
+					temp_html += `<h4 class="result-lot-name">${vin.lot_name}</h4>`;
+					temp_html += `<p>VIN: ${vin.vin}</p>`;
+					temp_html += `<p>Slot: ${vin.key_slot}</p>`;
+					temp_html += `<p>Action: ${vin.key_action}</p>`;
+					temp_html += `<p>Created: ${vin.created_date.date}</p>`;
+					if(vin.updated_date != null) {
+						temp_html += `<p>Updated: ${vin.updated_date.date}</p>`;
+					}
+				temp_html += `</div>`;
+			});
+		}
 
 		document.getElementById('result-container').innerHTML = temp_html;
 		document.getElementById('result-container').classList.remove('hide-element');
