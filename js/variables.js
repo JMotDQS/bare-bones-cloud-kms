@@ -50,6 +50,10 @@ var g_FUNC_CALL_CNT = 0;
 var lot_slots_state = [];
 var slots_open_by_case = [];
 
+var bulk_vin_search_results = [];
+var cur_lot_vin_search_results = [];
+var rem_lots_vin_search_results = [];
+
 function disableEscapeKeyDialogBehavior(event) {
 	if(event.key === 'Escape' && PREVENT_LOGIN_CLOSE) {
 		event.preventDefault();

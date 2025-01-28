@@ -1,6 +1,10 @@
 const checkoutTemplate = () => {
 	var temp_html = '';
 	temp_html += `<style>
+					hr {
+						margin-block: var(--three-quarter-rem);
+					}
+	
 					.card {
 						text-align: start;
 						cursor: default;
@@ -16,9 +20,20 @@ const checkoutTemplate = () => {
 						border-color: #000000;
 						border-style: solid;
 						border-width: 1px;
-						border-radius: 4px;
-						padding: 4px;
+						border-radius: var(--quarter-rem);
+						padding: var(--quarter-rem);
+						margin-block-end: var(--quarter-rem);
+					}
+					.result-card-cur-lot {
 						background-color: #ff9900;
+						cursor: pointer;
+					}
+					.result-card-other-lot {
+						background-color:rgba(228, 228, 228, 0.8);
+					}
+
+					.result-lot-name {
+						grid-column: 1/-1;
 					}
 				</style>
 				
@@ -27,7 +42,7 @@ const checkoutTemplate = () => {
 				</div>
 				<div id="checkin-l-group">
 					<div id="container-vin" class="card inset-container">
-						<label for="vin">Search for VIN:</label>
+						<h3 for="vin">Search for VIN:</h3>
 						<input id="vin" name="vin" type="text" />
 						<p id="vin-feedback"></p>
 						<div id="button-group" class="button-group">
@@ -36,24 +51,57 @@ const checkoutTemplate = () => {
 						</div>
 					</div>
 
-					<div id="container-results" class="card inset-container disable-input">
-						<label>Results:</label>
-						<div class="result-card">
-							<!--<p id="results-feedback">Feedback on search results goes here</p>-->
-							<p>VIN: 1234567895425865214587</p>
-							<p>Slot: 001A</p>
-							<p>Date/Time: 2025-01-27 : 12:48</p>
-							<p>Action: In</p>
-						</div>
-						<!--<input id="results" name="results" type="text" />-->
+					<div id="container-results" class="card inset-container">
+						<h3>Results:</h3>
+						<div id="result-container" class="hide-element"></div>
 					</div>
-					<button id="checkin-button" class="app-button invisible">Check In</button>
 				</div>
 
 				<div id="checkin-r-group">
 					<div class="card inset-container">
 						<h3>Confirm Check Out</h3>
+						<button id="checkin-button" class="app-button invisible">Check In</button>
 					</div>
 				</div>`;
 	return temp_html;
+}
+
+const setCheckoutSearchResults = () => {
+	if(bulk_vin_search_results.reg_error != "") {
+		document.getElementById('vin-feedback').innerHTML = `${bulk_vin_search_results.reg_error}`;
+		feedBackColoring(document.getElementById('vin-feedback').id, 'red');
+	} else {
+		var temp_html = '';
+		cur_lot_vin_search_results.forEach((vin, index) => {
+			temp_html += `<div class="result-card result-card-cur-lot" id="cur-${index}">`;
+				temp_html += `<h4 class="result-lot-name">${vin.lot_name}</h4>`;
+				temp_html += `<p>VIN: ${vin.vin}</p>`;
+				temp_html += `<p>Slot: ${vin.key_slot}</p>`;
+				temp_html += `<p>Action: ${vin.key_action}</p>`;
+				temp_html += `<p>Created: ${vin.created_date.date}</p>`;
+				if(vin.updated_date != null) {
+					temp_html += `<p>Updated: ${vin.updated_date.date}</p>`;
+				}
+			temp_html += `</div>`;
+		});
+
+		temp_html += `<hr />`;
+
+		rem_lots_vin_search_results.forEach((vin, index) => {
+			temp_html += `<div class="result-card result-card-other-lot" id="oth-${index}">`;
+				temp_html += `<h4 class="result-lot-name">${vin.lot_name}</h4>`;
+				temp_html += `<p>VIN: ${vin.vin}</p>`;
+				temp_html += `<p>Slot: ${vin.key_slot}</p>`;
+				temp_html += `<p>Action: ${vin.key_action}</p>`;
+				temp_html += `<p>Created: ${vin.created_date.date}</p>`;
+				if(vin.updated_date != null) {
+					temp_html += `<p>Updated: ${vin.updated_date.date}</p>`;
+				}
+			temp_html += `</div>`;
+		});
+
+		document.getElementById('result-container').innerHTML = temp_html;
+		document.getElementById('result-container').classList.remove('hide-element');
+		//document.getElementById('checkin-button').classList.remove('invisible');
+	}
 }

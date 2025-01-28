@@ -136,3 +136,13 @@ const initialLotSlotsState = () => {
 const setLotSlotsState = (param_slot, param_state) => {
 	lot_slots_state[lot_slots_state.filter(slot => slot.slot === `${param_slot.toUpperCase()}`)[0].index].state = parseInt(param_state);
 }
+
+const sortByLotId = (a, b) => {
+	if(a.Lot_pk_id < b.Lot_pk_id) {
+		return -1;
+	}
+	if(a.Lot_pk_id > b.Lot_pk_id) {
+		return 1;
+	}
+	return 0;
+}

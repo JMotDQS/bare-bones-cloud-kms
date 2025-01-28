@@ -96,10 +96,13 @@ const searchVINs = (param_vin) => {
 	toggleDisabled('vin', true);
 	toggleDisabled('search-button', true);
 	searchVINsPromise(param_vin).then((resolve) => {
-		if(resolve.reg_error != undefined) {
-			document.getElementById('vin-feedback').innerHTML = `${resolve.reg_error} at ${g_CURRENT_LOT.lot_name}`;
-			feedBackColoring(document.getElementById('vin-feedback').id, 'red');
-		}
+		bulk_vin_search_results = resolve;
+		cur_lot_vin_search_results = bulk_vin_search_results['vins'].filter(lot => lot.Lot_pk_id == g_CURRENT_LOT.pk_id);
+		rem_lots_vin_search_results = bulk_vin_search_results['vins'].filter(lot => lot.Lot_pk_id != g_CURRENT_LOT.pk_id);
+		/*console.log("bulk_vin_search_results:", bulk_vin_search_results);
+		console.log("cur_lot_vin_search_results:", cur_lot_vin_search_results);
+		console.log("rem_lots_vin_search_results:", rem_lots_vin_search_results);*/
+		setCheckoutSearchResults();
 	}).catch(function(reject) {
 		consoleReporting(reject);
 	}).finally(function() {
