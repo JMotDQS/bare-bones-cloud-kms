@@ -83,7 +83,7 @@ const setCheckoutSearchResults = () => {
 			temp_html += `${g_CURRENT_LOT.lot_name} has no matching results.`;
 		} else {
 			cur_lot_vin_search_results.forEach((vin, index) => {
-				temp_html += `<div class="result-card result-card-cur-lot" id="cur-${index}">`;
+				temp_html += `<div class="result-card result-card-cur-lot" id="cur-${index}" data-index="${index}" onclick="testClick(this)">`;
 					temp_html += `<h4 class="result-lot-name">${vin.lot_name}</h4>`;
 					temp_html += `<p>VIN: ${vin.vin}</p>`;
 					temp_html += `<p>Slot: ${vin.key_slot}</p>`;
@@ -119,4 +119,10 @@ const setCheckoutSearchResults = () => {
 		document.getElementById('result-container').classList.remove('hide-element');
 		//document.getElementById('checkin-button').classList.remove('invisible');
 	}
+}
+
+const testClick = (ele) => {
+	console.log("ele:", ele);
+	console.log("ele.dataset.index:", ele.dataset.index);
+	console.log("cur_lot_vin_search_results[" + ele.dataset.index + "]:", cur_lot_vin_search_results[ele.dataset.index])
 }
