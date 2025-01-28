@@ -9,7 +9,6 @@ $(document).ready(function() {
 	}
 
 	refreshApp();
-	//getSections();
 });
 
 const refreshApp = () => {
@@ -51,7 +50,6 @@ const setLot = () => {
 
 	closeDialog();
 	getLotSlots();
-	//getSections();
 	loadTemplate('kms');
 }
 
@@ -99,9 +97,6 @@ const searchVINs = (param_vin) => {
 		bulk_vin_search_results = resolve;
 		cur_lot_vin_search_results = bulk_vin_search_results['vins'].filter(lot => lot.Lot_pk_id == g_CURRENT_LOT.pk_id);
 		rem_lots_vin_search_results = bulk_vin_search_results['vins'].filter(lot => lot.Lot_pk_id != g_CURRENT_LOT.pk_id);
-		/*console.log("bulk_vin_search_results:", bulk_vin_search_results);
-		console.log("cur_lot_vin_search_results:", cur_lot_vin_search_results);
-		console.log("rem_lots_vin_search_results:", rem_lots_vin_search_results);*/
 		setCheckoutSearchResults();
 	}).catch(function(reject) {
 		consoleReporting(reject);
