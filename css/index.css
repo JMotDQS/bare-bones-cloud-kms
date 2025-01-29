@@ -238,10 +238,6 @@ label {
 	margin-block-start: calc(var(--quarter-rem) / 3);
 }
 
-.disable-hover {
-	cursor: default;
-}
-
 .disable-input {
 	opacity: 50%;
 }
@@ -280,6 +276,10 @@ label {
 .app-button:not(.button-disabled):hover {
 	background-color: var(--color-navbar-background);
 	color: #ffffff;
+}
+
+.disable-hover {
+	cursor: default;
 }
 
 @media (width < 600px) {

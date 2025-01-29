@@ -10,10 +10,6 @@ const checkoutTemplate = () => {
 						cursor: default;
 					}
 
-					#checkin-button:focus {
-						border: red 4px solid;
-					}
-
 					.result-card {
 					    display: grid;
 						grid-template-columns: 1fr 1fr;
@@ -38,6 +34,12 @@ const checkoutTemplate = () => {
 
 					.result-lot-name {
 						grid-column: 1/-1;
+					}
+					
+					.checkout-result-container {
+						display: grid;
+						grid-template-columns: 1fr 1fr;
+						column-gap: var(--full-rem);
 					}
 				</style>
 				
@@ -65,8 +67,26 @@ const checkoutTemplate = () => {
 					<div class="card inset-container">
 						<h3>Confirm Check Out</h3>
 						<div id="checkout-result-container" class="hide-element">
-							<button id="checkout-button" class="app-button invisible">Check Out</button>
+							<input id="lot_pk_id" name="lot_pk_id" type="hidden" />
+							<input id="slot_pk_id" name="slot_pk_id" type="hidden" />
+							<input id="vin_pk_id" name="vin_pk_id" type="hidden" />
+
+							<div class="inset-container">
+								<label for="vinChosen">VIN:</label>
+								<input id="vinChosen" name="vin" class="disable-input" type="text" />
+							</div>
+
+							<div class="inset-container">
+								<label for="slot">SLot:</label>
+								<input id="slot" name="slot" class="disable-input" type="text" />
+							</div>
+
+							<div class="inset-container">
+								<label for="vinConfirm">Confirm VIN:</label>
+								<input id="vinConfirm" name="vinConfirm" type="text" />
+							</div>
 						</div>
+						<button id="checkout-button" class="app-button disable-input disable-hover button-disabled">Check Out</button>
 					</div>
 				</div>`;
 
@@ -83,7 +103,7 @@ const setCheckoutSearchResults = () => {
 			temp_html += `${g_CURRENT_LOT.lot_name} has no matching results.`;
 		} else {
 			cur_lot_vin_search_results.forEach((vin, index) => {
-				temp_html += `<div class="result-card result-card-cur-lot" id="cur-${index}" data-index="${index}" onclick="testClick(this)">`;
+				temp_html += `<div class="result-card result-card-cur-lot" id="cur-${index}" data-index="${index}" onclick="checkoutChosenVIN(this)">`;
 					temp_html += `<h4 class="result-lot-name">${vin.lot_name}</h4>`;
 					temp_html += `<p>VIN: ${vin.vin}</p>`;
 					temp_html += `<p>Slot: ${vin.key_slot}</p>`;
@@ -121,7 +141,17 @@ const setCheckoutSearchResults = () => {
 	}
 }
 
-const testClick = (ele) => {
+const checkoutChosenVIN = (ele) => {
+	document.getElementById('lot_pk_id').value = cur_lot_vin_search_results[ele.dataset.index].lot_pk_id;
+	document.getElementById('slot_pk_id').value = cur_lot_vin_search_results[ele.dataset.index].slot_pk_id;
+	document.getElementById('vin_pk_id').value = cur_lot_vin_search_results[ele.dataset.index].vin_pk_id;
+	document.getElementById('vinChosen').value = cur_lot_vin_search_results[ele.dataset.index].vin;
+	document.getElementById('vinChosen').setAttribute('disabled', true);
+	document.getElementById('slot').value = cur_lot_vin_search_results[ele.dataset.index].key_slot;
+	document.getElementById('slot').setAttribute('disabled', true);
+	document.getElementById('checkout-result-container').classList.remove('hide-element');
+	document.getElementById('checkout-result-container').classList.add('checkout-result-container');
+	setFocus('vinConfirm');
 	console.log("ele:", ele);
 	console.log("ele.dataset.index:", ele.dataset.index);
 	console.log("cur_lot_vin_search_results[" + ele.dataset.index + "]:", cur_lot_vin_search_results[ele.dataset.index])

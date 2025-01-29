@@ -13,7 +13,7 @@
 	$conn = sqlsrv_connect($serverName, $connectionInfo);
 
 	if ($conn) {
-		$sql = "SELECT kt.pk_id, kt.created_date, kt.updated_date, ksl.key_slot,
+		$sql = "SELECT kt.pk_id, kt.created_date, kt.updated_date, kt.fk_key_slots_pk_id AS slot_pk_id, ksl.key_slot,
 						kac.key_action, vin.pk_id AS vin_pk_id, vin.vin, lot.pk_id AS lot_pk_id, lot.lot_name
 				FROM key_tracking AS kt
 					INNER JOIN vin_registration AS vin ON vin.pk_id = kt.fk_vin_registration_pk_id
