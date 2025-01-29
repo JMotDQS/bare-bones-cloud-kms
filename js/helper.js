@@ -138,10 +138,10 @@ const setLotSlotsState = (param_slot, param_state) => {
 }
 
 const sortByLotId = (a, b) => {
-	if(a.Lot_pk_id < b.Lot_pk_id) {
+	if(a.lot_pk_id < b.lot_pk_id) {
 		return -1;
 	}
-	if(a.Lot_pk_id > b.Lot_pk_id) {
+	if(a.lot_pk_id > b.lot_pk_id) {
 		return 1;
 	}
 	return 0;
