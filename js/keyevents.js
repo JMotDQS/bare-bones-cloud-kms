@@ -129,6 +129,24 @@ const keyUpEvent = (e) => {
 
 				case 'slot':
 					break;
+				
+				case 'vinConfirm':
+					if(document.getElementById('vinConfirm').value == document.getElementById('vinChosen').value) {
+						toggleDisabled('checkout-button', false);
+						document.getElementById('checkout-button').classList.remove('button-disabled');
+						document.getElementById('checkout-button').classList.remove('disable-input');
+						document.getElementById('checkout-button').classList.remove('disable-hover');
+						document.getElementById('confirm-feedback').innerText = 'VINs match.';
+						feedBackColoring(document.getElementById('confirm-feedback').id, 'green');
+					} else {
+						toggleDisabled('checkout-button', true);
+						document.getElementById('checkout-button').classList.add('button-disabled');
+						document.getElementById('checkout-button').classList.add('disable-input');
+						document.getElementById('checkout-button').classList.add('disable-hover');
+						document.getElementById('confirm-feedback').innerText = 'Scanned VIN does not match.';
+						feedBackColoring(document.getElementById('confirm-feedback').id, 'red');
+					}
+					break;
 			}
 			break;
 	}

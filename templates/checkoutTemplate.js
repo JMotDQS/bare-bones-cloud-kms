@@ -85,8 +85,10 @@ const checkoutTemplate = () => {
 								<label for="vinConfirm">Confirm VIN:</label>
 								<input id="vinConfirm" name="vinConfirm" type="text" />
 							</div>
+
+							<p id="confirm-feedback"></p>
 						</div>
-						<button id="checkout-button" class="app-button disable-input disable-hover button-disabled">Check Out</button>
+						<button id="checkout-button" class="app-button disable-input disable-hover button-disabled hide-element" onclick="checkoutVIN()">Check Out</button>
 					</div>
 				</div>`;
 
@@ -137,11 +139,13 @@ const setCheckoutSearchResults = () => {
 
 		document.getElementById('result-container').innerHTML = temp_html;
 		document.getElementById('result-container').classList.remove('hide-element');
-		//document.getElementById('checkin-button').classList.remove('invisible');
 	}
 }
 
 const checkoutChosenVIN = (ele) => {
+	document.getElementById('vinConfirm').value = '';
+	document.getElementById('confirm-feedback').innerText = 'VINs match.';
+	feedBackColoring(document.getElementById('confirm-feedback').id);
 	document.getElementById('lot_pk_id').value = cur_lot_vin_search_results[ele.dataset.index].lot_pk_id;
 	document.getElementById('slot_pk_id').value = cur_lot_vin_search_results[ele.dataset.index].slot_pk_id;
 	document.getElementById('vin_pk_id').value = cur_lot_vin_search_results[ele.dataset.index].vin_pk_id;
@@ -151,8 +155,11 @@ const checkoutChosenVIN = (ele) => {
 	document.getElementById('slot').setAttribute('disabled', true);
 	document.getElementById('checkout-result-container').classList.remove('hide-element');
 	document.getElementById('checkout-result-container').classList.add('checkout-result-container');
+	document.getElementById('checkout-button').classList.remove('hide-element');
 	setFocus('vinConfirm');
-	console.log("ele:", ele);
-	console.log("ele.dataset.index:", ele.dataset.index);
-	console.log("cur_lot_vin_search_results[" + ele.dataset.index + "]:", cur_lot_vin_search_results[ele.dataset.index])
+	setKeyEvents('checkout', 'vinConfirm', .5);
+}
+
+const checkoutVIN = () => {
+	console.log("VIN Checked Out.");
 }
