@@ -9,6 +9,9 @@ const reportsTemplate = () => {
 					p {
 						font-size: var(--three-quarter-rem);
 					}
+					.feedback-style {
+						font-size: var(--full-rem);
+					}
 
 					.inset-container {
 						grid-template-columns: 1fr 1fr
@@ -28,10 +31,13 @@ const reportsTemplate = () => {
 					<p class="description"> This report shows all VINs currently checked in and which slot they are located in. It is ordered by slot and requires no extra input.</p>
 					<p class="description">Click the button below to generate the report.</p>
 					<button id="vin-report-button" class="app-button" onclick="checkedInVINReport()">Generate Report</button>
-					<p id="vin-report-feedback" class="description"></p>
+					<p class="feedback-style" id="vin-report-feedback"></p>
 				</div>
-				<div id="container-reports" class="card inset-container">
-					<h3>VIN(s) Historical Tracking Report</h3>
+				<div id="historical-vins-reports" class="card inset-container">
+					<h3 class="title">VIN(s) Historical Tracking Report</h3>
+					<textarea class="description" id="vin-list" name="vin-list" rows="5" cols="50"></textarea>
+					<button id="vin-historical-report-button" class="app-button" onclick="historicalVINReport()">Generate Report</button>
+					<p id="vin-historical-report-feedback"></p>
 				</div>`;
 	return temp_html;
 };
@@ -42,9 +48,11 @@ const checkedInVINReport = () => {
 		if(resolve) {
 			document.getElementById('vin-report-feedback').innerText = 'Report Created.';
 			feedBackColoring(document.getElementById('vin-report-feedback').id, 'green');
+			document.getElementById('vin-report-feedback').classList.add('feedback-style');
 		} else {
 			document.getElementById('vin-report-feedback').innerText = 'Error while creating report.';
 			feedBackColoring(document.getElementById('vin-report-feedback').id, 'red');
+			document.getElementById('vin-report-feedback').classList.add('feedback-style');
 		}
 		document.getElementById('vin-report-button').classList.add('disable-input', 'disable-hover', 'button-disabled');
 
@@ -52,6 +60,7 @@ const checkedInVINReport = () => {
 		g_TIMER = window.setTimeout(() => {
 			document.getElementById('vin-report-feedback').innerText = '';
 			feedBackColoring(document.getElementById('vin-report-feedback').id);
+			document.getElementById('vin-report-feedback').classList.add('feedback-style');
 			document.getElementById('vin-report-button').classList.remove('disable-input', 'disable-hover', 'button-disabled');
 		}, (g_TIMEOUT_VAL * 2));
 		
@@ -60,4 +69,8 @@ const checkedInVINReport = () => {
 	}).finally(function() {
 		consoleReporting("Moving On.");
 	});
+};
+
+const historicalVINReport = () => {
+
 };
