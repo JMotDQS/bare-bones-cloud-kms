@@ -162,4 +162,11 @@ const checkoutChosenVIN = (ele) => {
 
 const checkoutVIN = () => {
 	console.log("VIN Checked Out.");
+	checkoutVINPromise().then((resolve) => {
+		// stuff
+	}).catch(function(reject) {
+		consoleReporting(reject);
+	}).finally(function() {
+		consoleReporting("Moving On.");
+	});
 }
