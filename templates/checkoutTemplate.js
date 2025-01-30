@@ -27,6 +27,10 @@ const checkoutTemplate = () => {
 					.result-card-cur-lot:hover {
 						background-color: var(--color-checkout-hover);
 					}
+					.result-card-cur-lot-out {
+						background-color: var(--color-extra-light);
+						cursor: default;
+					}
 
 					.result-card-other-lot {
 						background-color:var(--color-grayout);
@@ -67,7 +71,6 @@ const checkoutTemplate = () => {
 					<div class="card inset-container">
 						<h3>Confirm Check Out</h3>
 						<div id="checkout-result-container" class="hide-element">
-							<input id="lot_pk_id" name="lot_pk_id" type="hidden" />
 							<input id="slot_pk_id" name="slot_pk_id" type="hidden" />
 							<input id="vin_pk_id" name="vin_pk_id" type="hidden" />
 
@@ -105,7 +108,11 @@ const setCheckoutSearchResults = () => {
 			temp_html += `${g_CURRENT_LOT.lot_name} has no matching results.`;
 		} else {
 			cur_lot_vin_search_results.forEach((vin, index) => {
-				temp_html += `<div class="result-card result-card-cur-lot" id="cur-${index}" data-index="${index}" onclick="checkoutChosenVIN(this)">`;
+				if(vin.key_action == 'In') {
+					temp_html += `<div class="result-card result-card-cur-lot" id="cur-${index}" data-index="${index}" onclick="checkoutChosenVIN(this)">`;
+				} else {
+					temp_html += `<div class="result-card result-card-cur-lot-out" id="cur-${index}" data-index="${index}">`;
+				}
 					temp_html += `<h4 class="result-lot-name">${vin.lot_name}</h4>`;
 					temp_html += `<p>VIN: ${vin.vin}</p>`;
 					temp_html += `<p>Slot: ${vin.key_slot}</p>`;
@@ -144,11 +151,8 @@ const setCheckoutSearchResults = () => {
 
 const checkoutChosenVIN = (ele) => {
 	document.getElementById('vinConfirm').value = '';
-	document.getElementById('confirm-feedback').innerText = 'VINs match.';
-	feedBackColoring(document.getElementById('confirm-feedback').id);
-	document.getElementById('lot_pk_id').value = cur_lot_vin_search_results[ele.dataset.index].lot_pk_id;
-	document.getElementById('slot_pk_id').value = cur_lot_vin_search_results[ele.dataset.index].slot_pk_id;
 	document.getElementById('vin_pk_id').value = cur_lot_vin_search_results[ele.dataset.index].vin_pk_id;
+	document.getElementById('slot_pk_id').value = cur_lot_vin_search_results[ele.dataset.index].slot_pk_id;
 	document.getElementById('vinChosen').value = cur_lot_vin_search_results[ele.dataset.index].vin;
 	document.getElementById('vinChosen').setAttribute('disabled', true);
 	document.getElementById('slot').value = cur_lot_vin_search_results[ele.dataset.index].key_slot;
@@ -162,11 +166,46 @@ const checkoutChosenVIN = (ele) => {
 
 const checkoutVIN = () => {
 	console.log("VIN Checked Out.");
-	checkoutVINPromise().then((resolve) => {
+	checkoutVINPromise(document.getElementById('slot').value).then((resolve) => {
 		// stuff
+		console.log("resolve[0]:", resolve[0]);
+		if(resolve[0]) {
+			toggleDisabled('checkout-button', true);
+			document.getElementById('checkout-button').classList.add('button-disabled');
+			document.getElementById('checkout-button').classList.add('disable-input');
+			document.getElementById('checkout-button').classList.add('disable-hover');
+
+			document.getElementById('confirm-feedback').innerText = 'VIN successfully checked out.';
+			feedBackColoring(document.getElementById('confirm-feedback').id, 'green');
+			clearTimer(g_TIMER);
+			g_TIMER = window.setTimeout(() => {
+				resetTemplate();
+			}, (g_TIMEOUT_VAL * 2));
+		} else {
+			document.getElementById('confirm-feedback').innerText = 'Error checking out VIN.';
+			feedBackColoring(document.getElementById('confirm-feedback').id, 'red');
+		}
 	}).catch(function(reject) {
 		consoleReporting(reject);
 	}).finally(function() {
 		consoleReporting("Moving On.");
 	});
-}
+};
+
+const resetTemplate = () => {
+	toggleDisabled('vin', false);
+	document.getElementById('vin').value = '';
+	toggleDisabled('search-button', true);
+	setFocus('vin');
+	document.getElementById('search-button').classList.add('button-disabled');
+	document.getElementById('result-container').innerHTML = '';
+
+	document.getElementById('vin-feedback').innerHTML = '';
+	feedBackColoring(document.getElementById('vin-feedback').id);
+
+	document.getElementById('checkout-result-container').classList.add('hide-element');
+	document.getElementById('checkout-result-container').classList.remove('checkout-result-container');
+	document.getElementById('checkout-button').classList.add('hide-element');
+	document.getElementById('confirm-feedback').innerText = '';
+	feedBackColoring(document.getElementById('confirm-feedback').id);
+};

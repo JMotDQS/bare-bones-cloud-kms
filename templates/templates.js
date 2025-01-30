@@ -90,15 +90,7 @@ const loadTemplate = (param_template, param_type = '') => {
 				}
 			});
 			document.getElementById('clear-button').addEventListener('click', () => {
-				toggleDisabled('vin', false);
-				document.getElementById('vin').value = '';
-				toggleDisabled('search-button', true);
-				setFocus('vin');
-				document.getElementById('search-button').classList.add('button-disabled');
-				document.getElementById('result-container').innerHTML = '';
-
-				document.getElementById('vin-feedback').innerHTML = '';
-				feedBackColoring(document.getElementById('vin-feedback').id);
+				resetTemplate();
 			});
 			break;
 		

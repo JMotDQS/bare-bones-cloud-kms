@@ -208,23 +208,23 @@ const searchVINsPromise = (param_vin) => {
 	Check Out Promises Start
 ********************************************************/
 const checkoutVINPromise = (param_slot) => {
+	console.log("checkoutVINPromise();param_slot:", param_slot);
 	return new Promise(function(resolve, reject) {
 		$.ajax({
-			url: "includes/checkInVin.php",
+			url: "includes/checkOutVin.php",
 			type: 'POST',
 			cache: false,
 			dataType: 'json',
 			data: {
-				'lot_id': g_CURRENT_LOT.pk_id,
-				'slot_id': temp_slot_id,
-				'vin_id': temp_vin_id,
-				'vin': g_CURRENT_VIN,
-				'key_slot': param_slot,
+				'lot_pk_id': g_CURRENT_LOT.pk_id,
+				'slot_pk_id': document.getElementById('slot_pk_id').value,
+				'vin_pk_id': document.getElementById('vin_pk_id').value,
 				'user_id': g_CURRENT_USER_ID
 			},
 
 			success: function (data) {
-				setLotSlotsState(param_slot, 0);
+				setLotSlotsState(param_slot, 1);
+				console.log("data:", data);
 				resolve(data);
 			},
 
