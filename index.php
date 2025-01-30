@@ -53,6 +53,7 @@
 		<script src="templates/kmsTemplate.js"></script>
 		<script src="templates/checkinTemplate.js"></script>
 		<script src="templates/checkoutTemplate.js"></script>
+		<script src="templates/reportsTemplate.js"></script>
 		<script src="js/helper.js"></script>
 		<script src="js/keyevents.js"></script>
 		<script src="js/slider.js"></script>

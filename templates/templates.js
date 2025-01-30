@@ -93,6 +93,14 @@ const loadTemplate = (param_template, param_type = '') => {
 				resetTemplate();
 			});
 			break;
+
+		case 'reports':
+			document.getElementById("card-template-container").innerHTML = reportsTemplate();
+			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].section;
+			iconClassArray = g_SECTIONS[g_CHOSEN_SECTION].icon.split(" ");
+			document.getElementById('icon').classList.add(...iconClassArray);
+			setClasses(temp_page);
+			break;
 		
 		case 'labels':
 			document.getElementById("card-template-container").innerHTML = labelsTemplate(param_template);
@@ -100,10 +108,6 @@ const loadTemplate = (param_template, param_type = '') => {
 
 		case 'search':
 			document.getElementById("card-template-container").innerHTML = searchTemplate(param_template);
-			break;
-
-		case 'reports':
-			document.getElementById("card-template-container").innerHTML = reportsTemplate(param_template);
 			break;
 
 		case 'dashboard':
