@@ -24,6 +24,10 @@ const reportsTemplate = () => {
 						height: calc(var(--full-rem) * 2.25);
 					}
 
+					textarea {
+						width: 100%;
+					}
+
 					p {
 						font-size: var(--three-quarter-rem);
 					}
@@ -33,7 +37,7 @@ const reportsTemplate = () => {
 
 					.report-inset-container {
 						grid-template-columns: 1fr 1fr;
-						align-items: center;
+						align-content: space-between;
 					}
 					.input-inset-container {
 						gap: var(--quarter-rem);
@@ -48,44 +52,14 @@ const reportsTemplate = () => {
 						text-align: end;
 					}
 				</style>
+
 				<div class="card-template-header">
 					<i id="icon" class="card-icon"></i><h2 id="title"></h2>
 				</div>
 
-				<div id="checkedin-vins-reports" class="card inset-container report-inset-container">
-					<h3 class="title">Checked In VINs Report</h3>
-					<p class="full-width-ele"> This report shows all VINs currently checked in and which slot they are located in. It is ordered by slot and requires no extra input.</p>
-					<p class="full-width-ele">Click the button below to generate the report.</p>
-					<button id="vin-report-button" class="app-button" onclick="checkedInVINReport()">Generate Report</button>
-					<p class="feedback-style" id="vin-report-feedback"></p>
-				</div>
-				<div id="physical-vins-reports" class="card inset-container report-inset-container">
-					<h3>VIN(s) Physical Inventory Report</h3>
-					<p id="scan-count">4 VIN(s) scanned</p>
-					<!--<h3 class="title">VIN(s) Physical Inventory Report</h3>-->
-					<!--<p class="full-width-ele" id="scan-count">4 VIN(s) scanned</p>-->
-					<div id="container-vin" class="inset-container input-inset-container full-width-ele">
-						<label for="vin">VIN:</label>
-						<input id="vin" name="vin" type="text" />
-						<p id="vin-feedback"></p>
-					</div>
-					<div id="vin-scanned-list-container" class="full-width-ele">
-						<div class="sub-card sub-card-cur-lot">
-							<p>VIN:</p>
-							<p>Slot:</p>
-							<h4 class="full-width-ele">${g_CURRENT_LOT.lot_name}</h4>
-						</div>
-					</div>
-					<!--<textarea class="full-width-ele" id="vin-inventory" name="vin-inventory" rows="5" cols="50"></textarea>-->
-					<button id="vin-physical-report-button" class="app-button" onclick="physicalVINReport()">Generate Report</button>
-					<p id="vin-physical-report-feedback"></p>
-				</div>
-				<div id="historical-vins-reports" class="card inset-container report-inset-container">
-					<h3 class="title">VIN(s) Historical Tracking Report</h3>
-					<textarea class="full-width-ele" id="vin-list" name="vin-list" rows="5" cols="50"></textarea>
-					<button id="vin-historical-report-button" class="app-button" onclick="historicalVINReport()">Generate Report</button>
-					<p id="vin-historical-report-feedback"></p>
-				</div>`;
+				${reportVINInventoryTemplate()}
+				${reportPhysicalInventoryTemplate()}
+				${reportHistoricalInventoryTemplate()}`;
 	return temp_html;
 };
 
