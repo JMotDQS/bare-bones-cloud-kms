@@ -13,10 +13,15 @@
 	$conn = sqlsrv_connect($serverName, $connectionInfo);
 
 	if ($conn) {
-		$sql = "SELECT vin.vin, ksl.key_slot
+		$sql = "SELECT vin.vin, ksl.key_slot, glot.lot_name,
+					IIF(kt.updated_date IS NULL,
+						FORMAT(kt.created_date, 'M/d/yyyy HH:mm:ss'),
+						FORMAT(kt.updated_date, 'M/d/yyyy HH:mm:ss')
+					) AS last_scnd_date
 				FROM key_tracking AS kt
 					INNER JOIN vin_registration AS vin ON vin.pk_id = kt.fk_vin_registration_pk_id
 					INNER JOIN key_slots AS ksl ON ksl.pk_id = kt.fk_key_slots_pk_id
+					INNER JOIN g_lots AS glot ON glot.pk_id = kt.fk_g_lots_pk_id
 				WHERE kt.fk_key_actions_pk_id = (
 					SELECT pk_id
 					FROM key_actions AS kac
