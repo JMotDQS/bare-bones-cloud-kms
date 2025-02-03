@@ -30,7 +30,7 @@
 				ORDER BY ksl.key_slot ASC";
 		$res = sqlsrv_query($conn, $sql);
 
-		if ($res) {
+		if (sqlsrv_has_rows($res)) {
 			$fp = fopen('../../'.$FileName, 'w');
 			while ($row = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
 				array_push($return_array, $row);
@@ -39,6 +39,9 @@
 					fputcsv($fp, $headings, ',', '"');
 				}
 			}
+		} else {
+			echo json_encode(false);
+			die();
 		}
 
 	}
