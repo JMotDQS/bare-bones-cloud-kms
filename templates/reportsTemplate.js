@@ -64,7 +64,6 @@ const reportsTemplate = () => {
 };
 
 const checkedInVINReport = () => {
-	console.log("checkedInVINReport() called");
 	checkedInVINReportPromise().then((resolve) => {
 		if(resolve) {
 			document.getElementById('vin-report-feedback').innerText = 'Report Created.';
@@ -93,5 +92,33 @@ const checkedInVINReport = () => {
 };
 
 const historicalVINReport = () => {
+	let rawVINList = $('#vin-list').val();
+	let cleanVINList = rawVINList.replace(/\s/g,'');
+	let completedVINList = cleanVINList.replace(/,/g, "','");
+	completedVINList = "'" + completedVINList + "'";
 
+	historicalVINReportPromise(completedVINList).then(function(resolve) {
+		if(resolve) {
+			document.getElementById('vin-historical-report-feedback').innerText = 'Report Created.';
+			feedBackColoring(document.getElementById('vin-historical-report-feedback').id, 'green');
+			document.getElementById('vin-historical-report-feedback').classList.add('feedback-style');
+		} else {
+			document.getElementById('vin-historical-report-feedback').innerText = 'Error while creating report.';
+			feedBackColoring(document.getElementById('vin-historical-report-feedback').id, 'red');
+			document.getElementById('vin-historical-report-feedback').classList.add('feedback-style');
+		}
+		document.getElementById('vin-historical-report-button').classList.add('disable-input', 'disable-hover', 'button-disabled');
+
+		clearTimer(g_TIMER);
+		g_TIMER = window.setTimeout(() => {
+			document.getElementById('vin-historical-report-feedback').innerText = '';
+			feedBackColoring(document.getElementById('vin-historical-report-feedback').id);
+			document.getElementById('vin-historical-report-feedback').classList.add('feedback-style');
+			document.getElementById('vin-historical-report-button').classList.remove('disable-input', 'disable-hover', 'button-disabled');
+		}, (g_TIMEOUT_VAL * 2));
+	}).catch(function(reject) {
+		alert("Audit Failed");
+	}).finally(function() {
+
+	})
 };

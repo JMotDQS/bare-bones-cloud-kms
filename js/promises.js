@@ -301,6 +301,33 @@ const checkedInVINReportPromise = () => {
 		});
 	});
 };
+
+const historicalVINReportPromise = (param_VINs) => {
+	return new Promise(function(resolve, reject) {
+		$.ajax({
+			url: "includes/historicalVINReport.php",
+			type: 'POST',
+			cache: false,
+			dataType: 'json',
+			data: {
+				'lot_pk_id': g_CURRENT_LOT.pk_id,
+				'lot_name': g_CURRENT_LOT.lot_name,
+				'vin_list': param_VINs
+			},
+
+			success: function (data) {
+				resolve(data);
+			},
+
+			error: function(xhr, desc, err) {
+				reject(false);
+				consoleReporting(xhr)
+				consoleReporting("Details: " + desc + "\nError:" + err);
+				consoleReporting("checkedInVINReportPromise():Something broke");
+			}
+		});
+	});
+};
 /********************************************************
 	Reporting Promises End
 ********************************************************/

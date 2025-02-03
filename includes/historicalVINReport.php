@@ -3,7 +3,7 @@
 	require_once("config.php");
 
 	$return_array = [];
-	$FileName = $_POST['lot_name'].'_vins_report.csv';
+	$FileName = $_POST['lot_name'].'_hist_vin_report.csv';
 	$fp = fopen('php://output', 'w');
 	$serverName = $host."\\sqlexpress";
 
@@ -14,25 +14,20 @@
 
 	if ($conn) {
 		$sql = "SELECT vin.vin, ksl.key_slot, glot.lot_name,
-					IIF(kt.updated_date IS NULL,
-						FORMAT(kt.created_date, 'M/d/yyyy HH:mm:ss'),
-						FORMAT(kt.updated_date, 'M/d/yyyy HH:mm:ss')
-					) AS last_scnd_date
-				FROM key_tracking AS kt
-					INNER JOIN vin_registration AS vin ON vin.pk_id = kt.fk_vin_registration_pk_id
-					INNER JOIN key_slots AS ksl ON ksl.pk_id = kt.fk_key_slots_pk_id
-					INNER JOIN g_lots AS glot ON glot.pk_id = kt.fk_g_lots_pk_id
-				WHERE kt.fk_key_actions_pk_id = (
-					SELECT pk_id
-					FROM key_actions AS kac
-					WHERE kac.key_action = 'In'
-				)
-					AND kt.fk_g_lots_pk_id = (
+					FORMAT(kth.created_date, 'M/d/yyyy HH:mm:ss') AS scan_date,
+					kac.key_action
+				FROM key_tracking_historical AS kth
+					INNER JOIN vin_registration AS vin ON vin.pk_id = kth.fk_vin_registration_pk_id
+					INNER JOIN key_slots AS ksl ON ksl.pk_id = kth.fk_key_slots_pk_id
+					INNER JOIN g_lots AS glot ON glot.pk_id = kth.fk_g_lots_pk_id
+					INNER JOIN key_actions AS kac ON kac.pk_id = kth.fk_key_actions_pk_id
+				WHERE vin.vin IN(".$_POST['vin_list'].")
+					AND kth.fk_g_lots_pk_id = (
 						SELECT pk_id
 						FROM g_lots AS glot
 						WHERE glot.pk_id = '".$_POST['lot_pk_id']."'
 					)
-				ORDER BY ksl.key_slot ASC";
+				ORDER BY vin.vin ASC, kth.created_date ASC";
 		$res = sqlsrv_query($conn, $sql);
 
 		if (sqlsrv_has_rows($res)) {
