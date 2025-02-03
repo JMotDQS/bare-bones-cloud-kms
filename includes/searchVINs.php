@@ -26,10 +26,6 @@
 					WHERE vin LIKE '%".$_POST['search_vin']."%'
 				)
 				ORDER BY kt.updated_date ASC, lot.pk_id ASC, ksl.key_slot ASC";
-		/*$sql = "SELECT *
-				FROM vin_registration
-				WHERE fk_g_lots_pk_id = '".$_POST['lot_pk_id']."'
-					AND vin LIKE '%".$_POST['search_vin']."%'";*/
 
 		$res = sqlsrv_query($conn, $sql);
 
