@@ -142,6 +142,7 @@ const addVINToPhysInvList = (param_vin) => {
 					temp_html += `<div class="sub-card sub-card-cur-lot">
 									<p>VIN:${item.vin}</p>
 									<p>Slot:${item.key_slot}</p>
+									<h4 class="full-width-ele">${item.lot_name}</h4>
 								</div>`;
 				});
 				document.getElementById('vin-scanned-list-container').innerHTML = temp_html;
