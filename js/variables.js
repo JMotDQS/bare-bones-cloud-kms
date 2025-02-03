@@ -54,6 +54,8 @@ var bulk_vin_search_results = [];
 var cur_lot_vin_search_results = [];
 var rem_lots_vin_search_results = [];
 
+var physical_inv_array = [];
+
 function disableEscapeKeyDialogBehavior(event) {
 	if(event.key === 'Escape' && PREVENT_LOGIN_CLOSE) {
 		event.preventDefault();

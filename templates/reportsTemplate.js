@@ -122,3 +122,42 @@ const historicalVINReport = () => {
 
 	})
 };
+
+const addVINToPhysInvList = (param_vin) => {
+	searchVINsPromise(param_vin).then((resolve) => {
+		if(resolve.reg_error != "") {
+			document.getElementById('vin-physical-report-feedback').innerText = `VIN: ${param_vin} not found in system.`;
+			feedBackColoring(document.getElementById('vin-physical-report-feedback').id, 'red');
+			document.getElementById('vin-physical-report-feedback').classList.add('feedback-style');
+		} else {
+			if(physical_inv_array.find(item => item.vin === param_vin) == undefined) {
+				document.getElementById('vin-physical-report-feedback').innerText = '';
+				feedBackColoring(document.getElementById('vin-physical-report-feedback').id);
+				document.getElementById('vin-physical-report-feedback').classList.add('feedback-style');
+
+				physical_inv_array.unshift(resolve['vins'][0]);
+				var temp_html = ``;
+
+				physical_inv_array.forEach((item, index) => {
+					temp_html += `<div class="sub-card sub-card-cur-lot">
+									<p>VIN:${item.vin}</p>
+									<p>Slot:${item.key_slot}</p>
+								</div>`;
+				});
+				document.getElementById('vin-scanned-list-container').innerHTML = temp_html;
+			} else {
+				document.getElementById('vin-physical-report-feedback').innerText = `VIN: ${param_vin} has already been scanned.`;
+				feedBackColoring(document.getElementById('vin-physical-report-feedback').id, 'red');
+				document.getElementById('vin-physical-report-feedback').classList.add('feedback-style');
+			}
+			document.getElementById('scan-count').innerText = `VINs scanned: ${physical_inv_array.length}`;
+
+		}
+		document.getElementById('vin').value = '';
+		setFocus('vin');
+	}).catch(function(reject) {
+		consoleReporting(reject);
+	}).finally(function() {
+		consoleReporting("Moving On.");
+	});
+}

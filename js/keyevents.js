@@ -149,5 +149,15 @@ const keyUpEvent = (e) => {
 					break;
 			}
 			break;
+
+			case 'reports':
+				g_TIMER = window.setTimeout(() => {
+					if (hasInput) {
+						if (cleanVIN(document.getElementById(e.data.inputEl).value)) {
+							addVINToPhysInvList(cleanVIN(document.getElementById('vin').value));
+						}
+					}
+				}, (g_TIMEOUT_VAL));
+				break;
 	}
 };

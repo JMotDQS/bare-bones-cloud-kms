@@ -100,6 +100,8 @@ const loadTemplate = (param_template, param_type = '') => {
 			iconClassArray = g_SECTIONS[g_CHOSEN_SECTION].icon.split(" ");
 			document.getElementById('icon').classList.add(...iconClassArray);
 			setClasses(temp_page);
+
+			setKeyEvents(temp_page, 'vin', .5);
 			break;
 		
 		case 'labels':
