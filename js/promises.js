@@ -323,7 +323,33 @@ const historicalVINReportPromise = (param_VINs) => {
 				reject(false);
 				consoleReporting(xhr)
 				consoleReporting("Details: " + desc + "\nError:" + err);
-				consoleReporting("checkedInVINReportPromise():Something broke");
+				consoleReporting("historicalVINReportPromise():Something broke");
+			}
+		});
+	});
+};
+
+const physicalVINReportPromise = () => {
+	return new Promise(function(resolve, reject) {
+		$.ajax({
+			url: "includes/physicalVINReport.php",
+			type: 'POST',
+			cache: false,
+			dataType: 'json',
+			data: {
+				'lot_name': g_CURRENT_LOT.lot_name,
+				'vin_list': physical_inv_array
+			},
+
+			success: function (data) {
+				resolve(data);
+			},
+
+			error: function(xhr, desc, err) {
+				reject(false);
+				consoleReporting(xhr)
+				consoleReporting("Details: " + desc + "\nError:" + err);
+				consoleReporting("physicalVINReportPromise():Something broke");
 			}
 		});
 	});

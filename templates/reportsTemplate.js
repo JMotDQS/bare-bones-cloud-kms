@@ -161,4 +161,32 @@ const addVINToPhysInvList = (param_vin) => {
 	}).finally(function() {
 		consoleReporting("Moving On.");
 	});
-}
+};
+
+const physicalVINReport = () => {
+	physicalVINReportPromise().then((resolve) => {
+		if(resolve) {
+			document.getElementById('vin-physical-report-feedback').innerText = 'Report Created.';
+			feedBackColoring(document.getElementById('vin-physical-report-feedback').id, 'green');
+			document.getElementById('vin-physical-report-feedback').classList.add('feedback-style');
+		} else {
+			document.getElementById('vin-physical-report-feedback').innerText = 'Error while creating report.';
+			feedBackColoring(document.getElementById('vin-physical-report-feedback').id, 'red');
+			document.getElementById('vin-physical-report-feedback').classList.add('feedback-style');
+		}
+
+		document.getElementById('vin-scanned-list-container').innerHTML = '';
+
+		clearTimer(g_TIMER);
+		g_TIMER = window.setTimeout(() => {
+			document.getElementById('vin-physical-report-feedback').innerText = '';
+			feedBackColoring(document.getElementById('vin-physical-report-feedback').id);
+			document.getElementById('vin-physical-report-feedback').classList.add('feedback-style');
+			document.getElementById('vin-physical-report-button').classList.remove('disable-input', 'disable-hover', 'button-disabled');
+		}, (g_TIMEOUT_VAL * 2));
+	}).catch(function(reject) {
+		consoleReporting(reject);
+	}).finally(function() {
+		consoleReporting("Moving On.");
+	});
+};
