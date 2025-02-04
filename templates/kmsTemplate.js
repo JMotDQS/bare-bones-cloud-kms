@@ -5,14 +5,21 @@ const kmsTemplate = () => {
 			var cur_section = section.section.replaceAll(' ','').toLowerCase();
 			/*******
 				index[0] = Check In
+					display_order = 1
 				index[1] = Check Out
-				index[2] = Labels
-				index[3] = Search
-				index[4] = Reports
-				index[5] = Dashboard
-				index[6] = Admin
+					display_order = 2
+				index[2] = Reports
+					display_order = 3
+				index[3] = Dashboard
+					display_order = 4
+				index[4] = Admin
+					display_order = 5
+				index[5] = Labels
+					display_order = 6
+				index[6] = Search
+					display_order = 11
 			*******/
-			if(index <= 1 || index == 4) {
+			if(index < 3) {
 				temp_html += `<div id="${section.pk_id}" class="card ${'card-' + cur_section}" data-page="${cur_section}" data-index="${index}" onclick="loadTemplate(this.dataset)">`;
 					temp_html += `<h1>${section.section}</h1>`;
 					temp_html += `<p class="card-body">${section.body_copy}</p>`;
