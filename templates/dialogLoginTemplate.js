@@ -6,10 +6,10 @@ const dialogLoginTemplate = () => {
 				</header>
 				<div class="dialog-grid dialog-grid-gap" id="dialog-login-grid">
 					<div class="dialog-form-element">
-						<input type="email" id="login_email" name="login_email" placeholder="Email">
+						<input type="email" id="login_email" name="login_email" placeholder="Email" autocomplete="off" />
 					</div>
 					<div class="dialog-form-element">
-						<input type="password" id="login_password" name="login_password" placeholder="Password">
+						<input type="password" id="login_password" name="login_password" placeholder="Password" autocomplete="off" />
 					</div>
 					<p class="dialog-error invisible" id="dialog-login-error"></p>
 					<button id="dialog-login-form-button" class="dialog-form-button">Login</button>

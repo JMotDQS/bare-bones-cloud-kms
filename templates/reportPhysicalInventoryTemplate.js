@@ -6,7 +6,7 @@ const reportPhysicalInventoryTemplate = () => {
 					<div id="vin-phys-inventory-body" class="full-width-ele">
 						<div id="container-vin" class="inset-container input-inset-container full-width-ele">
 							<label for="vin">VIN:</label>
-							<input id="vin" name="vin" type="text" />
+							<input id="vin" name="vin" type="text" autocomplete="off" />
 							<p id="vin-feedback"></p>
 						</div>
 						<div id="vin-scanned-list-container"></div>

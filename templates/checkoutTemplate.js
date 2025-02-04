@@ -53,7 +53,7 @@ const checkoutTemplate = () => {
 				<div id="checkin-l-group">
 					<div id="container-vin" class="card inset-container">
 						<h3 for="vin">Search for VIN:</h3>
-						<input id="vin" name="vin" type="text" />
+						<input id="vin" name="vin" type="text" autocomplete="off" />
 						<p id="vin-feedback"></p>
 						<div id="button-group" class="button-group">
 							<button id="clear-button" class="app-button">Clear</button>
@@ -71,22 +71,22 @@ const checkoutTemplate = () => {
 					<div class="card inset-container">
 						<h3>Confirm Check Out</h3>
 						<div id="checkout-result-container" class="hide-element">
-							<input id="slot_pk_id" name="slot_pk_id" type="hidden" />
-							<input id="vin_pk_id" name="vin_pk_id" type="hidden" />
+							<input id="slot_pk_id" name="slot_pk_id" type="hidden" autocomplete="off" />
+							<input id="vin_pk_id" name="vin_pk_id" type="hidden" autocomplete="off" />
 
 							<div class="inset-container">
 								<label for="vinChosen">VIN:</label>
-								<input id="vinChosen" name="vin" class="disable-input" type="text" />
+								<input id="vinChosen" name="vin" class="disable-input" type="text" autocomplete="off" />
 							</div>
 
 							<div class="inset-container">
 								<label for="slot">SLot:</label>
-								<input id="slot" name="slot" class="disable-input" type="text" />
+								<input id="slot" name="slot" class="disable-input" type="text" autocomplete="off" />
 							</div>
 
 							<div class="inset-container">
 								<label for="vinConfirm">Confirm VIN:</label>
-								<input id="vinConfirm" name="vinConfirm" type="text" />
+								<input id="vinConfirm" name="vinConfirm" type="text" autocomplete="off" />
 							</div>
 
 							<p id="confirm-feedback"></p>

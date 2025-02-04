@@ -43,13 +43,13 @@ const checkinTemplate = () => {
 				<div id="checkin-l-group">
 					<div id="container-vin" class="card inset-container">
 						<label for="vin">VIN:</label>
-						<input id="vin" name="vin" type="text" />
+						<input id="vin" name="vin" type="text" autocomplete="off" />
 						<p id="vin-feedback"></p>
 					</div>
 
 					<div id="container-slot" class="card inset-container disable-input">
 						<label for="slot">Slot:</label>
-						<input id="slot" name="slot" type="text" />
+						<input id="slot" name="slot" type="text" autocomplete="off" />
 						<p id="slot-feedback"></p>
 					</div>
 					<div id="button-feedback-group" class="button-feedback-group">

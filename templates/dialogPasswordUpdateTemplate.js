@@ -6,10 +6,10 @@ const dialogPasswordUpdateTemplate = () => {
 				</header>
 				<div class="dialog-grid dialog-grid-gap" id="dialog-password-grid">
 					<div class="dialog-form-element">
-						<input type="password" id="update_password" name="update_password" placeholder="New Password">
+						<input type="password" id="update_password" name="update_password" placeholder="New Password" autocomplete="off" />
 					</div>
 					<div class="dialog-form-element">
-						<input type="password" id="update_password_conf" name="update_password_conf" placeholder="Confirm Password">
+						<input type="password" id="update_password_conf" name="update_password_conf" placeholder="Confirm Password" autocomplete="off" />
 					</div>
 					<p class="dialog-password-error invisible" id="dialog-password-error">&nbsp;</p>
 					<button id="dialog-password-update-form-button" class="dialog-form-button">Update</button>
