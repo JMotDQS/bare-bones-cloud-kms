@@ -17,6 +17,8 @@ const g_DIALOG = 'dialog';
 const g_VER = '3.0-Alpha';
 const g_VIN_LENGTH = 17;
 
+const PROTECT_KEY = 'KrokusMeatSweats';
+
 const g_CONNECTION_ERROR_COPY = 'An error occured connecting to the data';
 /***** Special Character Replacement Arrays Global Variables */
 const g_SEARCH_ENTITIES = ["Ø", "°",

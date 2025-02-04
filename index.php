@@ -8,6 +8,8 @@
 
 		<title>Cloud DQS-KMS</title>
 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
 	<!-- Custom CSS -->
 		<link rel="stylesheet" href="css/index.css">
 		<link rel="stylesheet" href="css/navbar.css">

@@ -146,3 +146,7 @@ const sortByLotId = (a, b) => {
 	}
 	return 0;
 }
+
+const loginEncrypt = (param_value) => {
+	return CryptoJS.MD5(param_value).toString();
+}

@@ -19,7 +19,7 @@ const dialogLoginTemplate = () => {
 
 const userLoginCheck = (e) => {
 	var email_address = dataCleanUp($('#login_email').val());
-	var pass = dataCleanUp($('#login_password').val());
+	var pass = loginEncrypt(dataCleanUp($('#login_password').val()));
 
 	userLoginCheckPromise('userLoginCheck', email_address, pass).then(function(resolve) {
 		if(resolve.length == 0) {
