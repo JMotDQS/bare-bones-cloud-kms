@@ -45,8 +45,8 @@ const setLot = () => {
 
 	document.getElementById('navbar-user').innerHTML = g_CURRENT_USER['first_name'] + "&nbsp;:&nbsp;" + g_CURRENT_LOT.lot_name;
 	document.getElementById('navbar-user').classList.remove('nav-item-hide');
-	document.getElementById('navbar-link-lots').classList.add('nav-item-hide');
-	document.getElementById('navbar-link-lots-divider').classList.add('nav-item-hide');
+	/*document.getElementById('navbar-link-lots').classList.add('nav-item-hide');
+	document.getElementById('navbar-link-lots-divider').classList.add('nav-item-hide');*/
 
 	closeDialog();
 	getLotSlots();

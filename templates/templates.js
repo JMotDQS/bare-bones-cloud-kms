@@ -47,9 +47,11 @@ const loadTemplate = (param_template, param_type = '') => {
 			removeClass('disable-hover');
 			setClasses();
 			document.getElementById('nav_links').classList.remove('hide-element');
+			document.getElementById('kms-nav-item').classList.add('active');
 			break;
 		
 		case 'checkin':
+			clearNavActive();
 			document.getElementById("card-template-container").innerHTML = checkinTemplate();
 			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].section;
 			iconClassArray = g_SECTIONS[g_CHOSEN_SECTION].icon.split(" ");
@@ -74,6 +76,7 @@ const loadTemplate = (param_template, param_type = '') => {
 			break;
 
 		case 'checkout':
+			clearNavActive();
 			document.getElementById("card-template-container").innerHTML = checkoutTemplate();
 			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].section;
 			iconClassArray = g_SECTIONS[g_CHOSEN_SECTION].icon.split(" ");
@@ -95,6 +98,7 @@ const loadTemplate = (param_template, param_type = '') => {
 			break;
 
 		case 'reports':
+			clearNavActive();
 			document.getElementById("card-template-container").innerHTML = reportsTemplate();
 			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].section;
 			iconClassArray = g_SECTIONS[g_CHOSEN_SECTION].icon.split(" ");

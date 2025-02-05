@@ -23,14 +23,25 @@
 				<img src="images/DQS_logo.svg" id="logo-header" class="nav-logo" data-page='kms' alt="" />
 			</div>
 			<ul id="nav_links" class="nav-links hide-element">
-				<a class="navbar-item navbar-link" data-page="kms" onclick="loadTemplate(this.dataset.page)">KMS</a>
+				<li class="navbar-item" id="kms-nav-item">
+					<a class="navbar-link" data-page="kms" onclick="loadTemplate(this.dataset.page)">KMS</a>
+					<!--<a class="navbar-item navbar-link" data-page="kms" onclick="loadTemplate(this.dataset.page)">KMS</a>-->
+				</li>
 				<li class="navbar-item nav-item-divider">|</li>
-				<a class="navbar-item navbar-link" data-page="docs" onclick="loadTemplate(this.dataset.page)">Docs</a>
+				<li class="navbar-item" id="docs-nav-item">
+					<a class="navbar-link" data-page="docs" onclick="loadTemplate(this.dataset.page)">Docs</a>
+					<!--<a class="navbar-item navbar-link" data-page="docs" onclick="loadTemplate(this.dataset.page)">Docs</a>-->
+				</li>
 				<li class="navbar-item nav-item-divider">|</li>
-				<a id="navbar-link-lots" class="navbar-item navbar-link" data-page="lots" onclick="loadTemplate(this.dataset.page)">Lots</a>
-				<li id="navbar-link-lots-divider" class="navbar-item nav-item-divider">|</li>
-				<a id="navbar-link-logout" class="navbar-item navbar-link" data-page="logout" onclick="logOut()">Log Out</a>
-				<li id="navbar-link-lots-divider" class="navbar-item nav-item-divider">|</li>
+				<!--<li class="navbar-item">
+					<a id="navbar-link-lots" class="navbar-item navbar-link" data-page="lots" onclick="loadTemplate(this.dataset.page)">Lots</a>
+				</li>
+				<li id="navbar-link-lots-divider" class="navbar-item nav-item-divider">|</li>-->
+				<li class="navbar-item">
+					<a class="navbar-link" id="navbar-link-logout" data-page="logout" onclick="logOut()">Log Out</a>
+					<!--<a id="navbar-link-logout" class="navbar-item navbar-link" data-page="logout" onclick="logOut()">Log Out</a>-->
+				</li>
+				<li class="navbar-item nav-item-divider">|</li>
 				<li id="navbar-user" class="navbar-item nav-item-divider nav-item-hide">user name</li>
 			</ul>
 		</nav>

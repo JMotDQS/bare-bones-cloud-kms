@@ -150,3 +150,12 @@ const sortByLotId = (a, b) => {
 const loginEncrypt = (param_value) => {
 	return CryptoJS.MD5(param_value).toString();
 }
+
+const clearNavActive = () => {
+	const temp_ele = document.getElementsByClassName('navbar-item');
+	for(let i = 0; i < temp_ele.length; i++) {
+		if(temp_ele[i].id != "") {
+			document.getElementById(temp_ele[i].id).classList.remove('active');
+		}
+	}
+};
