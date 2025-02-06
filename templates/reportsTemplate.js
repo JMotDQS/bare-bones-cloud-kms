@@ -92,7 +92,7 @@ const checkedInVINReport = () => {
 };
 
 const historicalVINReport = () => {
-	let rawVINList = $('#vin-list').val();
+	let rawVINList = document.getElementById('vin-list').value;
 	let cleanVINList = rawVINList.replace(/\s/g,'');
 	let completedVINList = cleanVINList.replace(/,/g, "','");
 	completedVINList = "'" + completedVINList + "'";

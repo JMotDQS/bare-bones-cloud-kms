@@ -18,7 +18,7 @@ const dialogPasswordUpdateTemplate = () => {
 }
 
 const updatePasswordCheck = () => {
-	updatePasswordCheckPromise('updatePasswordCheck', loginEncrypt(dataCleanUp($('#update_password').val())), g_CURRENT_USER_ID).then(function(resolve) {
+	updatePasswordCheckPromise('updatePasswordCheck', loginEncrypt(dataCleanUp(document.getElementById('update_password').value)), g_CURRENT_USER_ID).then(function(resolve) {
 		if(parseInt(resolve) === 0) {
 			getLot();
 		}else {

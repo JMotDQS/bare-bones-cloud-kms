@@ -18,7 +18,7 @@ const dialogLoginTemplate = () => {
 }
 
 const userLoginCheck = (e) => {
-	var email_address = dataCleanUp($('#login_email').val());
+	var email_address = dataCleanUp(document.getElementById('login_email').value);
 	var pass = loginEncrypt(dataCleanUp(document.getElementById('login_password').value));
 
 	userLoginCheckPromise('userLoginCheck', email_address, pass).then(function(resolve) {
