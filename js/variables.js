@@ -1,6 +1,8 @@
 /***** Global Use Variables */
 const g_ROOT_PATH = 'http://localhost/bare-bones-cloud-kms/';
 const APP_DIALOG = document.getElementById('g_dialog');
+const ROOT_BODY_ELEMENT = document.getElementById('card-template-container');
+
 const LOGIN_CREDENTIALS_MISMATCH = 'Email/Password do not match for user.'
 const LOGIN_NONACTIVE_USER_ERROR = '<p>You are NOT an Active user.</p><p>Please contact Supervisor.</p>'
 const PREVENT_LOGIN_CLOSE = true;

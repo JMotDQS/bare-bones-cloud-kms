@@ -9,7 +9,7 @@ const loadTemplate = (param_template, param_type = '') => {
 	
 	switch(temp_page) {
 		case "login":
-			document.getElementById("g_dialog").innerHTML = dialogLoginTemplate();
+			APP_DIALOG.innerHTML = dialogLoginTemplate();
 			APP_DIALOG.showModal();
 
 			document.getElementById('dialog-login-form-button').addEventListener('click', () => {
@@ -25,7 +25,7 @@ const loadTemplate = (param_template, param_type = '') => {
 			break;
 
 		case "passwordUpdate":
-			document.getElementById("g_dialog").innerHTML = dialogPasswordUpdateTemplate();	
+			APP_DIALOG.innerHTML = dialogPasswordUpdateTemplate();	
 			setKeyEvents(temp_page, 'update_password', .5);
 			setKeyEvents(temp_page, 'update_password_conf', .5);
 			toggleDisabled('dialog-password-update-form-button', true);
@@ -43,7 +43,7 @@ const loadTemplate = (param_template, param_type = '') => {
 			break;
 		
 		case 'kms':
-			document.getElementById("card-template-container").innerHTML = kmsTemplate();
+			ROOT_BODY_ELEMENT.innerHTML = kmsTemplate();
 			removeClass('disable-hover');
 			setClasses();
 			document.getElementById('nav_links').classList.remove('hide-element');
@@ -51,7 +51,7 @@ const loadTemplate = (param_template, param_type = '') => {
 			break;
 		
 		case 'checkin':
-			document.getElementById("card-template-container").innerHTML = checkinTemplate();
+			ROOT_BODY_ELEMENT.innerHTML = checkinTemplate();
 			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].section;
 			iconClassArray = g_SECTIONS[g_CHOSEN_SECTION].icon.split(" ");
 			document.getElementById('icon').classList.add(...iconClassArray);
@@ -76,7 +76,7 @@ const loadTemplate = (param_template, param_type = '') => {
 			break;
 
 		case 'checkout':
-			document.getElementById("card-template-container").innerHTML = checkoutTemplate();
+			ROOT_BODY_ELEMENT.innerHTML = checkoutTemplate();
 			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].section;
 			iconClassArray = g_SECTIONS[g_CHOSEN_SECTION].icon.split(" ");
 			document.getElementById('icon').classList.add(...iconClassArray);
@@ -98,7 +98,7 @@ const loadTemplate = (param_template, param_type = '') => {
 			break;
 
 		case 'reports':
-			document.getElementById("card-template-container").innerHTML = reportsTemplate();
+			ROOT_BODY_ELEMENT.innerHTML = reportsTemplate();
 			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].section;
 			iconClassArray = g_SECTIONS[g_CHOSEN_SECTION].icon.split(" ");
 			document.getElementById('icon').classList.add(...iconClassArray);
@@ -107,17 +107,21 @@ const loadTemplate = (param_template, param_type = '') => {
 			setKeyEvents(temp_page, 'vin', .5);
 			clearNavActive();
 			break;
+
+		case 'dashboard':
+			ROOT_BODY_ELEMENT.innerHTML = dashboardTemplate();
+			break;
+
+		case 'admin':
+			ROOT_BODY_ELEMENT.innerHTML = adminTemplate();
+			break;
 		
-		case 'labels':
+		/*case 'labels':
 			document.getElementById("card-template-container").innerHTML = labelsTemplate(param_template);
 			break;
 
 		case 'search':
 			document.getElementById("card-template-container").innerHTML = searchTemplate(param_template);
-			break;
-
-		case 'dashboard':
-			document.getElementById("card-template-container").innerHTML = dashboardTemplate(param_template);
-			break;
+			break;*/
 	}
 };
