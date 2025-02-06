@@ -95,11 +95,13 @@ label {
 
 .grid-container {
 	display: grid;
-	grid-template-columns: minmax(200px, 1fr) minmax(200px, 1fr);
+	grid-template-columns: minmax(200px, 1fr) minmax(200px, 1fr) minmax(200px, 1fr);
 	margin-inline: auto;
 	gap: var(--full-rem);
 	justify-content: stretch;
-	/*align-items: center;*/
+}
+.sub-grid-container {
+	grid-template-columns: minmax(200px, 1fr) minmax(200px, 1fr);
 }
 
 .card {

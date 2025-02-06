@@ -56,6 +56,7 @@ const setClasses = (param_page_class) => {
 	document.getElementById("card-template-container").classList.add('grid-container');
 	if (param_page_class != undefined) {
 		document.getElementById("card-template-container").classList.add('disable-hover', 'card', 'card-' + param_page_class);
+		document.getElementById("card-template-container").classList.add('sub-grid-container');
 	}
 };
 
