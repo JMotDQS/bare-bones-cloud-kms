@@ -151,6 +151,10 @@ const loginEncrypt = (param_value) => {
 	return CryptoJS.MD5(param_value).toString();
 }
 
+const setNavActive = (param_ele) => {
+	document.getElementById(`${param_ele}-nav-item`).classList.add('active');
+};
+
 const clearNavActive = () => {
 	const temp_ele = document.getElementsByClassName('navbar-item');
 	for(let i = 0; i < temp_ele.length; i++) {
