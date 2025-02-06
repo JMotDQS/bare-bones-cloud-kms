@@ -19,13 +19,14 @@ const dialogLoginTemplate = () => {
 
 const userLoginCheck = (e) => {
 	var email_address = dataCleanUp($('#login_email').val());
-	var pass = loginEncrypt(dataCleanUp($('#login_password').val()));
+	var pass = loginEncrypt(dataCleanUp(document.getElementById('login_password').value));
 
 	userLoginCheckPromise('userLoginCheck', email_address, pass).then(function(resolve) {
 		if(resolve.length == 0) {
 			document.getElementById('dialog-login-error').textContent = LOGIN_CREDENTIALS_MISMATCH;
 			feedBackColoring(document.getElementById('dialog-login-error').id, 'red');
 			document.getElementById('dialog-login-error').classList.remove('invisible');
+			document.getElementById('login_password').value = '';
 		} else {
 			if(parseInt(resolve[0]['is_active']) === 1) {
 				document.getElementById('dialog-login-error').textContent = '';
