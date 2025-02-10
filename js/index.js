@@ -42,7 +42,6 @@ const getLot = () => {
 }
 
 const setLot = () => {
-
 	document.getElementById('navbar-user').innerHTML = g_CURRENT_USER['first_name'] + "&nbsp;:&nbsp;" + g_CURRENT_LOT.lot_name;
 	document.getElementById('navbar-user').classList.remove('nav-item-hide');
 
