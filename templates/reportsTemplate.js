@@ -27,10 +27,7 @@ const reportsTemplate = () => {
 					textarea {
 						width: 100%;
 					}
-
-					p {
-						font-size: var(--three-quarter-rem);
-					}
+						
 					.feedback-style {
 						font-size: var(--full-rem);
 					}

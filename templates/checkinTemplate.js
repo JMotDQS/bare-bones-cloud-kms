@@ -22,9 +22,6 @@ const checkinTemplate = () => {
 						text-align: center;
 					}
 
-					p {
-						font-size: var(--three-quarter-rem);
-					}
 					.case-slot-count {
 						padding: 0;
 						font-weight: 700;
