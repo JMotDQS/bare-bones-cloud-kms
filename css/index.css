@@ -88,6 +88,10 @@ label {
 	font-weight: 600;
 }
 
+p {
+	font-size: var(--three-quarter-rem);
+}
+
 .main-container {
 	padding-inline: var(--full-rem);
 	margin-inline: auto;
