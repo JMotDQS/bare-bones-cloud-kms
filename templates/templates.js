@@ -101,6 +101,7 @@ const loadTemplate = (param_template, param_type = '') => {
 			ROOT_BODY_ELEMENT.innerHTML = reportsTemplate();
 			toggleDisabled('vin-physical-report-button', true);
 			document.getElementById('vin-physical-report-button').classList.add('button-disabled');
+
 			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].section;
 			iconClassArray = g_SECTIONS[g_CHOSEN_SECTION].icon.split(" ");
 			document.getElementById('icon').classList.add(...iconClassArray);
