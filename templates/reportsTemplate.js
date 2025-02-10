@@ -99,6 +99,7 @@ const historicalVINReport = () => {
 			document.getElementById('vin-historical-report-feedback').innerText = 'Report Created.';
 			feedBackColoring(document.getElementById('vin-historical-report-feedback').id, 'green');
 			document.getElementById('vin-historical-report-feedback').classList.add('feedback-style');
+			document.getElementById('vin-list').value = '';
 		} else {
 			document.getElementById('vin-historical-report-feedback').innerText = 'Error while creating report.';
 			feedBackColoring(document.getElementById('vin-historical-report-feedback').id, 'red');
