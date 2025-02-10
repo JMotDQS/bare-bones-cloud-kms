@@ -27,7 +27,7 @@ const reportsTemplate = () => {
 					textarea {
 						width: 100%;
 					}
-						
+
 					.feedback-style {
 						font-size: var(--full-rem);
 					}
@@ -133,6 +133,13 @@ const addVINToPhysInvList = (param_vin) => {
 				document.getElementById('vin-physical-report-feedback').classList.add('feedback-style');
 
 				physical_inv_array.unshift(resolve['vins'][0]);
+				if(physical_inv_array.length < 1) {
+					toggleDisabled('vin-physical-report-button', true);
+					document.getElementById('vin-physical-report-button').classList.add('button-disabled');
+				} else {
+					toggleDisabled('vin-physical-report-button');
+					document.getElementById('vin-physical-report-button').classList.remove('button-disabled');
+				}
 				var temp_html = ``;
 
 				physical_inv_array.forEach((item, index) => {
