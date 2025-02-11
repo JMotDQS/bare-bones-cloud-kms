@@ -165,7 +165,6 @@ const checkoutChosenVIN = (ele) => {
 }
 
 const checkoutVIN = () => {
-	console.log("VIN Checked Out.");
 	checkoutVINPromise(document.getElementById('slot').value).then((resolve) => {
 		// stuff
 		console.log("resolve[0]:", resolve[0]);

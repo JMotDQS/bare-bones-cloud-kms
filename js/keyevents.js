@@ -99,7 +99,6 @@ const keyUpEvent = (e) => {
 									toggleDisabled('checkin-button', false);
 									document.getElementById('checkin-button').classList.remove('button-disabled');
 									makeVisible('checkin-button');
-									//setFocus('checkin-button');
 								} else {
 									// Slot is closed
 									feedBackColoring(myEle.id + '-feedback', 'red');
