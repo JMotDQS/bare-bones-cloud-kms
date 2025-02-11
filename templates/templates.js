@@ -72,7 +72,6 @@ const loadTemplate = (param_template, param_type = '') => {
 			clearNavActive();
 
 			document.getElementById('checkin-button').addEventListener('click', () => {
-				console.log("Check In Button clicked");
 				toggleDisabled('checkin-button', true);
 				toggleDisabled('vin', true);
 				toggleDisabled('slot', true);

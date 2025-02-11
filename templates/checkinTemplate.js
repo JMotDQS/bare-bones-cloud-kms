@@ -65,9 +65,7 @@ const checkinTemplate = () => {
 }
 
 const checkInVin = () => {
-	console.log("checkInVin() called");
 	checkInVinPromise(document.getElementById('slot').value).then((resolve) => {
-		console.log("resolve:", resolve);
 		document.getElementById('checkin-feedback').textContent = `VIN ${document.getElementById('vin').value} checked in.`;
 		feedBackColoring(document.getElementById('checkin-feedback').id, 'green');
 		displayOpenSlots();
