@@ -63,6 +63,7 @@
 		<script src="templates/templates.js"></script>
 		<script src="templates/dialogLoginTemplate.js"></script>
 		<script src="templates/dialogPasswordUpdateTemplate.js"></script>
+		<script src="templates/dialogLotSelectionTemplate.js"></script>
 		<script src="templates/kmsTemplate.js"></script>
 		<script src="templates/checkinTemplate.js"></script>
 		<script src="templates/checkoutTemplate.js"></script>

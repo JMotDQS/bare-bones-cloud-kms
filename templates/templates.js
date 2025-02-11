@@ -41,6 +41,11 @@ const loadTemplate = (param_template, param_type = '') => {
 				}
 			});
 			break;
+
+		case "lotChoice":
+			APP_DIALOG.innerHTML = dialogLotSelectionTemplate();
+			document.getElementById('lot_file').addEventListener('change', lotFileSelected, false);
+			break;
 		
 		case 'kms':
 			ROOT_BODY_ELEMENT.innerHTML = kmsTemplate();

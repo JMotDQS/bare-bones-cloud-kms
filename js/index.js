@@ -29,8 +29,8 @@ const refreshApp = () => {
 	}
 }
 
-const getLot = () => {
-	getLotPromise().then((resolve) => {
+const getLot = (param_lot_id) => {
+	getLotPromise(param_lot_id).then((resolve) => {
 		g_CURRENT_LOT = [];
 		g_CURRENT_LOT = resolve[0];
 		setLot();

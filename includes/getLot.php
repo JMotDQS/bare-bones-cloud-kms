@@ -5,7 +5,7 @@
 	$return_array = [];
 	$serverName = $host."\\sqlexpress";
 
-	$lot_pk_id_config = file_get_contents('C:\kms_config\kms_config.txt');
+	//$lot_pk_id_config = file_get_contents('C:\Program FIles\KMS\KMSConfig.dqcnf');
 
 	// Since UID and PWD are not specified in the $connectionInfo array,
 	// The connection will be attempted using Windows Authentication.
@@ -17,7 +17,7 @@
 				FROM g_lots AS gl
 					INNER JOIN g_states AS gs ON gs.pk_id = gl.fk_g_states_pk_id
 					INNER JOIN manufacturers AS man ON man.pk_id = gl.fk_manufacturers_pk_id
-				WHERE gl.pk_id = '".$lot_pk_id_config."'
+				WHERE gl.pk_id = '".$_POST['lot_id']."'
 				ORDER BY gl.lot_name ASC";
 		$res = sqlsrv_query($conn, $sql);
 

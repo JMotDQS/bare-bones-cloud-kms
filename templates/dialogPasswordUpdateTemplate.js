@@ -20,7 +20,7 @@ const dialogPasswordUpdateTemplate = () => {
 const updatePasswordCheck = () => {
 	updatePasswordCheckPromise('updatePasswordCheck', loginEncrypt(dataCleanUp(document.getElementById('update_password').value)), g_CURRENT_USER_ID).then(function(resolve) {
 		if(parseInt(resolve) === 0) {
-			getLot();
+			loadTemplate('lotChoice', g_DIALOG);
 		}else {
 			feedBackColoring(document.getElementById('dialog-password-error'), 'red');
 			document.getElementById('dialog-password-error').textContent = 'Password change failed';
