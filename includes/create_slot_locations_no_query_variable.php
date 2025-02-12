@@ -34,7 +34,7 @@
 
 			print_r($temp_case.'<br/>');
 
-			$sql = "INSERT INTO key_slots_test (created_date, key_slot) VALUES ";
+			$sql = "INSERT INTO key_slots (created_date, key_slot) VALUES ";
 
 			for($i = 0; $i < $slot_count; $i++) {
 				$temp_slot = $temp_case.$slot_array[$i];
