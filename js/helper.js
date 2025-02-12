@@ -23,6 +23,10 @@ const userTimeout = async () => {
 	}
 };
 
+const logOut = () => {
+	document.location.href = g_ROOT_PATH;
+};
+
 const dataCleanUp = (param_string) => {
 	var temp_string = param_string.trim().replace(/&/g, "&amp;");
 	var temp_len = g_SEARCH_ENTITIES.length;
@@ -41,6 +45,27 @@ const reverseEntities = (param_string) => {
 		}
 		return temp_string;
 	}
+};
+
+const initialLotSlotsState = () => {
+	// do stuff
+	initialLotSlotsStatePromise().then(function(resolve) {
+		if(resolve.length > 0) {
+			// lot has slots that are not open
+			resolve.forEach((slot_closed, index) => {
+				setLotSlotsState(lot_slots_state.filter(slot => slot.slot === slot_closed.key_slot)[0].slot, 0);
+			});
+		}
+
+	}).catch(function(reject) {
+		console.log("reject:", reject);
+	}).finally(function() {
+		console.log("Moving On.");
+	});
+};
+
+const setLotSlotsState = (param_slot, param_state) => {
+	lot_slots_state[lot_slots_state.filter(slot => slot.slot === `${param_slot.toUpperCase()}`)[0].index].state = parseInt(param_state);
 };
 
 const feedBackColoring = (param_ele, param_color = 'default') => {
@@ -65,17 +90,18 @@ const clearClassList = (param_ele, param_copy) => {
 	return document.getElementById(param_ele);
 };
 
+const setElementCopy = (param_ele, param_copy = '') => {
+	document.getElementById(param_ele).textContent = param_copy;
+};
+
+const setFocus = (param_ele) => {
+	document.getElementById(param_ele).focus();
+};
+
 const toggleDisabled = (param_ele, param_disabled = false) => {
 	document.getElementById(param_ele).removeAttribute('disabled');
 	if (param_disabled) {
 		document.getElementById(param_ele).setAttribute('disabled', param_disabled);
-	}
-};
-const toggleDisplay = (param_ele, param_class, param_flag) => {
-	if (param_flag) {
-		$(param_ele).addClass(param_class);
-	} else {
-		$(param_ele).removeClass(param_class);
 	}
 };
 
@@ -106,61 +132,17 @@ const startTimer = (param_multiplier = 1) => {
 	g_TIMER = window.setTimeout(() => {
 		return true;
 	}, (g_TIMEOUT_VAL * parseInt(param_multiplier)));
-}
+};
 
 const closeDialog = () => {
 	APP_DIALOG.close();
 	APP_DIALOG.textContent = '';
 };
 
-const logOut = () => {
-	document.location.href = g_ROOT_PATH;
-};
-
-const initialLotSlotsState = () => {
-	// do stuff
-	initialLotSlotsStatePromise().then(function(resolve) {
-		if(resolve.length > 0) {
-			// lot has slots that are not open
-			resolve.forEach((slot_closed, index) => {
-				setLotSlotsState(lot_slots_state.filter(slot => slot.slot === slot_closed.key_slot)[0].slot, 0);
-			});
-		}
-
-	}).catch(function(reject) {
-		console.log("reject:", reject);
-	}).finally(function() {
-		console.log("Moving On.");
-	});
-};
-
-const setLotSlotsState = (param_slot, param_state) => {
-	lot_slots_state[lot_slots_state.filter(slot => slot.slot === `${param_slot.toUpperCase()}`)[0].index].state = parseInt(param_state);
-}
-
-const sortByLotId = (a, b) => {
-	if(a.lot_pk_id < b.lot_pk_id) {
-		return -1;
-	}
-	if(a.lot_pk_id > b.lot_pk_id) {
-		return 1;
-	}
-	return 0;
-}
-
 const loginEncrypt = (param_value) => {
 	return CryptoJS.MD5(param_value).toString();
-}
-
-const setNavActive = (param_ele) => {
-	document.getElementById(`${param_ele}-nav-item`).classList.add('active');
 };
 
-const clearNavActive = () => {
-	const temp_ele = document.getElementsByClassName('navbar-item');
-	for(let i = 0; i < temp_ele.length; i++) {
-		if(temp_ele[i].id != "") {
-			document.getElementById(temp_ele[i].id).classList.remove('active');
-		}
-	}
+const consoleReporting = (param) => {
+	//console.log(param);
 };

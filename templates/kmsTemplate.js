@@ -33,8 +33,20 @@ const kmsTemplate = () => {
 
 	makeVisible('card-template-container');
 	return temp_html;
-}
+};
+
+const getSections = () => {
+	getSectionsPromise().then((resolve) => {
+		g_SECTIONS = [];
+		g_SECTIONS = resolve['sections'];
+		g_CONNECTION = resolve['conn'];
+	}).catch(function(reject) {
+		consoleReporting(reject);
+	}).finally(function() {
+		consoleReporting("Moving On.");
+	});
+};
 
 const sectionClick = (data) => {
 	g_CHOSEN_SECTION = parseInt(data.index);
-}
+};

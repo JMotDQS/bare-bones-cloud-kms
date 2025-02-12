@@ -27,7 +27,7 @@ const refreshApp = () => {
 	} else {
 		loadTemplate('kms');
 	}
-}
+};
 
 const getLot = (param_lot_id) => {
 	getLotPromise(param_lot_id).then((resolve) => {
@@ -39,7 +39,7 @@ const getLot = (param_lot_id) => {
 	}).finally(function() {
 		consoleReporting("Moving On.");
 	});
-}
+};
 
 const setLot = () => {
 	document.getElementById('navbar-user').innerHTML = g_CURRENT_USER['first_name'] + "&nbsp;:&nbsp;" + g_CURRENT_LOT.lot_name;
@@ -48,19 +48,7 @@ const setLot = () => {
 	closeDialog();
 	getLotSlots();
 	loadTemplate('kms');
-}
-
-const getSections = () => {
-	getSectionsPromise().then((resolve) => {
-		g_SECTIONS = [];
-		g_SECTIONS = resolve['sections'];
-		g_CONNECTION = resolve['conn'];
-	}).catch(function(reject) {
-		consoleReporting(reject);
-	}).finally(function() {
-		consoleReporting("Moving On.");
-	});
-}
+};
 
 const getLotSlots = () => {
 	getLotSlotsPromise().then((resolve) => {
@@ -85,7 +73,7 @@ const getLotSlots = () => {
 	}).finally(function() {
 		consoleReporting("Moving On.");
 	});
-}
+};
 
 const searchVINs = (param_vin) => {
 	toggleDisabled('vin', true);
@@ -100,16 +88,17 @@ const searchVINs = (param_vin) => {
 	}).finally(function() {
 		consoleReporting("Moving On.");
 	});
-}
+};
 
-const setElementCopy = (param_ele, param_copy = '') => {
-	document.getElementById(param_ele).textContent = param_copy;
-}
+const setNavActive = (param_ele) => {
+	document.getElementById(`${param_ele}-nav-item`).classList.add('active');
+};
 
-const setFocus = (param_ele) => {
-	document.getElementById(param_ele).focus();
-}
-
-const consoleReporting = (param) => {
-	//console.log(param);
-}
+const clearNavActive = () => {
+	const temp_ele = document.getElementsByClassName('navbar-item');
+	for(let i = 0; i < temp_ele.length; i++) {
+		if(temp_ele[i].id != "") {
+			document.getElementById(temp_ele[i].id).classList.remove('active');
+		}
+	}
+};
