@@ -36,21 +36,13 @@ const g_REPLACE_ENTITIES = ["&Oslash;", "&deg;",
 						"&egrave;", "&eacute;", "&Egrave;", "&Eacute;"];
 
 var g_TIMER;
-var g_KEY_RESET_TIMER;
 var g_CURRENT_USER_ID = '0';
 var g_CURRENT_USER = [];
-var g_USER_SEARCH = [];
-var g_NO_SEARCH_RESULTS = '';
 var g_SECTIONS = [];
 var g_CONNECTION;
 var g_CHOSEN_SECTION = -1;
-var g_COMPANIES = [];
-var g_NEW_LOCATION = '';
-var g_ASSOCIATE_ITEMS = '';
-var g_PRINT_USER_OBJ = {};
 var g_CURRENT_VIN = '';
 var g_CURRENT_LOT = [];
-var g_FUNC_CALL_CNT = 0;
 
 var lot_slots_state = [];
 var slots_open_by_case = [];

@@ -12,13 +12,6 @@ $(document).ready(function() {
 });
 
 const refreshApp = () => {
-	g_USER_SEARCH = [];
-	g_NO_SEARCH_RESULTS = '';
-	g_COMPANIES = [];
-	g_NEW_LOCATION = '';
-	g_ASSOCIATE_ITEMS = '';
-	g_PRINT_USER_OBJ = {};
-
 	document.getElementById('card-template-container').textContent = '';
 	getSections();
 
