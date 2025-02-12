@@ -12,7 +12,7 @@
 
 	if ($conn) {
 		$sql = "SELECT TOP (
-								SELECT lot_capacity
+								SELECT CAST(1.1 * lot_capacity AS INT) AS lot_capacity
 								FROM g_lots
 								WHERE pk_id = '".$_POST['lot_id']."'
 							) pk_id, key_slot
