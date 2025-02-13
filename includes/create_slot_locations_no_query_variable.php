@@ -5,9 +5,20 @@
 	$slot_array = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 	$slot_count = count($slot_array);
 	$case_num = 1;
-	$serverName = $host."\\sqlexpress";
-
-	$connectionInfo = array("Database"=>$db);
+	
+	$serverName = "";
+	$connectionInfo = array();
+	if ($connType == "SQLServer")
+	{
+		$serverName = $host;
+		$connectionInfo = array("UID"=>$user, "PWD"=>$pass, "Database"=>$db);
+	}
+	else
+	{
+		$serverName = $host."\\sqlexpress";
+		$connectionInfo = array("Database"=>$db);
+	}
+	
 	$conn = sqlsrv_connect($serverName, $connectionInfo);
 
 	if ($conn) {

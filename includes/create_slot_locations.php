@@ -5,12 +5,23 @@
 	$slot_array = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 	$slot_count = count($slot_array);
 	$case_num = 1;
-	$serverName = $host."\\sqlexpress";
-
+	
+	$serverName = "";
+	$connectionInfo = array();
+	if ($connType == "SQLServer")
+	{
+		$serverName = $host;
+		$connectionInfo = array("UID"=>$user, "PWD"=>$pass, "Database"=>$db);
+	}
+	else
+	{
+		$serverName = $host."\\sqlexpress";
+		$connectionInfo = array("Database"=>$db);
+	}
+	
 	$lot_cap = (int) $_GET['lotCap'];
 	$total_cases = ($lot_cap * 1.1) / 10;
 
-	$connectionInfo = array("Database"=>$db);
 	$conn = sqlsrv_connect($serverName, $connectionInfo);
 
 	if ($conn) {
