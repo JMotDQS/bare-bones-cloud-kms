@@ -1,4 +1,5 @@
 /***** Global Use Variables */
+const g_APPLICATION_ID = '16D52421-65B4-46C8-80C6-DA44AEE72B48';
 const g_ROOT_PATH = 'http://localhost/bare-bones-cloud-kms/';
 const APP_DIALOG = document.getElementById('g_dialog');
 const ROOT_BODY_ELEMENT = document.getElementById('card-template-container');
@@ -9,7 +10,6 @@ const PREVENT_LOGIN_CLOSE = true;
 
 const CLICK_EVENT = new CustomEvent('click');
 
-const g_MAILBOX_LENGTH = 8;
 const g_TIMEOUT_VAL = 500;
 const g_RESET_TIMEOUT_VAL = 2000;
 const g_IDLE_TIMEOUT_VAL = 60000;// in milliseconds
@@ -19,7 +19,6 @@ const g_DIALOG = 'dialog';
 const g_VER = '3.0-Alpha';
 const g_VIN_LENGTH = 17;
 
-const PROTECT_KEY = 'KrokusMeatSweats';
 const g_LOT_CONFIG_EXT = 'dqcnf';
 
 const g_CONNECTION_ERROR_COPY = 'An error occured connecting to the data';
