@@ -7,19 +7,19 @@
 	$fp = fopen('php://output', 'w');
 
 	$serverName = "";
-	$connectionInfo = array();
-	if ($connType == "SQLServer")
-	{
-		$serverName = $host;
-		$connectionInfo = array("UID"=>$user, "PWD"=>$pass, "Database"=>$db);
-	}
-	else
-	{
-		$serverName = $host."\\sqlexpress";
-		$connectionInfo = array("Database"=>$db);
-	}
+	$KMS_serverName = "";
 
+	$connectionInfo = array();
+	$KMS_connectionInfo = array();
+
+	$serverName = $host;
+	$connectionInfo = array("UID"=>$user, "PWD"=>$pass, "Database"=>$db);
+
+	$KMS_serverName = $KMS_host."\\sqlexpress";
+	$KMS_connectionInfo = array("Database"=>$KMS_db);
+	
 	$conn = sqlsrv_connect($serverName, $connectionInfo);
+	$KMS_conn = sqlsrv_connect($KMS_serverName, $KMS_connectionInfo);
 
 	if ($conn) {
 		$sql = "SELECT vin.vin, ksl.key_slot, glot.lot_name,

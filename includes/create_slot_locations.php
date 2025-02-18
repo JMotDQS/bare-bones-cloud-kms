@@ -7,22 +7,22 @@
 	$case_num = 1;
 	
 	$serverName = "";
+	$KMS_serverName = "";
+
 	$connectionInfo = array();
-	if ($connType == "SQLServer")
-	{
-		$serverName = $host;
-		$connectionInfo = array("UID"=>$user, "PWD"=>$pass, "Database"=>$db);
-	}
-	else
-	{
-		$serverName = $host."\\sqlexpress";
-		$connectionInfo = array("Database"=>$db);
-	}
+	$KMS_connectionInfo = array();
+
+	$serverName = $host;
+	$connectionInfo = array("UID"=>$user, "PWD"=>$pass, "Database"=>$db);
+
+	$KMS_serverName = $KMS_host."\\sqlexpress";
+	$KMS_connectionInfo = array("Database"=>$KMS_db);
+	
+	$conn = sqlsrv_connect($serverName, $connectionInfo);
+	$KMS_conn = sqlsrv_connect($KMS_serverName, $KMS_connectionInfo);
 	
 	$lot_cap = (int) $_GET['lotCap'];
 	$total_cases = ($lot_cap * 1.1) / 10;
-
-	$conn = sqlsrv_connect($serverName, $connectionInfo);
 
 	if ($conn) {
 		while($case_num <= $total_cases) {

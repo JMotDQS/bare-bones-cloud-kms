@@ -10,16 +10,12 @@
 
 	$connectionInfo = array();
 	$KMS_connectionInfo = array();
-	//if ($connType == "SQLServer")
-	//{
-		$serverName = $host;
-		$connectionInfo = array("UID"=>$user, "PWD"=>$pass, "Database"=>$db);
-	//}
-	//else
-	//{
-		$KMS_serverName = $KMS_host."\\sqlexpress";
-		$KMS_connectionInfo = array("Database"=>$KMS_db);
-	//}
+
+	$serverName = $host;
+	$connectionInfo = array("UID"=>$user, "PWD"=>$pass, "Database"=>$db);
+
+	$KMS_serverName = $KMS_host."\\sqlexpress";
+	$KMS_connectionInfo = array("Database"=>$KMS_db);
 	
 	$conn = sqlsrv_connect($serverName, $connectionInfo);
 	$KMS_conn = sqlsrv_connect($KMS_serverName, $KMS_connectionInfo);
