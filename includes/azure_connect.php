@@ -1,121 +1,47 @@
 <?php
 
-	//require_once("config.php");
-	$host = "dqstaff.database.windows.net";
-	//$user = "dqs-transport-user";
-	//$pass = "dL2GgQcsQ5";
-	$db = "DQS_Direct_Developemnt";
-	$connType = "SQLServer";
+	require_once("config.php");
 
 	$return_array = [];
 	$temp_array = [];
 	$reg_vin_pk_id = '';
 
 	$serverName = "";
+	$KMS_serverName = "";
+
 	$connectionInfo = array();
-	if ($connType == "SQLServer")
-	{
+	$KMS_connectionInfo = array();
+	//if ($connType == "SQLServer")
+	//{
 		$serverName = $host;
 		$connectionInfo = array("UID"=>$user, "PWD"=>$pass, "Database"=>$db);
-	}
-	else
-	{
-		$serverName = $host."\\sqlexpress";
-		$connectionInfo = array("Database"=>$db);
-	}
+	//}
+	//else
+	//{
+		$KMS_serverName = $KMS_host."\\sqlexpress";
+		$KMS_connectionInfo = array("Database"=>$KMS_db);
+	//}
 	
 	$conn = sqlsrv_connect($serverName, $connectionInfo);
+	$KMS_conn = sqlsrv_connect($KMS_serverName, $KMS_connectionInfo);
 
 	if ($conn) {
 		/*** Check if VIN is registered, if not then register it ***/
-		$sql = "SELECT pk_id
-				FROM vin_registration
-				WHERE vin = '".$_POST['vin']."'";
+		$sql = "SELECT *
+				FROM CompanyLocations
+				WHERE CompanyLocationId = '4A3D4631-9279-409D-BBF2-CDEA25167B85'";
 		$res = sqlsrv_query($conn, $sql);
 
-		if (sqlsrv_has_rows($res)) {
+		if ($res) {
 			while ($row = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
 				array_push($temp_array, $row);
 			}
-		} else {
-			$sql = "INSERT INTO vin_registration
-								(created_date, vin, fk_g_employees_pk_id, fk_g_lots_pk_id)
-					OUTPUT INSERTED.pk_id
-					VALUES(GETDATE(), '".$_POST['vin']."', '".$_POST['user_id']."', '".$_POST['lot_id']."')";
-			$res = sqlsrv_query($conn, $sql);
-
-			if (sqlsrv_has_rows($res)) {
-				while ($row = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
-					array_push($temp_array, $row);
-				}
-			}
 		}
-		$reg_vin_pk_id = $temp_array[0]['pk_id'];
-		$temp_array = [];
-
-		$sql = "INSERT INTO key_tracking_historical
-							(created_date, fk_vin_registration_pk_id, fk_g_lots_pk_id,
-							fk_key_actions_pk_id, fk_key_slots_pk_id, fk_g_employees_pk_id)
-				VALUES(GETDATE(), '".$reg_vin_pk_id."', '".$_POST['lot_id']."',
-					(
-						SELECT pk_id
-						FROM key_actions
-						WHERE key_action = 'In'
-					),
-					(
-						SELECT pk_id
-						FROM key_slots
-						WHERE key_slot = '".$_POST['key_slot']."'
-					), '".$_POST['user_id']."')";
-		$res = sqlsrv_query($conn, $sql);
-
-		$sql = "SELECT pk_id
-				FROM key_tracking
-				WHERE fk_vin_registration_pk_id = '".$reg_vin_pk_id."'";
-		$res = sqlsrv_query($conn, $sql);
-
-		if (sqlsrv_has_rows($res)) {
-			while ($row = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
-				array_push($temp_array, $row);
-			}
-
-			$sql = "UPDATE key_tracking
-					SET updated_date = GETDATE(),
-						fk_g_lots_pk_id = '".$_POST['lot_id']."',
-						fk_key_actions_pk_id = (
-							SELECT pk_id
-							FROM key_actions
-							WHERE key_action = 'In'
-						),
-						fk_key_slots_pk_id = (
-							SELECT pk_id
-							FROM key_slots
-							WHERE key_slot = '".$_POST['key_slot']."'
-						),
-						fk_g_employees_pk_id = '".$_POST['user_id']."'
-					WHERE pk_id = '".$temp_array[0]['pk_id']."'";
-		} else {
-			$sql = "INSERT INTO key_tracking
-							(created_date, fk_vin_registration_pk_id, fk_g_lots_pk_id,
-							fk_key_actions_pk_id, fk_key_slots_pk_id, fk_g_employees_pk_id)
-					VALUES(GETDATE(), '".$reg_vin_pk_id."', '".$_POST['lot_id']."',
-						(
-							SELECT pk_id
-							FROM key_actions
-							WHERE key_action = 'In'
-						),
-						(
-							SELECT pk_id
-							FROM key_slots
-							WHERE key_slot = '".$_POST['key_slot']."'
-						), '".$_POST['user_id']."')";
-		}
-		$res = sqlsrv_query($conn, $sql);
 	}
 
 	$close_success = sqlsrv_close($conn);
 	if ($close_success) {
-		echo json_encode($return_array);
+		echo json_encode($temp_array);
 	}
 
 ?>

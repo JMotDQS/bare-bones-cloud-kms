@@ -28,14 +28,14 @@ const userLoginCheck = (e) => {
 			document.getElementById('dialog-login-error').classList.remove('invisible');
 			document.getElementById('login_password').value = '';
 		} else {
-			if(parseInt(resolve[0]['is_active']) === 1) {
+			if(parseInt(resolve[0]['Activated']) === 1) {
 				document.getElementById('dialog-login-error').textContent = '';
 				document.getElementById('dialog-login-error').classList.add('invisible');
 				feedBackColoring(document.getElementById('dialog-login-error').id);
 				g_CURRENT_USER = resolve[0];
 				g_CURRENT_USER_ID = g_CURRENT_USER['pk_id'];
 
-				if(parseInt(resolve[0]['change_password']) === 1) {
+				if(parseInt(resolve[0]['MustChangePassword']) === 1) {
 					loadTemplate('passwordUpdate', g_DIALOG);
 				} else {
 					loadTemplate('lotChoice', g_DIALOG);

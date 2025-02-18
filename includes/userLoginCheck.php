@@ -5,26 +5,29 @@
 	$return_array = [];
 	
 	$serverName = "";
+	$KMS_serverName = "";
+
 	$connectionInfo = array();
-	
-	if ($connType == "SQLServer")
-	{
+	$KMS_connectionInfo = array();
+	//if ($connType == "SQLServer")
+	//{
 		$serverName = $host;
 		$connectionInfo = array("UID"=>$user, "PWD"=>$pass, "Database"=>$db);
-	}
-	else
-	{
-		$serverName = $host."\\sqlexpress";
-		$connectionInfo = array("Database"=>$db);
-	}
+	//}
+	//else
+	//{
+		$KMS_serverName = $KMS_host."\\sqlexpress";
+		$KMS_connectionInfo = array("Database"=>$KMS_db);
+	//}
 	
 	$conn = sqlsrv_connect($serverName, $connectionInfo);
+	$KMS_conn = sqlsrv_connect($KMS_serverName, $KMS_connectionInfo);
 
 	if ($conn) {
 		$sql = "SELECT *
-				FROM g_employees
-				WHERE email_address = '".$_POST['email_address']."'
-					AND pass = '".$_POST['pass']."'";
+				FROM Users
+				WHERE EmailAddress = '".$_POST['email_address']."'
+					AND Password = '".$_POST['pass']."'";
 		
 		$res = sqlsrv_query($conn, $sql);
 		

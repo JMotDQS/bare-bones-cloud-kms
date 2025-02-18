@@ -6,27 +6,30 @@
 	//$lot_pk_id_config = file_get_contents('C:\Program FIles\KMS\KMSConfig.dqcnf');
 
 	$serverName = "";
+	$KMS_serverName = "";
+
 	$connectionInfo = array();
-	if ($connType == "SQLServer")
-	{
+	$KMS_connectionInfo = array();
+	//if ($connType == "SQLServer")
+	//{
 		$serverName = $host;
 		$connectionInfo = array("UID"=>$user, "PWD"=>$pass, "Database"=>$db);
-	}
-	else
-	{
-		$serverName = $host."\\sqlexpress";
-		$connectionInfo = array("Database"=>$db);
-	}
+	//}
+	//else
+	//{
+		$KMS_serverName = $KMS_host."\\sqlexpress";
+		$KMS_connectionInfo = array("Database"=>$KMS_db);
+	//}
 	
 	$conn = sqlsrv_connect($serverName, $connectionInfo);
+	$KMS_conn = sqlsrv_connect($KMS_serverName, $KMS_connectionInfo);
 
 	if ($conn) {
-		$sql = "SELECT gl.pk_id, gl.lot_name, gl.lot_address, gl.lot_city, gl.lot_zip, gl.lot_capacity, gl.lot_active, gs.state_name, gs.state_abv, man.manufacturer
-				FROM g_lots AS gl
-					INNER JOIN g_states AS gs ON gs.pk_id = gl.fk_g_states_pk_id
-					INNER JOIN manufacturers AS man ON man.pk_id = gl.fk_manufacturers_pk_id
-				WHERE gl.pk_id = '".$_POST['lot_id']."'
-				ORDER BY gl.lot_name ASC";
+		$sql = "SELECT cl.CompanyLocationId, cl.CompanyId, cl.Name, cl.Address, cl.Latitude, cl.Longitude, tl.LotCapacity
+				FROM CompanyLocations AS cl
+					INNER JOIN TransportLots AS tl ON tl.CompanyLocationId = cl.CompanyLocationId
+				WHERE cl.CompanyLocationId = '".$_POST['lot_id']."'
+				ORDER BY cl.Name ASC";
 		$res = sqlsrv_query($conn, $sql);
 
 		if ($res) {

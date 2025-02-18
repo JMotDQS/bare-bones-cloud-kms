@@ -13,7 +13,7 @@ $(document).ready(function() {
 
 const refreshApp = () => {
 	document.getElementById('card-template-container').textContent = '';
-	getSections();
+	//getSections();
 
 	if (g_CURRENT_USER_ID == '0') {
 		loadTemplate('login', g_DIALOG);
@@ -23,7 +23,9 @@ const refreshApp = () => {
 };
 
 const getLot = (param_lot_id) => {
+	console.log("getLot() called");
 	getLotPromise(param_lot_id).then((resolve) => {
+		console.log("resolve:", resolve);
 		g_CURRENT_LOT = [];
 		g_CURRENT_LOT = resolve[0];
 		setLot();
@@ -35,7 +37,8 @@ const getLot = (param_lot_id) => {
 };
 
 const setLot = () => {
-	document.getElementById('navbar-user').innerHTML = g_CURRENT_USER['first_name'] + "&nbsp;:&nbsp;" + g_CURRENT_LOT.lot_name;
+	console.log("setLot() called");
+	document.getElementById('navbar-user').innerHTML = g_CURRENT_USER['FirstName'] + "&nbsp;:&nbsp;" + g_CURRENT_LOT.Name;
 	document.getElementById('navbar-user').classList.remove('nav-item-hide');
 
 	closeDialog();
@@ -44,6 +47,7 @@ const setLot = () => {
 };
 
 const getLotSlots = () => {
+	console.log("getLotSlots() called");
 	getLotSlotsPromise().then((resolve) => {
 		resolve.forEach((lot, index) => {
 			/******

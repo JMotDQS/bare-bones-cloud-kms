@@ -1,3 +1,37 @@
+const getAzureLots = () => {
+	console.log("getAzureLots() called2");
+	getAzureLotsPromise().then((resolve) => {
+		console.log("resolve:", resolve);
+	}).catch(function(reject) {
+		consoleReporting(reject);
+	}).finally(function() {
+		consoleReporting("Moving On.");
+	});
+}
+
+const getAzureLotsPromise = () => {
+	return new Promise(function(resolve, reject) {
+		$.ajax({
+			url: "includes/azure_connect.php",
+			type: 'POST',
+			cache: false,
+			dataType: 'json',
+
+			success: function (data) {
+				console.log("data:", data);
+				resolve(data);
+			},
+
+			error: function(xhr, desc, err) {
+				reject(false);
+				consoleReporting(xhr)
+				consoleReporting("Details: " + desc + "\nError:" + err);
+				consoleReporting("geSectionsPromise():Something broke");
+			}
+		});
+	});
+};
+
 /********************************************************
 	Application Promises Start
 ********************************************************/
@@ -56,7 +90,8 @@ const getLotSlotsPromise = () => {
 			cache: false,
 			dataType: 'json',
 			data: {
-				'lot_id': g_CURRENT_LOT.pk_id
+				'lot_id': g_CURRENT_LOT.CompanyLocationId,
+				'lot_cap': g_CURRENT_LOT.LotCapacity
 			},
 
 			success: function (data) {

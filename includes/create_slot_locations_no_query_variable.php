@@ -7,24 +7,28 @@
 	$case_num = 1;
 	
 	$serverName = "";
+	$KMS_serverName = "";
+
 	$connectionInfo = array();
-	if ($connType == "SQLServer")
-	{
+	$KMS_connectionInfo = array();
+	//if ($connType == "SQLServer")
+	//{
 		$serverName = $host;
 		$connectionInfo = array("UID"=>$user, "PWD"=>$pass, "Database"=>$db);
-	}
-	else
-	{
-		$serverName = $host."\\sqlexpress";
-		$connectionInfo = array("Database"=>$db);
-	}
+	//}
+	//else
+	//{
+		$KMS_serverName = $KMS_host."\\sqlexpress";
+		$KMS_connectionInfo = array("Database"=>$KMS_db);
+	//}
 	
 	$conn = sqlsrv_connect($serverName, $connectionInfo);
+	$KMS_conn = sqlsrv_connect($KMS_serverName, $KMS_connectionInfo);
 
 	if ($conn) {
-		$sql = "SELECT TOP (1) lot_capacity
-				FROM g_lots
-				ORDER BY lot_capacity DESC";
+		$sql = "SELECT TOP (1) LotCapacity
+				FROM TransportLots
+				ORDER BY LotCapacity DESC";
 		$res = sqlsrv_query($conn, $sql);
 
 		if ($res) {
@@ -32,7 +36,7 @@
 				array_push($return_array, $row);
 			}
 		}
-		$total_cases = ((int) $return_array[0]['lot_capacity'] * 1.1) / 10;
+		$total_cases = ((int) $return_array[0]['LotCapacity'] * 1.1) / 10;
 
 		while($case_num <= $total_cases) {
 			if($case_num > 0 && $case_num < 10) {
@@ -45,7 +49,7 @@
 
 			print_r($temp_case.'<br/>');
 
-			$sql = "INSERT INTO key_slots (created_date, key_slot) VALUES ";
+			$sql = "INSERT INTO KeySlots (Created, KeySlot) VALUES ";
 
 			for($i = 0; $i < $slot_count; $i++) {
 				$temp_slot = $temp_case.$slot_array[$i];
@@ -55,7 +59,7 @@
 					$sql .= ", ";
 				}
 			}
-			$res = sqlsrv_query($conn, $sql);
+			$res = sqlsrv_query($KMS_conn, $sql);
 
 			$case_num++;
 		}

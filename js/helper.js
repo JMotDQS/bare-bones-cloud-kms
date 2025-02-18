@@ -135,6 +135,7 @@ const startTimer = (param_multiplier = 1) => {
 };
 
 const closeDialog = () => {
+	console.log("closeDialog() called");
 	APP_DIALOG.close();
 	APP_DIALOG.textContent = '';
 };

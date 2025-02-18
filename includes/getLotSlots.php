@@ -5,19 +5,23 @@
 	$return_array = [];
 	
 	$serverName = "";
+	$KMS_serverName = "";
+
 	$connectionInfo = array();
-	if ($connType == "SQLServer")
-	{
+	$KMS_connectionInfo = array();
+	//if ($connType == "SQLServer")
+	//{
 		$serverName = $host;
 		$connectionInfo = array("UID"=>$user, "PWD"=>$pass, "Database"=>$db);
-	}
-	else
-	{
-		$serverName = $host."\\sqlexpress";
-		$connectionInfo = array("Database"=>$db);
-	}
+	//}
+	//else
+	//{
+		$KMS_serverName = $KMS_host."\\sqlexpress";
+		$KMS_connectionInfo = array("Database"=>$KMS_db);
+	//}
 	
 	$conn = sqlsrv_connect($serverName, $connectionInfo);
+	$KMS_conn = sqlsrv_connect($KMS_serverName, $KMS_connectionInfo);
 
 	if ($conn) {
 		$sql = "SELECT CAST(1.1 * lot_capacity AS INT) AS lot_capacity
