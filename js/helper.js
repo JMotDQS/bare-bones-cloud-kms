@@ -53,7 +53,7 @@ const initialLotSlotsState = () => {
 		if(resolve.length > 0) {
 			// lot has slots that are not open
 			resolve.forEach((slot_closed, index) => {
-				setLotSlotsState(lot_slots_state.filter(slot => slot.slot === slot_closed.key_slot)[0].slot, 0);
+				setLotSlotsState(lot_slots_state.filter(slot => slot.KeySlot === slot_closed.KeySlot)[0].KeySlot, 0);
 			});
 		}
 
@@ -65,7 +65,7 @@ const initialLotSlotsState = () => {
 };
 
 const setLotSlotsState = (param_slot, param_state) => {
-	lot_slots_state[lot_slots_state.filter(slot => slot.slot === `${param_slot.toUpperCase()}`)[0].index].state = parseInt(param_state);
+	lot_slots_state[lot_slots_state.filter(slot => slot.KeySlot === `${param_slot.toUpperCase()}`)[0].index].state = parseInt(param_state);
 };
 
 const feedBackColoring = (param_ele, param_color = 'default') => {
@@ -135,7 +135,6 @@ const startTimer = (param_multiplier = 1) => {
 };
 
 const closeDialog = () => {
-	console.log("closeDialog() called");
 	APP_DIALOG.close();
 	APP_DIALOG.textContent = '';
 };

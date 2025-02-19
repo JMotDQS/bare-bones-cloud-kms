@@ -35,6 +35,8 @@ const userLoginCheck = (e) => {
 				g_CURRENT_USER = resolve[0];
 				g_CURRENT_USER_ID = g_CURRENT_USER['pk_id'];
 
+				getSections();
+
 				if(parseInt(resolve[0]['MustChangePassword']) === 1) {
 					loadTemplate('passwordUpdate', g_DIALOG);
 				} else {

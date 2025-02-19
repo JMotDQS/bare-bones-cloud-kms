@@ -1,8 +1,9 @@
 const kmsTemplate = () => {
+	console.log("kmsTemplate() called");
 	var temp_html = '';
-	if(g_CONNECTION) {
+	if(g_SECTIONS.length > 0) {
 		g_SECTIONS.forEach((section, index) => {
-			var cur_section = section.section.replaceAll(' ','').toLowerCase();
+			var cur_section = section.Name.replaceAll(' ','').toLowerCase();
 			/*******
 				index[0] = Check In
 					display_order = 1
@@ -19,13 +20,13 @@ const kmsTemplate = () => {
 				index[6] = Search
 					display_order = 11
 			*******/
-			if(index < 3) {
-				temp_html += `<div id="${section.pk_id}" class="card ${'card-' + cur_section}" data-page="${cur_section}" data-index="${index}" onclick="loadTemplate(this.dataset)">`;
-					temp_html += `<h1>${section.section}</h1>`;
-					temp_html += `<p class="card-body">${section.body_copy}</p>`;
-					temp_html += `<p class="card-icon"><i class="${section.icon}"></i></p>`;
+			//if(index < 3) {
+				temp_html += `<div id="${section.KmsSectionId}" class="card ${'card-' + cur_section}" data-page="${cur_section}" data-index="${index}" onclick="loadTemplate(this.dataset)">`;
+					temp_html += `<h1>${section.Name}</h1>`;
+					temp_html += `<p class="card-body">${section.BodyCopy}</p>`;
+					temp_html += `<p class="card-icon"><i class="${section.Icon}"></i></p>`;
 				temp_html += `</div>`;
-			}
+			//}
 		});
 	} else {
 		temp_html = `<h2>${g_CONNECTION_ERROR_COPY}</h2>`;
@@ -36,10 +37,11 @@ const kmsTemplate = () => {
 };
 
 const getSections = () => {
+	console.log("getSections() called");
 	getSectionsPromise().then((resolve) => {
 		g_SECTIONS = [];
-		g_SECTIONS = resolve['sections'];
-		g_CONNECTION = resolve['conn'];
+		g_SECTIONS = resolve;
+		//g_CONNECTION = resolve['conn'];
 	}).catch(function(reject) {
 		consoleReporting(reject);
 	}).finally(function() {

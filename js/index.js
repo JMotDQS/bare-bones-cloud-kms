@@ -23,9 +23,7 @@ const refreshApp = () => {
 };
 
 const getLot = (param_lot_id) => {
-	console.log("getLot() called");
 	getLotPromise(param_lot_id).then((resolve) => {
-		console.log("resolve:", resolve);
 		g_CURRENT_LOT = [];
 		g_CURRENT_LOT = resolve[0];
 		setLot();
@@ -37,7 +35,6 @@ const getLot = (param_lot_id) => {
 };
 
 const setLot = () => {
-	console.log("setLot() called");
 	document.getElementById('navbar-user').innerHTML = g_CURRENT_USER['FirstName'] + "&nbsp;:&nbsp;" + g_CURRENT_LOT.Name;
 	document.getElementById('navbar-user').classList.remove('nav-item-hide');
 
@@ -47,7 +44,6 @@ const setLot = () => {
 };
 
 const getLotSlots = () => {
-	console.log("getLotSlots() called");
 	getLotSlotsPromise().then((resolve) => {
 		resolve.forEach((lot, index) => {
 			/******
@@ -57,8 +53,8 @@ const getLotSlots = () => {
 			lot_slots_state.push(
 				{
 					index: index,
-					slot: lot.key_slot,
-					pk_id: lot.pk_id,
+					KeySlot: lot.KeySlot,
+					KeySlotId: lot.KeySlotId,
 					state: 1
 				}
 			);

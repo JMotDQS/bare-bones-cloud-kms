@@ -1,7 +1,6 @@
 const getAzureLots = () => {
-	console.log("getAzureLots() called2");
 	getAzureLotsPromise().then((resolve) => {
-		console.log("resolve:", resolve);
+		// stuff
 	}).catch(function(reject) {
 		consoleReporting(reject);
 	}).finally(function() {
@@ -18,7 +17,6 @@ const getAzureLotsPromise = () => {
 			dataType: 'json',
 
 			success: function (data) {
-				console.log("data:", data);
 				resolve(data);
 			},
 
@@ -42,6 +40,9 @@ const getSectionsPromise = () => {
 			type: 'POST',
 			cache: false,
 			dataType: 'json',
+			data: {
+				'role_id': parseInt(g_CURRENT_USER.Role)
+			},
 
 			success: function (data) {
 				resolve(data);
@@ -246,7 +247,6 @@ const searchVINsPromise = (param_vin) => {
 	Check Out Promises Start
 ********************************************************/
 const checkoutVINPromise = (param_slot) => {
-	console.log("checkoutVINPromise();param_slot:", param_slot);
 	return new Promise(function(resolve, reject) {
 		$.ajax({
 			url: "includes/checkOutVin.php",
@@ -262,7 +262,6 @@ const checkoutVINPromise = (param_slot) => {
 
 			success: function (data) {
 				setLotSlotsState(param_slot, 1);
-				console.log("data:", data);
 				resolve(data);
 			},
 
@@ -290,7 +289,7 @@ const initialLotSlotsStatePromise = () => {
 			cache: false,
 			dataType: 'json',
 			data: {
-				'lot_pk_id': g_CURRENT_LOT.pk_id
+				'lot_id': g_CURRENT_LOT.CompanyLocationId
 			},
 
 			success: function (data) {
@@ -314,7 +313,6 @@ const initialLotSlotsStatePromise = () => {
 	Reporting Promises Start
 ********************************************************/
 const checkedInVINReportPromise = () => {
-	console.log("checkedInVINReportPromise() called");
 	return new Promise(function(resolve, reject) {
 		$.ajax({
 			url: "includes/checkedInVINReport.php",
