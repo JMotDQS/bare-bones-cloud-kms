@@ -6,11 +6,11 @@
 	$temp_array = [];
 	$reg_vin_pk_id = '';
 
-	//$serverName = "";
-	//$connectionInfo = array();
-	//$serverName = $host;
-	//$connectionInfo = array("UID"=>$user, "PWD"=>$pass, "Database"=>$db);
-	//$conn = sqlsrv_connect($serverName, $connectionInfo);
+	/*$serverName = "";
+	$connectionInfo = array();
+	$serverName = $host;
+	$connectionInfo = array("UID"=>$user, "PWD"=>$pass, "Database"=>$db);
+	$conn = sqlsrv_connect($serverName, $connectionInfo);*/
 	
 	$KMS_serverName = "";
 	$KMS_connectionInfo = array();

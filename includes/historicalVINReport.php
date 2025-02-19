@@ -7,18 +7,15 @@
 	$fp = fopen('php://output', 'w');
 	
 	$serverName = "";
-	$KMS_serverName = "";
-
 	$connectionInfo = array();
-	$KMS_connectionInfo = array();
-
 	$serverName = $host;
 	$connectionInfo = array("UID"=>$user, "PWD"=>$pass, "Database"=>$db);
+	$conn = sqlsrv_connect($serverName, $connectionInfo);
 
+	$KMS_serverName = "";
+	$KMS_connectionInfo = array();
 	$KMS_serverName = $KMS_host."\\sqlexpress";
 	$KMS_connectionInfo = array("Database"=>$KMS_db);
-	
-	$conn = sqlsrv_connect($serverName, $connectionInfo);
 	$KMS_conn = sqlsrv_connect($KMS_serverName, $KMS_connectionInfo);
 
 	if ($conn) {

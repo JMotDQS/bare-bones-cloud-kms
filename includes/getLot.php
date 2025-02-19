@@ -3,22 +3,18 @@
 	require_once("config.php");
 
 	$return_array = [];
-	//$lot_pk_id_config = file_get_contents('C:\Program FIles\KMS\KMSConfig.dqcnf');
 
 	$serverName = "";
-	$KMS_serverName = "";
-
 	$connectionInfo = array();
-	$KMS_connectionInfo = array();
-
 	$serverName = $host;
 	$connectionInfo = array("UID"=>$user, "PWD"=>$pass, "Database"=>$db);
+	$conn = sqlsrv_connect($serverName, $connectionInfo);
 
+	/*$KMS_serverName = "";
+	$KMS_connectionInfo = array();
 	$KMS_serverName = $KMS_host."\\sqlexpress";
 	$KMS_connectionInfo = array("Database"=>$KMS_db);
-	
-	$conn = sqlsrv_connect($serverName, $connectionInfo);
-	$KMS_conn = sqlsrv_connect($KMS_serverName, $KMS_connectionInfo);
+	$KMS_conn = sqlsrv_connect($KMS_serverName, $KMS_connectionInfo);*/
 
 	if ($conn) {
 		$sql = "SELECT cl.CompanyLocationId, cl.CompanyId, cl.Name, cl.Address, cl.Latitude, cl.Longitude, tl.LotCapacity
