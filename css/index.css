@@ -74,9 +74,9 @@
 	--color-dashboard-dark: hsla(80 82% 43% / 1);
 	--color-dashboard-hover: hsla(80 82% 43% / var(--alpha-hover));
 
-	--color-admin-background: hsla(0 0% 43% / var(--alpha-background));
-	--color-admin-dark: hsla(0 0% 43% / 1);
-	--color-admin-hover: hsla(0 0% 43% / var(--alpha-hover));
+	--color-administration-background: hsla(0 0% 43% / var(--alpha-background));
+	--color-administration-dark: hsla(0 0% 43% / 1);
+	--color-administration-hover: hsla(0 0% 43% / var(--alpha-hover));
 }
 
 body {
@@ -219,18 +219,18 @@ p {
 	color: var(--color-content-hover);
 }
 
-.card-admin {
-	border-color: var(--color-admin-dark);
-	background-color: var(--color-admin-background);
+.card-administration {
+	border-color: var(--color-administration-dark);
+	background-color: var(--color-administration-background);
 }
-.card-admin .card-icon {
+.card-administration .card-icon {
 	font-size: calc(var(--full-rem) * 2);
-	color: var(--color-admin-dark);
+	color: var(--color-administration-dark);
 }
-.card-admin:not(.disable-hover):hover {
-	background-color: var(--color-admin-hover);
+.card-administration:not(.disable-hover):hover {
+	background-color: var(--color-administration-hover);
 }
-.card-admin:not(.disable-hover):hover .card-icon {
+.card-administration:not(.disable-hover):hover .card-icon {
 	color: var(--color-content-hover);
 }
 
