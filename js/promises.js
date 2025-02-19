@@ -180,6 +180,7 @@ const updatePasswordCheckPromise = (param_file, param_pw, param_user_id) => {
 	Check In Promises Start
 ********************************************************/
 const checkInVinPromise = (param_slot) => {
+	console.log("checkInVinPromise() called");
 	return new Promise(function(resolve, reject) {
 		$.ajax({
 			url: "includes/checkInVin.php",
@@ -187,13 +188,14 @@ const checkInVinPromise = (param_slot) => {
 			cache: false,
 			dataType: 'json',
 			data: {
-				'lot_id': g_CURRENT_LOT.pk_id,
+				'lot_id': g_CURRENT_LOT.CompanyLocationId,
 				'vin': g_CURRENT_VIN,
 				'key_slot': param_slot,
 				'user_id': g_CURRENT_USER_ID
 			},
 
 			success: function (data) {
+				console.log("checkInVinPromise():data:", data);
 				setLotSlotsState(param_slot, 0);
 				resolve(data);
 			},

@@ -102,10 +102,10 @@ const displayOpenSlots = () => {
 	
 
 	lot_slots_state.forEach((slot, index) => {
-		if(slot.slot.slice(0, 3) != current_case) {
+		if(slot.KeySlot.slice(0, 3) != current_case) {
 			open_count = 0;
 			slot_count = 0;
-			current_case = slot.slot.slice(0, 3);
+			current_case = slot.KeySlot.slice(0, 3);
 			slots_open_by_case.push(
 				{
 					case: current_case,

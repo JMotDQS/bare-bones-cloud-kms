@@ -57,8 +57,8 @@ const loadTemplate = (param_template, param_type = '') => {
 		
 		case 'checkin':
 			ROOT_BODY_ELEMENT.innerHTML = checkinTemplate();
-			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].section;
-			iconClassArray = g_SECTIONS[g_CHOSEN_SECTION].icon.split(" ");
+			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].Name;
+			iconClassArray = g_SECTIONS[g_CHOSEN_SECTION].Icon.split(" ");
 			document.getElementById('icon').classList.add(...iconClassArray);
 			setKeyEvents(temp_page, 'vin', .5);
 			setKeyEvents(temp_page, 'slot', .5);
@@ -81,8 +81,8 @@ const loadTemplate = (param_template, param_type = '') => {
 
 		case 'checkout':
 			ROOT_BODY_ELEMENT.innerHTML = checkoutTemplate();
-			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].section;
-			iconClassArray = g_SECTIONS[g_CHOSEN_SECTION].icon.split(" ");
+			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].Name;
+			iconClassArray = g_SECTIONS[g_CHOSEN_SECTION].Icon.split(" ");
 			document.getElementById('icon').classList.add(...iconClassArray);
 			setKeyEvents(temp_page, 'vin', 0);
 			setClasses(temp_page);
@@ -106,8 +106,8 @@ const loadTemplate = (param_template, param_type = '') => {
 			toggleDisabled('vin-physical-report-button', true);
 			document.getElementById('vin-physical-report-button').classList.add('button-disabled');
 
-			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].section;
-			iconClassArray = g_SECTIONS[g_CHOSEN_SECTION].icon.split(" ");
+			document.getElementById('title').textContent = g_SECTIONS[g_CHOSEN_SECTION].Name;
+			iconClassArray = g_SECTIONS[g_CHOSEN_SECTION].Icon.split(" ");
 			document.getElementById('icon').classList.add(...iconClassArray);
 			setClasses(temp_page);
 

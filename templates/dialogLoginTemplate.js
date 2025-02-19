@@ -33,7 +33,7 @@ const userLoginCheck = (e) => {
 				document.getElementById('dialog-login-error').classList.add('invisible');
 				feedBackColoring(document.getElementById('dialog-login-error').id);
 				g_CURRENT_USER = resolve[0];
-				g_CURRENT_USER_ID = g_CURRENT_USER['pk_id'];
+				g_CURRENT_USER_ID = g_CURRENT_USER['UserId'];
 
 				getSections();
 

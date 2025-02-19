@@ -90,7 +90,7 @@ const keyUpEvent = (e) => {
 					g_TIMER = window.setTimeout(() => {
 						if (hasInput) {
 							if (document.getElementById(e.data.inputEl).value.length > 3) {
-								if( parseInt(lot_slots_state.filter(slot => slot.slot === document.getElementById(e.data.inputEl).value.toUpperCase())[0].state) == 1 ) {
+								if( parseInt(lot_slots_state.filter(slot => slot.KeySlot === document.getElementById(e.data.inputEl).value.toUpperCase())[0].state) == 1 ) {
 									// Slot is open
 									feedBackColoring(myEle.id + '-feedback', 'green');
 									setElementCopy(myEle.id + '-feedback', 'Slot is Available.');
