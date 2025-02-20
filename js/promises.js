@@ -160,7 +160,7 @@ const updatePasswordCheckPromise = (param_file, param_pw, param_user_id) => {
 			},
 
 			success: function (data) {
-				resolve(data[0]['change_password']);
+				resolve(data[0]['MustChangePassword']);
 			},
 
 			error: function(xhr, desc, err) {
