@@ -10,17 +10,17 @@
 	$connectionInfo = array("UID"=>$user, "PWD"=>$pass, "Database"=>$db);
 	$conn = sqlsrv_connect($serverName, $connectionInfo);
 
-	$KMS_serverName = "";
+	/*$KMS_serverName = "";
 	$KMS_connectionInfo = array();
 	$KMS_serverName = $KMS_host."\\sqlexpress";
 	$KMS_connectionInfo = array("Database"=>$KMS_db);
-	$KMS_conn = sqlsrv_connect($KMS_serverName, $KMS_connectionInfo);
+	$KMS_conn = sqlsrv_connect($KMS_serverName, $KMS_connectionInfo);*/
 
 	if ($conn) {
-		$sql = "UPDATE g_employees
-				SET pass = '".$_POST['newPW']."', change_password = 0
-				OUTPUT INSERTED.change_password
-				WHERE pk_id = '".$_POST['userId']."'";		
+		$sql = "UPDATE Users
+				SET Password = '".$_POST['newPW']."', MustChangePassword = 0
+				OUTPUT INSERTED.MustChangePassword
+				WHERE UserId = '".$_POST['userId']."'";		
 		$res = sqlsrv_query($conn, $sql);
 		
 		if ($res) {
