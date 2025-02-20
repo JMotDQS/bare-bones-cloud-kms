@@ -256,7 +256,7 @@ const checkoutVINPromise = (param_slot) => {
 			cache: false,
 			dataType: 'json',
 			data: {
-				'lot_pk_id': g_CURRENT_LOT.pk_id,
+				'lot_pk_id': g_CURRENT_LOT.CompanyLocationId,
 				'slot_pk_id': document.getElementById('slot_pk_id').value,
 				'vin_pk_id': document.getElementById('vin_pk_id').value,
 				'user_id': g_CURRENT_USER_ID

@@ -5,11 +5,11 @@
 	$return_array = [false];
 	$temp_array = [];
 	
-	$serverName = "";
+	/*$serverName = "";
 	$connectionInfo = array();
 	$serverName = $host;
 	$connectionInfo = array("UID"=>$user, "PWD"=>$pass, "Database"=>$db);
-	$conn = sqlsrv_connect($serverName, $connectionInfo);
+	$conn = sqlsrv_connect($serverName, $connectionInfo);*/
 
 	$KMS_serverName = "";
 	$KMS_connectionInfo = array();
@@ -18,20 +18,20 @@
 	$KMS_conn = sqlsrv_connect($KMS_serverName, $KMS_connectionInfo);
 
 	if ($conn) {
-		$sql = "INSERT INTO key_tracking_historical
-							(created_date, fk_vin_registration_pk_id, fk_g_lots_pk_id,
-							fk_key_actions_pk_id, fk_key_slots_pk_id, fk_g_employees_pk_id)
+		$sql = "INSERT INTO KeyTrackingHistorical
+							(Created, VinRegistrationId, COmpanyLocationId,
+							KeyActionId, KeySlotId, UserId)
 				VALUES(GETDATE(), '".$_POST['vin_pk_id']."', '".$_POST['lot_pk_id']."',
 					(
-						SELECT pk_id
-						FROM key_actions
-						WHERE key_action = 'Out'
+						SELECT KeyActionId
+						FROM KeyActions
+						WHERE KeyAction = 'Out'
 					), '".$_POST['slot_pk_id']."', '".$_POST['user_id']."')";
 		$res = sqlsrv_query($conn, $sql);
 
-		$sql = "SELECT pk_id
-				FROM key_tracking
-				WHERE fk_vin_registration_pk_id = '".$_POST['vin_pk_id']."'";
+		$sql = "SELECT KeyTrackingId
+				FROM KeyTracking
+				WHERE VinRegistrationId = '".$_POST['vin_pk_id']."'";
 		$res = sqlsrv_query($conn, $sql);
 
 		if (sqlsrv_has_rows($res)) {
@@ -39,25 +39,25 @@
 				array_push($temp_array, $row);
 			}
 
-			$sql = "UPDATE key_tracking
-					SET updated_date = GETDATE(),
-						fk_g_lots_pk_id = '".$_POST['lot_pk_id']."',
-						fk_key_actions_pk_id = (
-							SELECT pk_id
-							FROM key_actions
-							WHERE key_action = 'Out'
-						), fk_key_slots_pk_id = '".$_POST['slot_pk_id']."',
-						fk_g_employees_pk_id = '".$_POST['user_id']."'
-					WHERE pk_id = '".$temp_array[0]['pk_id']."'";
+			$sql = "UPDATE KeyTracking
+					SET Updated = GETDATE(),
+						CompanyLocationId = '".$_POST['lot_pk_id']."',
+						KeyActionId = (
+							SELECT KeyActionId
+							FROM KeyActions
+							WHERE KeyAction = 'Out'
+						), KeySlotId = '".$_POST['slot_pk_id']."',
+						UserId = '".$_POST['user_id']."'
+					WHERE KeyTrackingId = '".$temp_array[0]['KeyTrackingId']."'";
 		} else {
-			$sql = "INSERT INTO key_tracking
-							(created_date, fk_vin_registration_pk_id, fk_g_lots_pk_id,
-							fk_key_actions_pk_id, fk_key_slots_pk_id, fk_g_employees_pk_id)
+			$sql = "INSERT INTO KeyTracking
+							(Created, VinRegistrationId, CompanyLocationId,
+							KeyActionId, KeySlotId, UserId)
 					VALUES(GETDATE(), '".$_POST['vin_pk_id']."', '".$_POST['lot_pk_id']."',
 						(
-							SELECT pk_id
-							FROM key_actions
-							WHERE key_action = 'Out'
+							SELECT KeyActionId
+							FROM KeyActions
+							WHERE KeyAction = 'Out'
 						), '".$_POST['slot_pk_id']."', '".$_POST['user_id']."')";
 		}
 		$res = sqlsrv_query($conn, $sql);

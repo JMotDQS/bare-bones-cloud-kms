@@ -105,7 +105,7 @@ const setCheckoutSearchResults = () => {
 	} else {
 		var temp_html = '';
 		if(cur_lot_vin_search_results.length < 1) {
-			temp_html += `${g_CURRENT_LOT.lot_name} has no matching results.`;
+			temp_html += `${g_CURRENT_LOT.Name} has no matching results.`;
 		} else {
 			cur_lot_vin_search_results.forEach((vin, index) => {
 				if(vin.KeyAction == 'In') {
@@ -151,11 +151,11 @@ const setCheckoutSearchResults = () => {
 
 const checkoutChosenVIN = (ele) => {
 	document.getElementById('vinConfirm').value = '';
-	document.getElementById('vin_pk_id').value = cur_lot_vin_search_results[ele.dataset.index].vin_pk_id;
-	document.getElementById('slot_pk_id').value = cur_lot_vin_search_results[ele.dataset.index].slot_pk_id;
-	document.getElementById('vinChosen').value = cur_lot_vin_search_results[ele.dataset.index].vin;
+	document.getElementById('vin_pk_id').value = cur_lot_vin_search_results[ele.dataset.index].CompanyLocationId;
+	document.getElementById('slot_pk_id').value = cur_lot_vin_search_results[ele.dataset.index].KeySlotId;
+	document.getElementById('vinChosen').value = cur_lot_vin_search_results[ele.dataset.index].Vin;
 	document.getElementById('vinChosen').setAttribute('disabled', true);
-	document.getElementById('slot').value = cur_lot_vin_search_results[ele.dataset.index].key_slot;
+	document.getElementById('slot').value = cur_lot_vin_search_results[ele.dataset.index].KeySlot;
 	document.getElementById('slot').setAttribute('disabled', true);
 	document.getElementById('checkout-result-container').classList.remove('hide-element');
 	document.getElementById('checkout-result-container').classList.add('checkout-result-container');
