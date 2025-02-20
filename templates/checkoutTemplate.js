@@ -108,18 +108,18 @@ const setCheckoutSearchResults = () => {
 			temp_html += `${g_CURRENT_LOT.lot_name} has no matching results.`;
 		} else {
 			cur_lot_vin_search_results.forEach((vin, index) => {
-				if(vin.key_action == 'In') {
+				if(vin.KeyAction == 'In') {
 					temp_html += `<div class="result-card result-card-cur-lot" id="cur-${index}" data-index="${index}" onclick="checkoutChosenVIN(this)">`;
 				} else {
 					temp_html += `<div class="result-card result-card-cur-lot-out" id="cur-${index}" data-index="${index}">`;
 				}
-					temp_html += `<h4 class="result-lot-name">${vin.lot_name}</h4>`;
-					temp_html += `<p>VIN: ${vin.vin}</p>`;
-					temp_html += `<p>Slot: ${vin.key_slot}</p>`;
-					temp_html += `<p>Action: ${vin.key_action}</p>`;
-					temp_html += `<p>Created: ${vin.created_date.date}</p>`;
-					if(vin.updated_date != null) {
-						temp_html += `<p>Updated: ${vin.updated_date.date}</p>`;
+					temp_html += `<h4 class="result-lot-name">${vin.CompanyLocationName}</h4>`;
+					temp_html += `<p>VIN: ${vin.Vin}</p>`;
+					temp_html += `<p>Slot: ${vin.KeySlot}</p>`;
+					temp_html += `<p>Action: ${vin.KeyAction}</p>`;
+					temp_html += `<p>Created: ${vin.Created.date}</p>`;
+					if(vin.Updated != null) {
+						temp_html += `<p>Updated: ${vin.Updated.date}</p>`;
 					}
 				temp_html += `</div>`;
 			});
@@ -132,13 +132,13 @@ const setCheckoutSearchResults = () => {
 		} else {
 			rem_lots_vin_search_results.forEach((vin, index) => {
 				temp_html += `<div class="result-card result-card-other-lot" id="oth-${index}">`;
-					temp_html += `<h4 class="result-lot-name">${vin.lot_name}</h4>`;
-					temp_html += `<p>VIN: ${vin.vin}</p>`;
-					temp_html += `<p>Slot: ${vin.key_slot}</p>`;
-					temp_html += `<p>Action: ${vin.key_action}</p>`;
-					temp_html += `<p>Created: ${vin.created_date.date}</p>`;
-					if(vin.updated_date != null) {
-						temp_html += `<p>Updated: ${vin.updated_date.date}</p>`;
+					temp_html += `<h4 class="result-lot-name">${vin.CompanyLocationName}</h4>`;
+					temp_html += `<p>VIN: ${vin.Vin}</p>`;
+					temp_html += `<p>Slot: ${vin.KeySlot}</p>`;
+					temp_html += `<p>Action: ${vin.KeyAction}</p>`;
+					temp_html += `<p>Created: ${vin.Created.date}</p>`;
+					if(vin.Updated != null) {
+						temp_html += `<p>Updated: ${vin.Updated.date}</p>`;
 					}
 				temp_html += `</div>`;
 			});

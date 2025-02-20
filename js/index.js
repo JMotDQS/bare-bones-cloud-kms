@@ -73,8 +73,8 @@ const searchVINs = (param_vin) => {
 	toggleDisabled('search-button', true);
 	searchVINsPromise(param_vin).then((resolve) => {
 		bulk_vin_search_results = resolve;
-		cur_lot_vin_search_results = bulk_vin_search_results['vins'].filter(lot => lot.lot_pk_id == g_CURRENT_LOT.pk_id);
-		rem_lots_vin_search_results = bulk_vin_search_results['vins'].filter(lot => lot.lot_pk_id != g_CURRENT_LOT.pk_id);
+		cur_lot_vin_search_results = bulk_vin_search_results['vins'].filter(lot => lot.CompanyLocationId == g_CURRENT_LOT.CompanyLocationId);
+		rem_lots_vin_search_results = bulk_vin_search_results['vins'].filter(lot => lot.CompanyLocationId != g_CURRENT_LOT.CompanyLocationId);
 		setCheckoutSearchResults();
 	}).catch(function(reject) {
 		consoleReporting(reject);
