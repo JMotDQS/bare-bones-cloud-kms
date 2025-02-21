@@ -322,8 +322,8 @@ const checkedInVINReportPromise = () => {
 			cache: false,
 			dataType: 'json',
 			data: {
-				'lot_pk_id': g_CURRENT_LOT.pk_id,
-				'lot_name': g_CURRENT_LOT.lot_name
+				'lot_pk_id': g_CURRENT_LOT.CompanyLocationId,
+				'lot_name': g_CURRENT_LOT.Name
 			},
 
 			success: function (data) {
@@ -348,8 +348,8 @@ const historicalVINReportPromise = (param_VINs) => {
 			cache: false,
 			dataType: 'json',
 			data: {
-				'lot_pk_id': g_CURRENT_LOT.pk_id,
-				'lot_name': g_CURRENT_LOT.lot_name,
+				'lot_pk_id': g_CURRENT_LOT.CompanyLocationId,
+				'lot_name': g_CURRENT_LOT.Name,
 				'vin_list': param_VINs
 			},
 
@@ -375,7 +375,7 @@ const physicalVINReportPromise = () => {
 			cache: false,
 			dataType: 'json',
 			data: {
-				'lot_name': g_CURRENT_LOT.lot_name,
+				'lot_name': g_CURRENT_LOT.Name,
 				'vin_list': physical_inv_array
 			},
 
