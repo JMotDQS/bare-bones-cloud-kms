@@ -18,23 +18,17 @@
 	$KMS_connectionInfo = array("Database"=>$KMS_db);
 	$KMS_conn = sqlsrv_connect($KMS_serverName, $KMS_connectionInfo);
 
-	if ($conn) {
-		$sql = "SELECT vin.vin, ksl.key_slot, glot.lot_name,
-					FORMAT(kth.created_date, 'M/d/yyyy HH:mm:ss') AS scan_date,
-					kac.key_action
-				FROM key_tracking_historical AS kth
-					INNER JOIN vin_registration AS vin ON vin.pk_id = kth.fk_vin_registration_pk_id
-					INNER JOIN key_slots AS ksl ON ksl.pk_id = kth.fk_key_slots_pk_id
-					INNER JOIN g_lots AS glot ON glot.pk_id = kth.fk_g_lots_pk_id
-					INNER JOIN key_actions AS kac ON kac.pk_id = kth.fk_key_actions_pk_id
-				WHERE vin.vin IN(".$_POST['vin_list'].")
-					AND kth.fk_g_lots_pk_id = (
-						SELECT pk_id
-						FROM g_lots AS glot
-						WHERE glot.pk_id = '".$_POST['lot_pk_id']."'
-					)
-				ORDER BY vin.vin ASC, kth.created_date ASC";
-		$res = sqlsrv_query($conn, $sql);
+	if ($KMS_conn) {
+		$sql = "SELECT kth.CompanyLocationId, vin.Vin, ks.KeySlot,
+					FORMAT(kth.Created, 'M/d/yyyy HH:mm:ss') AS ScanDate,
+					ka.KeyAction
+				FROM KeyTrackingHistorical AS kth
+					INNER JOIN VinRegistration AS vin ON vin.VinRegistrationId = kth.VinRegistrationId
+					INNER JOIN KeySlots AS ks ON ks.KeySlotId = kth.KeySlotId
+					INNER JOIN KeyActions AS ka ON ka.KeyActionId = kth.KeyActionId
+				WHERE vin.Vin IN(".$_POST['vin_list'].")
+				ORDER BY vin.Vin ASC, kth.Created ASC";
+		$res = sqlsrv_query($KMS_conn, $sql);
 
 		if (sqlsrv_has_rows($res)) {
 			$fp = fopen('../../'.$FileName, 'w');
@@ -42,6 +36,8 @@
 				array_push($return_array, $row);
 				if (!isset($headings)) {
 					$headings = array_keys($row);
+					array_push($headings, 'LotName');
+					array_shift($headings);
 					fputcsv($fp, $headings, ',', '"');
 				}
 			}
@@ -52,7 +48,25 @@
 
 	}
 
-	$close_success = sqlsrv_close($conn);
+	if ($conn) {
+		for($i = 0; $i < count($return_array); $i++) {
+			$sql = "SELECT cl.Name
+					FROM CompanyLocations AS cl
+					WHERE cl.CompanyLocationId = '".$return_array[$i]['CompanyLocationId']."'";
+			$res = sqlsrv_query($conn, $sql);
+			if (sqlsrv_has_rows($res)) {
+				while ($row = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
+					$return_array[$i]['LotName'] = $row['Name'];
+				}
+			}
+		}
+	}
+	for($i = 0; $i < count($return_array); $i++) {
+		unset($return_array[$i]['CompanyLocationId']);
+	}
+
+	sqlsrv_close($conn);
+	$close_success = sqlsrv_close($KMS_conn);
 	if ($close_success) {
 		foreach ($return_array as $pair) {
 			fputcsv($fp, $pair);

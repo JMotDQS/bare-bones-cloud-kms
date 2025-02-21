@@ -3,7 +3,7 @@
 	$return_array = [];
 	$each_item = [];
 	$success = false;
-	$FileName = $_POST['lot_name'].'_hist_vin_report.csv';
+	$FileName = $_POST['lot_name'].'_phys_vin_report.csv';
 	$fp = fopen('php://output', 'w');
 
 	// Since UID and PWD are not specified in the $connectionInfo array,

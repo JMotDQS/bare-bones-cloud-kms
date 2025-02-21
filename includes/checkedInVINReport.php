@@ -43,7 +43,6 @@
 				if (!isset($headings)) {
 					$headings = array_keys($row);
 					array_push($headings, 'LotName');
-					
 					fputcsv($fp, $headings, ',', '"');
 				}
 			}

@@ -174,6 +174,7 @@ const physicalVINReport = () => {
 			document.getElementById('vin-physical-report-feedback').innerText = 'Report Created.';
 			feedBackColoring(document.getElementById('vin-physical-report-feedback').id, 'green');
 			document.getElementById('vin-physical-report-feedback').classList.add('feedback-style');
+			physical_inv_array = [];
 		} else {
 			document.getElementById('vin-physical-report-feedback').innerText = 'Error while creating report.';
 			feedBackColoring(document.getElementById('vin-physical-report-feedback').id, 'red');
