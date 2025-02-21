@@ -14,7 +14,6 @@ const dialogLotSelectionTemplate = () => {
 }
 
 const lotFileSelected = (e) => {
-	console.log("lotFileSelected() called");
 	const fileChosen = e.target.files[0];
 	if(!fileChosen) {
 		return;

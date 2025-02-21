@@ -180,7 +180,6 @@ const updatePasswordCheckPromise = (param_file, param_pw, param_user_id) => {
 	Check In Promises Start
 ********************************************************/
 const checkInVinPromise = (param_slot) => {
-	console.log("checkInVinPromise() called");
 	return new Promise(function(resolve, reject) {
 		$.ajax({
 			url: "includes/checkInVin.php",

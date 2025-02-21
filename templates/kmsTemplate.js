@@ -1,5 +1,4 @@
 const kmsTemplate = () => {
-	console.log("kmsTemplate() called");
 	var temp_html = '';
 	if(g_SECTIONS.length > 0) {
 		g_SECTIONS.forEach((section, index) => {
@@ -20,7 +19,6 @@ const kmsTemplate = () => {
 };
 
 const getSections = () => {
-	console.log("getSections() called");
 	getSectionsPromise().then((resolve) => {
 		g_SECTIONS = [];
 		g_SECTIONS = resolve;
