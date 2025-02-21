@@ -225,7 +225,7 @@ const searchVINsPromise = (param_vin) => {
 			dataType: 'json',
 			data: {
 				'search_vin': param_vin,
-				'lot_pk_id': g_CURRENT_LOT.pk_id
+				'lot_pk_id': g_CURRENT_LOT.CompanyLocationId
 			},
 
 			success: function (data) {

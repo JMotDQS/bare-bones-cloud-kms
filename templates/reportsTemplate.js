@@ -145,9 +145,9 @@ const addVINToPhysInvList = (param_vin) => {
 
 				physical_inv_array.forEach((item, index) => {
 					temp_html += `<div class="sub-card sub-card-cur-lot">
-									<p>VIN:${item.vin}</p>
-									<p>Slot:${item.key_slot}</p>
-									<h4 class="full-width-ele">${item.lot_name}</h4>
+									<p>VIN:${item.Vin}</p>
+									<p>Slot:${item.KeySlot}</p>
+									<h4 class="full-width-ele">${item.CompanyLocationName}</h4>
 								</div>`;
 				});
 				document.getElementById('vin-scanned-list-container').innerHTML = temp_html;
