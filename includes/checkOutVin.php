@@ -17,7 +17,7 @@
 	$KMS_connectionInfo = array("Database"=>$KMS_db);
 	$KMS_conn = sqlsrv_connect($KMS_serverName, $KMS_connectionInfo);
 
-	if ($conn) {
+	if ($KMS_conn) {
 		$sql = "INSERT INTO KeyTrackingHistorical
 							(Created, VinRegistrationId, COmpanyLocationId,
 							KeyActionId, KeySlotId, UserId)
@@ -27,12 +27,12 @@
 						FROM KeyActions
 						WHERE KeyAction = 'Out'
 					), '".$_POST['slot_pk_id']."', '".$_POST['user_id']."')";
-		$res = sqlsrv_query($conn, $sql);
+		$res = sqlsrv_query($KMS_conn, $sql);
 
 		$sql = "SELECT KeyTrackingId
 				FROM KeyTracking
 				WHERE VinRegistrationId = '".$_POST['vin_pk_id']."'";
-		$res = sqlsrv_query($conn, $sql);
+		$res = sqlsrv_query($KMS_conn, $sql);
 
 		if (sqlsrv_has_rows($res)) {
 			while ($row = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
@@ -60,10 +60,10 @@
 							WHERE KeyAction = 'Out'
 						), '".$_POST['slot_pk_id']."', '".$_POST['user_id']."')";
 		}
-		$res = sqlsrv_query($conn, $sql);
+		$res = sqlsrv_query($KMS_conn, $sql);
 	}
 
-	$close_success = sqlsrv_close($conn);
+	$close_success = sqlsrv_close($KMS_conn);
 	if ($close_success) {
 		$return_array[0] = true;
 	}

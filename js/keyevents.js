@@ -132,6 +132,7 @@ const keyUpEvent = (e) => {
 				case 'vinConfirm':
 					if(document.getElementById('vinConfirm').value == document.getElementById('vinChosen').value) {
 						toggleDisabled('checkout-button', false);
+						toggleDisabled('vinConfirm', true);
 						document.getElementById('checkout-button').classList.remove('button-disabled');
 						document.getElementById('checkout-button').classList.remove('disable-input');
 						document.getElementById('checkout-button').classList.remove('disable-hover');
@@ -139,6 +140,7 @@ const keyUpEvent = (e) => {
 						feedBackColoring(document.getElementById('confirm-feedback').id, 'green');
 					} else {
 						toggleDisabled('checkout-button', true);
+						toggleDisabled('vinConfirm', false);
 						document.getElementById('checkout-button').classList.add('button-disabled');
 						document.getElementById('checkout-button').classList.add('disable-input');
 						document.getElementById('checkout-button').classList.add('disable-hover');

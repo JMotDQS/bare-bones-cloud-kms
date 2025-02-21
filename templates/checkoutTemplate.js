@@ -151,7 +151,7 @@ const setCheckoutSearchResults = () => {
 
 const checkoutChosenVIN = (ele) => {
 	document.getElementById('vinConfirm').value = '';
-	document.getElementById('vin_pk_id').value = cur_lot_vin_search_results[ele.dataset.index].CompanyLocationId;
+	document.getElementById('vin_pk_id').value = cur_lot_vin_search_results[ele.dataset.index].VinRegistrationId;
 	document.getElementById('slot_pk_id').value = cur_lot_vin_search_results[ele.dataset.index].KeySlotId;
 	document.getElementById('vinChosen').value = cur_lot_vin_search_results[ele.dataset.index].Vin;
 	document.getElementById('vinChosen').setAttribute('disabled', true);
