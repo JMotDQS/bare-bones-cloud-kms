@@ -1,17 +1,17 @@
 const userTimeout = async () => {
 	if ((await IdleDetector.requestPermission()) !== 'granted') {
-		console.log("Permission denied");
+		consoleReporting("Permission denied");
 		return;
 	} else {
-		console.log("Permission granted");
+		consoleReporting("Permission granted");
 		const idleDetector = new IdleDetector();
 		idleDetector.addEventListener('change', () => {
 			const userState = idleDetector.userState;
 			if (userState === 'idle') {
-				console.log('User is inactive');
+				consoleReporting('User is inactive');
 				logOut();
 			} else {
-				console.log('User is active');
+				consoleReporting('User is active');
 			}
 		});
 		
@@ -58,9 +58,9 @@ const initialLotSlotsState = () => {
 		}
 
 	}).catch(function(reject) {
-		console.log("reject:", reject);
+		consoleReporting("reject:", reject);
 	}).finally(function() {
-		console.log("Moving On.");
+		consoleReporting("Moving On.");
 	});
 };
 
@@ -144,5 +144,5 @@ const loginEncrypt = (param_value) => {
 };
 
 const consoleReporting = (param) => {
-	//console.log(param);
+	console.log(param);
 };

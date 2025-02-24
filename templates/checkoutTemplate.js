@@ -167,7 +167,6 @@ const checkoutChosenVIN = (ele) => {
 const checkoutVIN = () => {
 	checkoutVINPromise(document.getElementById('slot').value).then((resolve) => {
 		// stuff
-		console.log("resolve[0]:", resolve[0]);
 		if(resolve[0]) {
 			toggleDisabled('checkout-button', true);
 			document.getElementById('checkout-button').classList.add('button-disabled');

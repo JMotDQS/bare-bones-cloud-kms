@@ -8,13 +8,11 @@ const LOGIN_CREDENTIALS_MISMATCH = 'Email/Password do not match for user.'
 const LOGIN_NONACTIVE_USER_ERROR = '<p>You are NOT an Active user.</p><p>Please contact Supervisor.</p>'
 const PREVENT_LOGIN_CLOSE = true;
 
-const CLICK_EVENT = new CustomEvent('click');
-
 const g_TIMEOUT_VAL = 500;
-const g_RESET_TIMEOUT_VAL = 2000;
+//const g_RESET_TIMEOUT_VAL = 2000;
 const g_IDLE_TIMEOUT_VAL = 60000;// in milliseconds
-const g_APP = 'app';
-const g_NAV = 'nav';
+//const g_APP = 'app';
+//const g_NAV = 'nav';
 const g_DIALOG = 'dialog';
 const g_VER = '3.0-Alpha';
 const g_VIN_LENGTH = 17;
@@ -38,7 +36,7 @@ var g_TIMER;
 var g_CURRENT_USER_ID = '0';
 var g_CURRENT_USER = [];
 var g_SECTIONS = [];
-var g_CONNECTION;
+//var g_CONNECTION;
 var g_CHOSEN_SECTION = -1;
 var g_CURRENT_VIN = '';
 var g_CURRENT_LOT = [];

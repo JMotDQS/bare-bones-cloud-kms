@@ -1,11 +1,11 @@
 $(document).ready(function() {
 	if ('IdleDetector' in window) {
-		console.log("IdleDetector supported");
+		consoleReporting("IdleDetector supported");
 		const controller = new AbortController();
 		const signal = controller.signal;
 	} else {
 		// Fallback to the event listener approach
-		console.log("IdleDetector NOT supported");
+		consoleReporting("IdleDetector NOT supported");
 	}
 
 	refreshApp();

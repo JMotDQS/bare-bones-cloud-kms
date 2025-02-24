@@ -56,8 +56,8 @@ const userLoginCheck = (e) => {
 		}
 
 	}).catch(function(reject) {
-		console.log("reject:", reject);
+		consoleReporting("reject:", reject);
 	}).finally(function() {
-		console.log("Moving On.");
+		consoleReporting("Moving On.");
 	});
 }

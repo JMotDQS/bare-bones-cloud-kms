@@ -27,8 +27,8 @@ const updatePasswordCheck = () => {
 			document.getElementById('dialog-password-error').classList.remove('invisible');
 		}
 	}).catch(function(reject) {
-		console.log("reject:", reject);
+		consoleReporting("reject:", reject);
 	}).finally(function() {
-		console.log("Moving On.");
+		consoleReporting("Moving On.");
 	});
 }

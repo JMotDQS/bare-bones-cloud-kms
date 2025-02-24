@@ -194,7 +194,6 @@ const checkInVinPromise = (param_slot) => {
 			},
 
 			success: function (data) {
-				console.log("checkInVinPromise():data:", data);
 				setLotSlotsState(param_slot, 0);
 				resolve(data);
 			},
