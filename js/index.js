@@ -13,7 +13,6 @@ $(document).ready(function() {
 
 const refreshApp = () => {
 	document.getElementById('card-template-container').textContent = '';
-	//getSections();
 
 	if (g_CURRENT_USER_ID == '0') {
 		loadTemplate('login', g_DIALOG);
