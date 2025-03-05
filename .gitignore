@@ -4,6 +4,8 @@
 *.sql
 # ignore ALL .config files
 *.config
+# ignore config.php
+config.php
 
 # ignore ALL files in ANY directory named SQL
 SQL/
