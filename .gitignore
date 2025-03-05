@@ -11,3 +11,4 @@ includes/config.php
 SQL/
 # ignore ALL files in ANY directory named aspnet_client
 aspnet_client/
+includes/config.php
